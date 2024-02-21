@@ -67,6 +67,6 @@ if __name__ == "__main__":
 
 
     graph = Graph_single_bar_UJ.input_data(histogram, In_minus_Nu_true, In_minus_Nu_reco, vet_minus_Nu_reco)
-    graph.type_neutrino = +1
-    graph.type_tau = +1
+    graph.type_neutrino = -1
+    graph.type_tau = -1
     graph.plot_bar()
