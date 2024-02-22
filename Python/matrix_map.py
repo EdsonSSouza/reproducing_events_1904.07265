@@ -15,7 +15,7 @@ import numpy as np
 class Mapping_matrix:
     _instance = None
 
-    def __init__(self, row_en_reco, col_en_true, fator_sig_keep, fator_sig_sqrt, fator_sig_linear, fator_mean) -> None:
+    def __init__( self, row_en_reco, col_en_true, fator_sig_keep, fator_sig_sqrt, fator_sig_linear, fator_mean ):
         self.row_en_reco = row_en_reco
         self.col_en_true = col_en_true
 
@@ -39,7 +39,7 @@ class Mapping_matrix:
         cls._instance = setup_data
         return cls._instance
     @classmethod
-    def parameter_change(cls, in_fator_sig_keep, in_fator_sig_sqrt, in_fator_sig_linear, in_fator_mean):
+    def change_parameter(cls, in_fator_sig_keep, in_fator_sig_sqrt, in_fator_sig_linear, in_fator_mean):
         if cls._instance is None:
             raise Exception(" No existing instance. Use input_data(row_en_reco, col_en_true) first. ")
         else:
@@ -48,7 +48,6 @@ class Mapping_matrix:
             cls._instance.fator_sig_linear = in_fator_sig_linear
             cls._instance.fator_mean = in_fator_mean
         return cls._instance
-
 
 
     def mapping_by_sum(self):

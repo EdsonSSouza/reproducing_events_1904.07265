@@ -96,56 +96,75 @@ histogram = Histogram.def_Uniform_SP(0, 40, 0.5)
 # Calling the mapping matrix
 energy_true = energy_bin
 energy_reco = energy_bin
-map_matrix = Mapping_matrix.input_data( energy_reco, energy_true ).mapping_by_sum()
+map_matrix = Mapping_matrix.input_data( energy_reco, energy_true )
+#map_matrix.change_parameter( 0, 0, 0.25, 0.435 )
+map_matrix = map_matrix.mapping_by_sum()
 
 
 # Vector_reconstruction
 
     # Neutrino Mode (Calculate): 
 cal_minus_Nu_reco = 0.5*np.dot( map_matrix, In_minus_Nu_true )                                          # Tau_minus :  Events/bin Neutrino ( Reconstruction ) 
-fator_normal = 1*sum(In_minus_Nu_reco)/sum(cal_minus_Nu_reco)
-vet_minus_Nu_reco = [ fator_normal*round( vet , 2 )     for vet in cal_minus_Nu_reco ]                      # normalized
-#
+fator_normal = 1*sum(In_minus_Nu_true)/sum(cal_minus_Nu_reco)
+cal_minus_Nu_reco = [ round( fator_normal*vet , 2 )     for vet in cal_minus_Nu_reco ]                      # normalized
+
 cal_plus_Nu_reco = 0.5*np.dot( map_matrix, In_plus_Nu_true )                                            # Tau_plus  :  Events/bin Neutrino ( Reconstruction ) 
-vet_plus_Nu_reco = [ fator_normal*round( vet , 2 )     for vet in cal_plus_Nu_reco ]                        # normalized
+fator_normal = 1*sum(In_plus_Nu_true)/sum(cal_plus_Nu_reco)
+cal_plus_Nu_reco = [ fator_normal*round( vet , 2 )     for vet in cal_plus_Nu_reco ]                        # normalized
+
 
     # AntiNeutrino Mode (Calculate): 
 cal_minus_AntiNu_reco = 0.5*np.dot( map_matrix, In_minus_AntiNu_true )                                  # Tau_minus :  Events/bin AntiNeutrino ( Reconstruction ) 
-vet_minus_AntiNu_reco = [ fator_normal*round( vet , 2 )     for vet in cal_minus_AntiNu_reco ]              # normalized
-#
+fator_normal = 1*sum(In_minus_AntiNu_true)/sum(cal_minus_AntiNu_reco)
+cal_minus_AntiNu_reco = [ fator_normal*round( vet , 2 )     for vet in cal_minus_AntiNu_reco ]              # normalized
+
 cal_plus_AntiNu_reco = 0.5*np.dot( map_matrix, In_plus_AntiNu_true )                                    # Tau_plus  :  Events/bin AntiNeutrino ( Reconstruction ) 
-vet_plus_AntiNu_reco = [ fator_normal*round( vet , 2 )     for vet in cal_plus_AntiNu_reco ]                # normalized
+fator_normal = 1*sum(In_plus_AntiNu_true)/sum(cal_plus_AntiNu_reco)
+cal_plus_AntiNu_reco = [ fator_normal*round( vet , 2 )     for vet in cal_plus_AntiNu_reco ]                # normalized
+
 
     # AntiNeutrino Mode (Calculate): 
 cal_minus_HE_reco = 0.5*np.dot( map_matrix, In_minus_HE_true )                                          # Tau_minus :  Events/bin High Energy ( Reconstruction ) 
-vet_minus_HE_reco = [ fator_normal*round( vet , 2 )     for vet in cal_minus_HE_reco ]                      # normalized
+fator_normal = 1*sum(In_minus_HE_true)/sum(cal_minus_HE_reco)
+cal_minus_HE_reco = [ fator_normal*round( vet , 2 )     for vet in cal_minus_HE_reco ]                      # normalized
 
 
 
 if __name__ == "__main__":
-    # Graph Display:
+    
+    show_run = 1
 
-        # Neutrino Mode: 
-    plt_minus_Nu = Graph_single_bar_UJ( histogram, In_minus_Nu_true, In_minus_Nu_reco, 109.82/105.17*cal_minus_Nu_reco ,-1, -1 )
-    plt_minus_Nu.plot_bar()
-    #
-    plt_plus_Nu = Graph_single_bar_UJ( histogram, In_plus_Nu_true, In_plus_Nu_reco, cal_plus_Nu_reco , -1, +1 )
-    plt_plus_Nu.plot_bar()
-    #   All
-    plt_all_Nu = Graph_all_bar_UJ( histogram, In_minus_Nu_true, In_minus_Nu_reco, cal_minus_Nu_reco, In_plus_Nu_true, In_plus_Nu_reco, cal_plus_Nu_reco, -1 )
-    plt_all_Nu.plot_bar()
+    if show_run == 1:
+        
+        # Graph Display:
 
-    """     # AntiNeutrino Mode: 
-    plt_minus_AntiNu = Graph_single_bar_UJ( histogram, In_minus_AntiNu_true, In_minus_AntiNu_reco, cal_minus_AntiNu_reco ,+1, -1 )
-    plt_minus_AntiNu.plot_bar()
-    #
-    plt_plus_AntiNu = Graph_single_bar_UJ( histogram, In_plus_AntiNu_true, In_plus_AntiNu_reco, cal_plus_AntiNu_reco , +1, +1 )
-    plt_plus_AntiNu.plot_bar()
-    #   All
-    plt_all_AntiNu = Graph_all_bar_UJ( histogram, In_minus_AntiNu_true, In_minus_AntiNu_reco, cal_minus_AntiNu_reco, In_plus_AntiNu_true, In_plus_AntiNu_reco, cal_plus_AntiNu_reco, +1 )
-    plt_all_AntiNu.plot_bar()
+            # Neutrino Mode: 
+        plt_minus_Nu = Graph_single_bar_UJ( histogram, In_minus_Nu_true, In_minus_Nu_reco, cal_minus_Nu_reco, -1, -1 )
+        plt_minus_Nu.plot_bar()
+        #
+        plt_plus_Nu = Graph_single_bar_UJ.input_data( histogram, In_plus_Nu_true, In_plus_Nu_reco, cal_plus_Nu_reco )
+        plt_plus_Nu.graph_change( -1, +1 )
+        plt_plus_Nu.plot_bar()
+        #   All
+        plt_all_Nu = Graph_all_bar_UJ( histogram, In_minus_Nu_true, In_minus_Nu_reco, cal_minus_Nu_reco, In_plus_Nu_true, In_plus_Nu_reco, cal_plus_Nu_reco, -1 )
+        plt_all_Nu.plot_bar()
 
 
-        # High Energy Mode: 
-    plt_minus_HE = Graph_HE_bar_UJ( histogram, In_minus_HE_true, In_minus_HE_reco, cal_minus_HE_reco )
-    plt_minus_HE.plot_bar() """
+            # AntiNeutrino Mode: 
+        plt_minus_AntiNu = Graph_single_bar_UJ( histogram, In_minus_AntiNu_true, In_minus_AntiNu_reco, cal_minus_AntiNu_reco ,+1, -1 )
+        plt_minus_AntiNu.plot_bar()
+        #
+        plt_plus_AntiNu = Graph_single_bar_UJ( histogram, In_plus_AntiNu_true, In_plus_AntiNu_reco, cal_plus_AntiNu_reco , +1, +1 )
+        plt_plus_AntiNu.plot_bar()
+        #   All
+        plt_all_AntiNu = Graph_all_bar_UJ( histogram, In_minus_AntiNu_true, In_minus_AntiNu_reco, cal_minus_AntiNu_reco, In_plus_AntiNu_true, In_plus_AntiNu_reco, cal_plus_AntiNu_reco, +1 )
+        plt_all_AntiNu.plot_bar()
+
+
+            # High Energy Mode: 
+        plt_minus_HE = Graph_HE_bar_UJ( histogram, In_minus_HE_true, In_minus_HE_reco, cal_minus_HE_reco )
+        plt_minus_HE.plot_bar()
+    
+
+    elif show_run == 2:
+        print( "show_run = 2" )
