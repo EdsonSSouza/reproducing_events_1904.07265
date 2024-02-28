@@ -51,7 +51,6 @@ class Mapping_matrix:
 
 
     def mapping_by_sum(self):
-        
         # Parameters
         b = self.fator_mean
         r_keep = self.fator_sig_keep
