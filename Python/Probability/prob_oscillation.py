@@ -60,18 +60,20 @@ class Probability_SM:
             Sf_bf = Sf_bm
         
 
-        Prob_SM = np.zeros( (3,3) )
-        Prob_SM = np.dot( Sf_bf, Sf_bf.conj() ).real
+        Prob_SM = np.zeros( (3,3), dtype=complex )
+        for i in range( 3 ):
+            for j in range( 3 ):
+                Prob_SM[i][j] = Sf_bf[j][i]*np.conj(Sf_bf[j][i])
 
-        return Prob_SM
+        return Prob_SM.real
 
 
 
 
 if __name__ == "__main__":
-    matrix_PMNS = Matrix_Osc.input_data( 0.31, 0.0224, 0.582, -2.5 )
-    matrix_mass = Mass_order.input_data( 7*1e-5, 3*1e-3 )
+    matrix_PMNS = Matrix_Osc.input_data( 0.307, 0.0210, 0.57, 0.82*np.pi )
+    matrix_mass = Mass_order.input_data( 7.53*1e-5, 2.48*1e-3 )
 
-    Prob_SM = Probability_SM.input_data( +1, 2, 1000, matrix_PMNS, matrix_mass, 2 )
+    Prob_SM = Probability_SM.input_data( +1, 1.25, 295, matrix_PMNS, matrix_mass, 2.6 )
     print(f"\n{ Prob_SM.calculate() }\n") 
 
