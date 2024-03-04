@@ -88,11 +88,11 @@ class Graph_single_bar_UJ:
             plt.ylim(0,40)
             
             plt.text(11, 20,
-                        r'$\bf{\qquad types}\qquad$'   r'$\bf{\qquad\qquad\qquad \ \ total}$' 
+                        r'$\bf{\qquad types}\qquad$'   r'$\bf{\qquad\qquad\qquad \ \ total \quad }$' 
                         f"\n"
-                        f"Events data_in true            {round(sum( self.In_true ),2)}\n"
-                        f"Events data_in reconst.      {round(sum( self.In_reco ),2)}\n"
-                        f"Events data_cal reconst.    {round(sum( self.Calculed_reco ),2)}"
+                        f"Input: data true                   {round(sum( self.In_true ),2)}\n"
+                        f"Input: data reconst.             {round(sum( self.In_reco ),2)}\n"
+                        f"Calculated: data reconst.     {round(sum( self.Calculed_reco ),2)}"
                     ,fontsize=16, color='blue', 
                     bbox=dict(facecolor='white', edgecolor='black', boxstyle='round,pad=0.5'))
             
@@ -102,8 +102,8 @@ class Graph_single_bar_UJ:
                 ##   Tau_minus : Neutrino
                 #
                 plt.text(11, 27.2, 
-                            r'$\bf{\tau^{-} \ events:\ {\rm neutrino \ mode}}$'
-                            f"           "
+                            r'$\bf{\tau^{-} \ events:\ {\rm neutrino \ mode\:}} $'
+                            f"            "
                         ,fontsize=16, color='green', 
                         bbox=dict(facecolor='white', edgecolor='black', boxstyle='round,pad=0.5'))
             #
@@ -113,7 +113,7 @@ class Graph_single_bar_UJ:
                 #
                 plt.text(11, 27.2, 
                             r'$\bf{\tau^{+} \ events:\ {\rm neutrino \ mode}}$'
-                            f"           "
+                            f"          "
                         ,fontsize=16, color='darkorange', 
                         bbox=dict(facecolor='white', edgecolor='black', boxstyle='round,pad=0.5'))
             #
@@ -128,14 +128,14 @@ class Graph_single_bar_UJ:
         elif self.type_neutrino == +1:
             # Limit axis
             plt.xlim(0,20)
-            plt.ylim(0,20)
+            plt.ylim(0,40/2)
             
             plt.text(11, 20/2,
                         r'$\bf{\qquad types}\qquad$'   r'$\bf{\qquad\qquad\qquad \ \ total}$' 
                         f"\n"
-                        f"Events data_in true            {round(sum( self.In_true ),2)}\n"
-                        f"Events data_in reconst.      {round(sum( self.In_reco ),2)}\n"
-                        f"Events data_cal reconst.    {round(sum( self.Calculed_reco ),2)}"
+                        f"Input: data true                    {round(sum( self.In_true ),2)}\n"
+                        f"Input: data reconst.              {round(sum( self.In_reco ),2)}\n"
+                        f"Calculated: data reconst.     {round(sum( self.Calculed_reco ),2)}"
                     ,fontsize=16, color='blue', 
                     bbox=dict(facecolor='white', edgecolor='black', boxstyle='round,pad=0.5'))
             
@@ -146,7 +146,7 @@ class Graph_single_bar_UJ:
                 #
                 plt.text(11, 27.2/2, 
                             r'$\bf{\tau^{-} \ events:\ {\rm antineutrino \ mode}}$'
-                            f"           "
+                            f"     "
                         ,fontsize=16, color='green', 
                         bbox=dict(facecolor='white', edgecolor='black', boxstyle='round,pad=0.5'))
             #
@@ -156,7 +156,7 @@ class Graph_single_bar_UJ:
                 #
                 plt.text(11, 27.2/2, 
                             r'$\bf{\tau^{+} \ events:\ {\rm antineutrino \ mode}}$'
-                            f"           "
+                            f"     "
                         ,fontsize=16, color='darkorange', 
                         bbox=dict(facecolor='white', edgecolor='black', boxstyle='round,pad=0.5'))
             #
@@ -180,15 +180,15 @@ class Graph_single_bar_UJ:
             #
             ##   Tau_minus : Neutrino
             #
-            plt.pause(0.5)
+            plt.pause(0.2)
             plt.bar( build_bins, self.In_true, width = 0.5, 
                     edgecolor='green', facecolor='none', linestyle='dotted', linewidth=1.8, label='Input: data true' )          # Graph_Input      :  In_minus_(Anti)Nu_true      (tau_minus)
             plt.legend( fontsize=16 )
-            plt.pause(1)
+            plt.pause(0.5)
             #
             plt.scatter( build_bins, self.In_reco, color='black', label='Input: data reconst.' )                                # Graph_Input      :  In_minus_(Anti)Nu_reco
             plt.legend( fontsize=16 )
-            plt.pause(1)
+            plt.pause(0.5)
             #
             plt.bar( build_bins, self.Calculed_reco, width = 0.5, 
                     edgecolor='green', facecolor='none', linewidth=2.0, label='Calculated: data reconst.' )                     # Graph_Calculate  :  vet_minus_(Anti)Nu_reco
@@ -197,15 +197,15 @@ class Graph_single_bar_UJ:
             #
             ##   Tau_plus : Neutrino
             #
-            plt.pause(0.5)
+            plt.pause(0.2)
             plt.bar( build_bins, self.In_true, width = 0.5, 
                     edgecolor='darkorange', facecolor='none', linestyle='dotted', linewidth=1.8, label='Input: data true' )     # Graph_Input      :  In_plus_(Anti)Nu_true       (tau_plus)
             plt.legend( fontsize=16 )
-            plt.pause(1)
+            plt.pause(0.5)
             #
             plt.scatter( build_bins, self.In_reco, color='black', label='Input: data reconst.' )                                # Graph_Input      :  In_plus_(Anti)Nu_reco
             plt.legend( fontsize=16 )
-            plt.pause(1)
+            plt.pause(0.5)
             #
             plt.bar( build_bins, self.Calculed_reco, width = 0.5, 
                     edgecolor='darkorange', facecolor='none', linewidth=2.0, label='Calculated: data reconst.' )                # Graph_Calculate  :  vet_plus_(Anti)Nu_reco
@@ -318,7 +318,7 @@ class Graph_all_bar_UJ:
         elif self.type_neutrino == +1:
             # Limit axis
             plt.xlim(0,20)
-            plt.ylim(0,20)
+            plt.ylim(0,40/2)
 
             plt.text(1, 34.3/2, 
                     r'$\bf{\tau^{-} \ events}$'
@@ -367,8 +367,8 @@ class Graph_all_bar_UJ:
                     edgecolor='darkorange', facecolor='none', linestyle='dotted', linewidth=1.8, label='Input: data true' )     # Graph_Input      :  In_plus_Nu_true       (tau_plus)
             plt.legend( fontsize=16 )
             #
-            plt.scatter( build_bins, self.In_reco_plus, color='black', label='Input: data reconst.' )                           # Graph_Input      :  In_plus_Nu_reco
-            plt.legend( fontsize=16 )
+            plt.scatter( build_bins, self.In_reco_plus, color='black' )                                                         # Graph_Input      :  In_plus_Nu_reco
+            #plt.legend( fontsize=16 )
             #
             plt.bar( build_bins, self.Calculed_reco_plus, width = 0.5, 
                     edgecolor='darkorange', facecolor='none', linewidth=2.0, label='Calculated: data reconst.' )                # Graph_Calculate  :  vet_plus_Nu_reco
@@ -397,8 +397,8 @@ class Graph_all_bar_UJ:
                     edgecolor='darkorange', facecolor='none', linestyle='dotted', linewidth=1.8, label='Input: data true' )     # Graph_Input      :  In_plus_AntiNu_true       (tau_plus)
             plt.legend( fontsize=16 )
             #
-            plt.scatter( build_bins, self.In_reco_plus, color='black', label='Input: data reconst.' )                           # Graph_Input      :  In_plus_AntiNu_reco
-            plt.legend( fontsize=16 )
+            plt.scatter( build_bins, self.In_reco_plus, color='black' )                                                         # Graph_Input      :  In_plus_AntiNu_reco
+            #plt.legend( fontsize=16 )
             #
             plt.bar( build_bins, self.Calculed_reco_plus, width = 0.5, 
                     edgecolor='darkorange', facecolor='none', linewidth=2.0, label='Calculated: data reconst.' )                # Graph_Calculate  :  vet_plus_AntiNu_reco
@@ -437,7 +437,6 @@ class Graph_HE_bar_UJ:
         return setup_hist
     
 
-
     def plot_bar(self):    
         # Execute the histogram: set in the center
         build_bins = [ (bin.left + bin.right)/2   for bin in self.histogram.bins ] # Defined in the library histogram_unif.py
@@ -473,7 +472,7 @@ class Graph_HE_bar_UJ:
 
         plt.text(11, 27.2/2, 
                     r'$\bf{\tau^{-} \ events:\ {\rm neutrino \ mode}}$'
-                    f"           "
+                    f"            "
                 ,fontsize=16, color='green', 
                 bbox=dict(facecolor='white', edgecolor='black', boxstyle='round,pad=0.5'))
             
@@ -483,9 +482,9 @@ class Graph_HE_bar_UJ:
         plt.text(11, 20/2,
                     r'$\bf{\qquad types}\qquad$'   r'$\bf{\qquad\qquad\qquad \ \ total}$' 
                     f"\n"
-                    f"Events data_in true            {round(sum( self.In_true ),2)}\n"
-                    f"Events data_in reconst.      {round(sum( self.In_reco ),2)}\n"
-                    f"Events data_cal reconst.    {round(sum( self.Calculed_reco ),2)}"
+                    f"Input: data true                   {round(sum( self.In_true ),2)}\n"
+                    f"Input: data reconst.             {round(sum( self.In_reco ),2)}\n"
+                    f"Calculated: data reconst.    {round(sum( self.Calculed_reco ),2)}"
                 ,fontsize=16, color='blue', 
                 bbox=dict(facecolor='white', edgecolor='black', boxstyle='round,pad=0.5'))
 
@@ -497,15 +496,15 @@ class Graph_HE_bar_UJ:
         #
         ##   Tau_minus : High energy
         #
-        plt.pause(0.5)
+        plt.pause(0.2)
         plt.bar( build_bins, self.In_true, width = 0.5, 
                 edgecolor='green', facecolor='none', linestyle='dotted', linewidth=1.8, label='Input: data true' )          # Graph_Input      :  In_minus_(Anti)Nu_true      (tau_minus)
         plt.legend( fontsize=16 )
-        plt.pause(1)
+        plt.pause(0.5)
         #
         plt.scatter( build_bins, self.In_reco, color='black', label='Input: data reconst.' )                                # Graph_Input      :  In_minus_(Anti)Nu_reco
         plt.legend( fontsize=16 )
-        plt.pause(1)
+        plt.pause(0.5)
         #
         plt.bar( build_bins, self.Calculed_reco, width = 0.5, 
                 edgecolor='green', facecolor='none', linewidth=2.0, label='Calculated: data reconst.' )                     # Graph_Calculate  :  vet_minus_(Anti)Nu_reco

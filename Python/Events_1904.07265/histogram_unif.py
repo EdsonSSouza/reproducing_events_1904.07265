@@ -38,3 +38,10 @@ class Histogram:
         hist_sp = cls(bins_sp)
         return hist_sp # new values in list_in
 
+
+
+
+if __name__ == "__main__":
+    a=1
+    print( f"{ Bin(2,4).left }" )
+
