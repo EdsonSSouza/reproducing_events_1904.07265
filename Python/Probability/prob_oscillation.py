@@ -36,26 +36,28 @@ class Probability_SM:
         return cls( in_cp_sign, in_energy, in_L, in_instancia_U_PMNS, in_instancia_M_order, in_density )
     
 
-    def calculate(self):
+    def get_osc_SM(self):
 
-        factor_V = 7.6325*1e-14
+        factor_V = 7.63247*1e-14    # np.sqrt(2).Gf.(1 mol/cm^3)   em   [eV]
         factor_Ne_Mantle = 0.5
         V_final = self.dens * factor_V * factor_Ne_Mantle
 
-        Sf_bm = S_matrix.input_data( self.cp_sign, self.en, self.L, V_final, self.instancia_U, self.instancia_M ).base_mass()
+        factor_L = 5.0677302143*1e9   #Km_to_ev
+
+        Sf_bm = S_matrix.input_data( self.cp_sign, self.en, factor_L*self.L, V_final, self.instancia_U, self.instancia_M ).get_S_bm_SM()
 
         U0 = self.instancia_U.get_U()
         cU0 = self.instancia_U.get_cU()
 
         M_prod = np.zeros( (3,3), dtype=complex )
 
-        
+        # Sf_bf = U0.Sf_bm.U0^{dagger}
         if self.cp_sign > 0:
-            M_prod = np.dot( Sf_bm, cU0.T )
+            M_prod = np.dot( Sf_bm, np.transpose(cU0) )
             Sf_bm = np.dot( U0, M_prod )
             Sf_bf = Sf_bm
         else:
-            M_prod = np.dot( Sf_bm, U0.T )
+            M_prod = np.dot( Sf_bm, np.transpose(U0) )
             Sf_bm = np.dot( cU0, M_prod )
             Sf_bf = Sf_bm
         
@@ -63,7 +65,7 @@ class Probability_SM:
         Prob_SM = np.zeros( (3,3), dtype=complex )
         for i in range( 3 ):
             for j in range( 3 ):
-                Prob_SM[i][j] = Sf_bf[j][i]*np.conj(Sf_bf[j][i])
+                Prob_SM[i][j] = Sf_bf[j][i]*np.conjugate(Sf_bf[j][i])
 
         return Prob_SM.real
 
@@ -71,9 +73,10 @@ class Probability_SM:
 
 
 if __name__ == "__main__":
-    matrix_PMNS = Matrix_Osc.input_data( 0.307, 0.0210, 0.57, 0.82*np.pi )
-    matrix_mass = Mass_order.input_data( 7.53*1e-5, 2.48*1e-3 )
+    matrix_PMNS = Matrix_Osc.input_data( 0.307, 0.021218, 0.55805, 1.5068*np.pi )
+    #matrix_mass = Mass_order.input_data( 7.53*1e-5, 2.48*1e-3 )
+    matrix_mass = Mass_order.input_data( 7.53*1e-5, 2.4860*1e-3 )
 
-    Prob_SM = Probability_SM.input_data( +1, 1.25, 295, matrix_PMNS, matrix_mass, 2.6 )
-    print(f"\n{ Prob_SM.calculate() }\n") 
+    Prob_SM = Probability_SM.input_data( +1, 2.1, 810, matrix_PMNS, matrix_mass, 2.84 )
+    print(f"\n{ Prob_SM.get_osc_SM() }\n") 
 

@@ -11,13 +11,13 @@
 import numpy as np
 
 
-# Mass Ordering :  
-#   dm_l = m3^2 - m1^1    /   dm_s = m2^2 - m1^2 > 0
-#   NO : m3 > m2 > m1   /   IO : m2 > m1 > m3
+# Mass Ordering : 
+#   dm_l = m3^2 - m1^1    /   dm_s = m2^2 - m1^2 > 0      [eV^2]
+#   NO : m3 > m2 > m1   /   IO : m2 > m1 > m3             [eV^2]
 class Mass_order:
     def __init__(self, dm_s, dm_l):
-        self.dm_s = dm_s    # eV^2
-        self.dm_l = dm_l    # eV^2
+        self.dm_s = dm_s * 1.0e-18    # GeV^2
+        self.dm_l = dm_l * 1.0e-18    # GeV^2
     @classmethod
     def input_data( cls, in_dm_21, in_dm_31 ):
         return cls( in_dm_21, in_dm_31 )
@@ -26,14 +26,14 @@ class Mass_order:
 
         mq = np.zeros( (3), dtype=complex )
 
-        if self.dm_l > 0:    # Normal Ordering
+        if self.dm_l * 1.0e+18 > 0:    # Normal Ordering
             mq[0] = 0
-            mq[1] = self.dm_s
-            mq[2] = self.dm_l
+            mq[1] = self.dm_s * 1.0e+18     # eV^2
+            mq[2] = self.dm_l * 1.0e+18
         
         else:               # Inverted Ordering
-            mq[0] = -self.dm_l
-            mq[1] = self.dm_s - self.dm_l
+            mq[0] = -self.dm_l * 1.0e+18
+            mq[1] = (self.dm_s - self.dm_l) * 1.0e+18
             mq[2] = 0
         
         # Define matrix os Mass
@@ -47,7 +47,7 @@ class Mass_order:
 
 
 if __name__ == "__main__":
-    mass_ordem = Mass_order.input_data( 7*1e-5, 3*1e-3 )
+    mass_ordem = Mass_order.input_data( 7*1e-5, 2*1e-3 )
     mass_NO = mass_ordem.get_ordering()
     print(f"\n{mass_NO}\n")
        

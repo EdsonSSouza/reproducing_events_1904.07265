@@ -22,7 +22,6 @@ class Matrix_Osc:
     def input_data( cls, in_sin2_th12, in_sin2_th13, in_sin2_th23, in_delta_cp ): 
         return cls(in_sin2_th12, in_sin2_th13, in_sin2_th23, in_delta_cp)
     
-    
     # Definition of unitary matrix
     def get_U(self):
 
@@ -65,9 +64,9 @@ class Matrix_Osc:
 
 
 if __name__ == "__main__":
-    mat_U = Matrix_Osc.input_data( 0.31, 0.0224, 0.582, -2.5 )
+    mat_U = Matrix_Osc.input_data( 0.307, 0.021218, 0.55805, 1.5068*np.pi )
     mat_U = mat_U.get_U()
-    mat_cU = Matrix_Osc.input_data( 0.31, 0.0224, 0.582, -2.5 )
+    mat_cU = Matrix_Osc.input_data( 0.307, 0.021218, 0.55805, 1.5068*np.pi )
     mat_cU = mat_cU.get_cU()
     print(f"\n{mat_U}\n")
     print(f"{mat_cU}\n")

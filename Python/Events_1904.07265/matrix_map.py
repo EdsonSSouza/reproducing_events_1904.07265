@@ -12,37 +12,35 @@ import numpy as np
 from scipy.interpolate import RectBivariateSpline as RBS_interp2d
 
 
-# Gaussian mapping "interpolation" for energy_reco x true_energy: We have En_rec(row) <-> En_true(column)
+# Gaussian mapping "interpolation" for energy_reco x true_energy: We have En_reco(row) <-> En_true(column)
 class Gaussian_interp2D:
     _instance = None
 
-    def __init__(self, energy_reco, energy_true, factor_keep, factor_sqrt, factor_linear, factor_mean, pick_normal) -> None:
+    def __init__(self, energy_reco, energy_true, factor_keep, factor_sqrt, factor_linear, factor_mean, normalized) -> None:
         self.en_reco = energy_reco
         self.en_true = energy_true
         
-        if factor_keep is None and factor_sqrt is None and factor_linear is None and factor_mean is None and pick_normal is None:    
+        if factor_keep is None and factor_sqrt is None and factor_linear is None and factor_mean is None and normalized is None:    
             self.fac_keep = 0.0
             self.fac_sqrt = 0.0
             self.fac_linear = 0.25
             self.fac_mean = 0.45
-            self.pick_normal = 1
+            self.normalized = 1  # Normalized gaussian
         else:
             self.fac_keep = factor_keep
             self.fac_sqrt = factor_sqrt
             self.fac_linear = factor_linear
             self.fac_mean = factor_mean
-            self.pick_normal = pick_normal
-        
+            self.normalized = normalized
         # Self of the class will be determined by _instance
-        Gaussian_interp2D._instance = self
-        
+        Gaussian_interp2D._instance = self    
     @classmethod
     def input_data( cls, in_energy_reco, in_energy_true ):
         setup_data = cls( in_energy_reco, in_energy_true, None, None, None, None, None )
         cls._instance = setup_data
         return cls._instance
     @classmethod
-    def change_parameter( cls, in_factor_keep, in_factor_sqrt, in_factor_linear, in_factor_mean, in_pick_normal ):
+    def change_parameter( cls, in_factor_keep, in_factor_sqrt, in_factor_linear, in_factor_mean, in_normalized ):
         if cls._instance is None:
             raise Exception(" No existing instance. Use input_data(row_en_reco, col_en_true) first. ")
         else:
@@ -50,12 +48,11 @@ class Gaussian_interp2D:
             cls._instance.fac_sqrt = in_factor_sqrt
             cls._instance.fac_linear = in_factor_linear
             cls._instance.fac_mean = in_factor_mean
-            cls._instance.pick_normal = in_pick_normal
+            cls._instance.normalized = in_normalized
         return cls._instance
     
-
+    # Function that returns interpolate  
     def get_function2D(self):
-
         matrix_interp = np.zeros( (self.en_reco.shape[0], self.en_true.shape[0]) )
 
         for reco_i in range( self.en_reco.shape[0] ):
@@ -73,10 +70,9 @@ class Gaussian_interp2D:
                                 self.fac_linear * en_true_j                                                         # sigma = c0 + a0*sqrt(En_true) + b0*En_true      
                     mean_gau = self.fac_mean * en_true_j                                                            # mu_mean = b1*En_true
 
-                    
-                    if self.pick_normal != 0 and self.pick_normal !=1:                                              # coef_normal of Gaussian
-                        raise Exception(" Choose pick_normal with 0 for non-normalized or 1 for normalized. ")
-                    elif self.pick_normal == 1:
+                    if self.normalized != 0 and self.normalized !=1:                                              # coef_normal of Gaussian
+                        raise Exception(" Set normalization with 0 for non-normalized or 1 for normalized. ")
+                    elif self.normalized == 1:
                         coef_normal = 1/( np.sqrt( 2*np.pi )*sigma_gau )                                            
                     else:
                         coef_normal = 1
@@ -84,7 +80,6 @@ class Gaussian_interp2D:
                     coef_factor = ( en_reco_i - mean_gau )/sigma_gau                                                # coef_factor of Gaussian
                     #
                     expression_gau = coef_normal*np.exp( -0.5*coef_factor**2 )                                      # function_gaussian = coef_normal * exp(- 0.5*coef_factor**2 )
-                    
                     
                     if expression_gau < 1e-5:                                                                       # Defining the Gaussian matrix
                         matrix_interp[reco_i][true_j] = 0.0
@@ -94,10 +89,9 @@ class Gaussian_interp2D:
         gaussian_interp2D = RBS_interp2d( self.en_reco, self.en_true, matrix_interp )                               # Making the interpolation
 
         return gaussian_interp2D
-        
 
 
-# Mapping matrix: We have En_rec(row) <-> En_true(column) in the case where we consider the "average of the bin"
+# Mapping matrix: We have En_reco(row) <-> En_true(column) in the case where we consider the "average of the bin"
 class Mapping_matrix:
     _instance = None
 
@@ -117,7 +111,6 @@ class Mapping_matrix:
             self.factor_mean = factor_mean
         # Self of the class will be determined by _instance
         Mapping_matrix._instance = self
-
     @classmethod
     def input_data(cls, in_row_en_reco, in_col_en_true):
         setup_data = cls(in_row_en_reco, in_col_en_true, None, None, None, None)
@@ -134,7 +127,7 @@ class Mapping_matrix:
             cls._instance.factor_mean = in_factor_mean
         return cls._instance
 
-    # Function that maps En_reco(row) <-> En_true(column) to the bin average 
+    # Function that maps En_reco(row) <-> En_true(column) "to the bin average"
     def get_mapping_mean(self):
         b = self.factor_mean                                                                     # Parameters 
         r_keep = self.factor_keep
@@ -152,9 +145,23 @@ class Mapping_matrix:
                 mu = b * en_true[j]
                 sigma = r_keep + r_sqrt*np.sqrt( en_true[j] ) + r_linear*en_true[j]
 
-                if en_true[j] < 3.35:
+                # Threshold of energy_true: En_true > 3.35
+                if en_true[j] < 3.35 and en_true[j] != 3.25:                                            # Lower limit 3.35 and outside the first bin_true not null
                     vet_result_rate[i,j] = 0
-                else:
+                    
+                elif en_true[j] < 3.35 and en_true[j] == 3.25:                                          # Lower limit 3.35 and equal to 3.25: special rules for the first non-zero bin
+                    en_bin_1st = 3.35
+                    mu_1st = b * en_bin_1st
+                    sig_1st = r_keep + r_sqrt*np.sqrt(en_bin_1st) + r_linear*en_bin_1st
+
+                    coef_rate = 1/( np.sqrt( 2*np.pi ) * sig_1st )
+                    
+                    factor_rate = ( en_reco[i] - mu_1st )/sig_1st
+                    potential_rate = np.exp( - 1/2*factor_rate**2 )
+
+                    vet_result_rate[i,j] = coef_rate*potential_rate 
+                   
+                else:                                                                                   # Rest:
                     coef_rate = 1/( sigma*np.sqrt( 2*np.pi ) )
                     
                     factor_rate = ( en_reco[i] - mu )/sigma
@@ -166,9 +173,15 @@ class Mapping_matrix:
 
 
 
-
 if __name__ == "__main__":
+    import os
     import matplotlib.pyplot as plt
+
+
+    #directory_here = os.getcwd()
+
+    new_directory = '/home/edson/Projeto_doutorado/Experimentos/Beam_Tau/Python/Events_1904.07265'
+    os.chdir( new_directory )
 
     en_reco = np.linspace(0, 20, 201)
     en_true = np.linspace(0, 20, 201)
@@ -181,15 +194,14 @@ if __name__ == "__main__":
     Non_interp = Gaussian_interp2D.input_data(en_reco, en_true).change_parameter(0, 0, 0.25, 0.45, 0).get_function2D()
     Z_non_new = Non_interp(en_reco, en_true)
     
-
     
     """ 
         # Iniciando o plot
     """
  
-    #
-    ## Normalized: Gaussian
-    #
+        #
+        ## Normalized: Gaussian
+        #
     
     # Creates the figure with a customized proportion
     plt.figure(figsize=(12, 12))
@@ -234,7 +246,7 @@ if __name__ == "__main__":
     plt.plot([3.35,3.35],[0,20], color="white", linewidth=2.0, linestyle='dashed' )
     
     # Save with .pdf
-    plt.savefig('../Image/Event_Gaussian_Norm.pdf', format='pdf')
+    #plt.savefig('../Image/Event_Gaussian_Norm.pdf', format='pdf')
 
     # Displaying the graph and pausing execution
     plt.pause(0.01)
@@ -244,9 +256,9 @@ if __name__ == "__main__":
     plt.close()
 
 
-    #
-    ## Non-Normalized: Gaussian * (np.sqrt(2 pi) * sigma)
-    #
+        #
+        ## Non-Normalized: Gaussian * (np.sqrt(2 pi) * sigma)
+        #
 
     # Creates the figure with a customized proportion
     plt.figure(figsize=(12, 12))
@@ -291,7 +303,7 @@ if __name__ == "__main__":
     plt.plot([3.35,3.35],[0,20], color="white", linewidth=2.0, linestyle='dashed' )
 
     # Save with .pdf
-    plt.savefig('../Image/Event_Gaussian_Non_Norm.pdf', format='pdf')
+    #plt.savefig('../Image/Event_Gaussian_Non_Norm.pdf', format='pdf')
     
     # Displaying the graph and pausing execution
     plt.pause(0.01)
