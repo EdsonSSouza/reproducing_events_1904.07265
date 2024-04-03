@@ -1,0 +1,14 @@
+
+=> Regras: para construir as bins da energia reconstruída:  (O.K.)
+
+
+=> Chamar os vetores a partir de vector.py:  (O.K.)
+
+
+=> mínimizar o sigma e mu: pelo erro relativo e pelo númmero de eventos:   (o.K.)
+    1 - Normalizado (erro_diferença)  :  sig_linear = 0.255   ;  sigma_mean = 0.431   ;   erro = 2.090000
+    2 - Normalizado (erro_multiplo)   :  sig_linear =   ;  sigma_mean =    ;   erro =
+    3 - Normalizado (erro_relativo)   :  sig_linear =   ;  sigma_mean =    ;   erro =  
+
+
+=>fazer gráficos só com a parte superior
