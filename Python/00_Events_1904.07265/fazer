@@ -12,3 +12,12 @@
 
 
 =>fazer gráficos só com a parte superior
+
+
+=> Considerar nosso smearing como referencia para o reconstruído.
+
+
+=> Considerar o recons/true do SM como referencia.
+
+
+=> Fazer ajustes (sig, mean) diferentes para os casos 3.5+3.5 e 3+3+1 ?
