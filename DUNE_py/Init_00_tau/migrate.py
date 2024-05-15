@@ -12,7 +12,7 @@ import numpy as np
 from scipy.interpolate import RectBivariateSpline as RBS_interp2d
 
 
-# Gaussian mapping "interpolation" for energy_reco x true_energy: We have En_reco(row) <-> En_true(column)
+#   Gaussian mapping "interpolation" for energy_reco x energy_true: We have En_reco(row) <-> En_true(column)
 #   Normalization: 0 Off / 1 On
 class Gaussian_interp2D:
     _instance = None
@@ -49,7 +49,7 @@ class Gaussian_interp2D:
             cls._instance.normalized = normalized
         return cls._instance
       
-    def get_function2D(self):                                                                                       # Function that returns "interpolate" in 2D
+    def get_function2D(self):                                                                                       # Function that returns "interpolate" in 2D of Migrate Matrix
         matrix_interp = np.zeros( (self.en.shape[0], self.en.shape[0]) )
         for reco in range( self.en.shape[0] ):
             for true in range( self.en.shape[0] ):
@@ -75,7 +75,7 @@ class Gaussian_interp2D:
                     #
                     expression_gau = coef_normal*np.exp( -0.5*coef_factor**2 )                                      # function_gaussian = coef_normal * exp(- 0.5*coef_factor**2 )
                     
-                    if expression_gau < 1e-5:                                                                       # Defining the Gaussian matrix
+                    if expression_gau < 1e-6:                                                                       # Defining the Gaussian matrix
                         matrix_interp[reco][true] = 0.0
                     else:
                         matrix_interp[reco][true] = expression_gau
@@ -136,7 +136,7 @@ class Mapping_matrix:
                     
                 elif en_true[j] < 3.35 and en_true[j] == 3.25:                                          # Lower limit 3.35 and equal to 3.25: special rules for the first non-zero bin
                     en_bin_1st = (3.35+3.5)*0.5
-                    mu_1st = b * en_bin_1st
+                    mu_1st  = b * en_bin_1st
                     sig_1st = r_keep + r_sqrt*np.sqrt(en_bin_1st) + r_linear*en_bin_1st
 
                     coef_rate = 1/( np.sqrt( 2*np.pi ) * sig_1st )
@@ -229,6 +229,7 @@ if __name__ == "__main__":
         # Show the graph: Gaussian
         plt.imshow(Z_new, extent=(0, 20, 0, 20), origin='lower', cmap='viridis')
         cbar = plt.colorbar(shrink=0.985)                                                                                      # Control the size of the colorbar by setting shrink
+        #cbar = plt.colorbar(shrink=0.815)
 
         # Adds a label to the colorbar
         cbar.set_label( r'$(\ \sigma \ |\ \mu_{\rm mean}\ )=(\ 0.256\ | \ 0.436 \ ) \cdot E_{\nu}^{\rm true}$', fontsize=22, labelpad=10 ) 
@@ -267,7 +268,7 @@ if __name__ == "__main__":
         ax = plt.gca()
         ax.tick_params(axis='x', direction='in', pad =10, length=25)                # For x-axis markers
         ax.tick_params(axis='y', direction='in', pad=10, length=25)                 # For y-axis markers
-        ax.tick_params(axis='both', which='major', width=2.5, labelsize=22)         # For the main numbers: 'major' / 'minor' / 'both'
+        ax.tick_params(axis='both', which='major', width=2.5, labelsize=24)         # For the main numbers: 'major' / 'minor' / 'both'
 
         # Specifying the values that will appear on the x and y axes
         plt.xticks([0, 3, 5, 10, 15, 20])                                           # Only the values 0, 3., 5, ... , 20 will be shown on the x-axis
@@ -284,6 +285,7 @@ if __name__ == "__main__":
         # Show the graph: Non-Normalized
         plt.imshow(Z_non_new, extent=(0, 20, 0, 20), origin='lower', cmap='viridis')
         cbar = plt.colorbar(shrink=0.985)                                                                                      # Control the size of the colorbar by setting shrink
+        #cbar = plt.colorbar(shrink=0.815)
 
         # Adds a label to the colorbar
         cbar.set_label( r'$(\ \sigma \ |\ \mu_{\rm mean}\ )=(\ 0.256\ | \ 0.436 \ ) \cdot E_{\nu}^{\rm true}$', fontsize=22, labelpad=10 ) 

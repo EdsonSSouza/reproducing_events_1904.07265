@@ -5,26 +5,52 @@ from SM_01_Prob.s_matrix_mass import S_matrix
 from SM_01_Prob.prob_SM import Probability_SM
 from NSI_01_Prob.matrix_NSI import Matrix_Tmut
 from NSI_01_Prob.prob_NSI import Probability_NSI
+from Init_00_tau.read_vec import *
+from Init_00_tau.rules_reco import Rule_smear
+from Init_00_tau.histogram import Histogram
 import numpy as np
 
+#print(sum(In_MNu_true_Nu))
+#print(sum(In_MNu_reco_Nu))
+#print(sum(Pre_cal_MNu_Nu))
+print(sum(In_MNu_true_Nu)/sum(Pre_cal_MNu_Nu))
 
-mass_print = Mass_order.input_data( 7.20e-5, 3.3e-3 ).get_ordering()
-print(mass_print)
+print()
+hist = Histogram.get_Uniform_WB(0, 20, 0.5)
+my_data_true = [10*i for i in In_MNu_true_Nu]
+vec_true_1, vec_reco_1, norm = Rule_smear.input_data(hist, my_data_true).get_middle()
+my_norm = sum( my_data_true )/sum(vec_reco_1)
+print(my_norm)
+print(norm)
+print( sum( my_data_true )/sum([norm*vec for vec in vec_reco_1]) )
 
-PMNS_print = Matrix_Osc.input_data( 0.31, 0.021, 0.56, 0.7*np.pi ).get_U()
-print(PMNS_print)
 
-PMNS = Matrix_Osc.input_data( 0.310, 0.02240, 0.582, 1.204225*np.pi )
-mass = Mass_order.input_data( 7.39*1e-5, 2.525*1e-3 )
+print()
+hist = Histogram.get_Uniform_WB(0, 20, 0.5)
+my_data_true = [1*i for i in In_MAn_true_Nu]
+vec_true_1, vec_reco_1, norm = Rule_smear.input_data(hist, my_data_true).get_middle()
+my_norm = sum( my_data_true )/sum(vec_reco_1)
+print(my_norm)
+print(norm)
+print( sum( my_data_true )/sum([norm*vec for vec in vec_reco_1]) )
 
-ham  = Hamilton_matrix.input_data( +1, 2.1, 2, PMNS, mass ).get_base_mass()
-s_mat = S_matrix.input_data( +1, 2.1, 1300, 2.848, PMNS, mass ).get_S_bm()
-prob_SM = Probability_SM.input_data( +1, 0.01, 1300, PMNS, mass, 2.848 ).get_osc_SM()
-print(ham)
-print(s_mat)
-print(f"\n{prob_SM}")
 
-Tmut = Matrix_Tmut.input_data( 1e-3, 1.0*np.pi )
-prob_NSI = Probability_NSI.input_data(+1, 0.01, 1300, PMNS, Tmut, mass, 2.848 ).get_osc_NSI()
-print(prob_NSI)
+print()
+hist = Histogram.get_Uniform_WB(0, 20, 0.5)
+my_data_true = np.zeros(len(In_MNu_true_Nu))
+for i in range( len(In_MNu_true_Nu) ):
+    if i < 10:
+        my_data_true[i] = 700.3*In_MNu_true_Nu[i]
+    elif 10 <= i < 20:
+        my_data_true[i] = 10.1*In_MNu_true_Nu[i]
+    elif 20 <= i < 30:
+        my_data_true[i] = 2.1*In_MNu_true_Nu[i]
+    else:
+        my_data_true[i] = 3.1*In_MNu_true_Nu[i]
+
+vec_true_1, vec_reco_1, norm = Rule_smear.input_data(hist, my_data_true).get_middle()
+my_norm = sum( my_data_true )/sum(vec_reco_1)
+print(my_norm)
+print(norm)
+print( sum( my_data_true )/sum([norm*vec for vec in vec_reco_1]) )
 

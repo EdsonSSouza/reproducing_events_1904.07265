@@ -11,8 +11,10 @@
 import numpy as np
 
 # Import our libraries
-from .migrate import Gaussian_interp2D
-from .read_vec import *
+#from .migrate import Gaussian_interp2D
+#from .read_vec import *
+from migrate import Gaussian_interp2D
+from read_vec import *
 
 
 # Rules for converting bins_true into bins_reco using migrete (mapping)
@@ -59,7 +61,7 @@ class Rule_smear:
                 else:
                     ev_smear[i] += mapping_mid( bin[i] , 3.35 ) * self.ev_true[j]
         alpha_norm = sum(self.ev_true)/sum(ev_smear)                                                                            # Normalization: true_per_reco
-        return [ round( abs(alpha_norm * ev_i) , 4 )    for ev_i in ev_smear ]                                                  # Event_reco: final_normalized
+        return alpha_norm#self.ev_true, alpha_norm, ev_smear#[ round( abs(alpha_norm * ev_i) , 4 )    for ev_i in ev_smear ]                                                  # Event_reco: final_normalized
     
     # 5 points in bin_true are used to build 5 points in bin_reco
     def get_5to5(self):                                                                                                         # 5x5 points
@@ -77,30 +79,30 @@ class Rule_smear:
         for i in range( len(self.ev_true) ):                                                                                    # Rules
             for j in range( len(self.ev_true) ):       
                 if bin_midd[j] > 3.5:
-                    ev_smear[i] +=  0.1*self.ev_true[j]*\
-                                    sum(    1/10*(  1*map_gau(bin_left[i],bin_left[j])  + 2*map_gau(bin_left[i],bin_midl[j])  + 4*map_gau(bin_left[i],bin_midd[j])  +\
-                                                    2*map_gau(bin_left[i],bin_midr[j])  + 1*map_gau(bin_left[i],bin_right[j])    ) +\
+                    ev_smear[i] +=  0.2*self.ev_true[j]*\
+                                    sum(    0.2*(   map_gau(bin_left[i],bin_left[j])  + map_gau(bin_left[i],bin_midl[j])  + map_gau(bin_left[i],bin_midd[j])  +\
+                                                    map_gau(bin_left[i],bin_midr[j])  + map_gau(bin_left[i],bin_right[j])    ) +\
                                                     #
-                                            2/10*(  1*map_gau(bin_midl[i],bin_left[j])  + 2*map_gau(bin_midl[i],bin_midl[j])  + 4*map_gau(bin_midl[i],bin_midd[j])  +\
-                                                    2*map_gau(bin_midl[i],bin_midr[j])  + 1*map_gau(bin_midl[i],bin_right[j])    ) +\
+                                            0.2*(   map_gau(bin_midl[i],bin_left[j])  + map_gau(bin_midl[i],bin_midl[j])  + map_gau(bin_midl[i],bin_midd[j])  +\
+                                                    map_gau(bin_midl[i],bin_midr[j])  + map_gau(bin_midl[i],bin_right[j])    ) +\
                                                     #
-                                            4/10*(  1*map_gau(bin_midd[i],bin_left[j])  + 2*map_gau(bin_midd[i],bin_midl[j])  + 4*map_gau(bin_midd[i],bin_midd[j])  +\
-                                                    2*map_gau(bin_midd[i],bin_midr[j])  + 1*map_gau(bin_midd[i],bin_right[j])    ) +\
+                                            0.2*(   map_gau(bin_midd[i],bin_left[j])  + map_gau(bin_midd[i],bin_midl[j])  + map_gau(bin_midd[i],bin_midd[j])  +\
+                                                    map_gau(bin_midd[i],bin_midr[j])  + map_gau(bin_midd[i],bin_right[j])    ) +\
                                                     #
-                                            2/10*(  1*map_gau(bin_midr[i],bin_left[j])  + 2*map_gau(bin_midr[i],bin_midl[j])  + 4*map_gau(bin_midr[i],bin_midd[j])  +\
-                                                    2*map_gau(bin_midr[i],bin_midr[j])  + 1*map_gau(bin_midr[i],bin_right[j])    ) +\
+                                            0.2*(   map_gau(bin_midr[i],bin_left[j])  + map_gau(bin_midr[i],bin_midl[j])  + map_gau(bin_midr[i],bin_midd[j])  +\
+                                                    map_gau(bin_midr[i],bin_midr[j])  + map_gau(bin_midr[i],bin_right[j])    ) +\
                                                     #
-                                            1/10*(  1*map_gau(bin_right[i],bin_left[j]) + 2*map_gau(bin_right[i],bin_midl[j]) + 4*map_gau(bin_right[i],bin_midd[j]) +\
-                                                    2*map_gau(bin_right[i],bin_midr[j]) + 1*map_gau(bin_right[i],bin_right[j])  )                                       )[0]    
+                                            0.2*(   map_gau(bin_right[i],bin_left[j]) + map_gau(bin_right[i],bin_midl[j]) + map_gau(bin_right[i],bin_midd[j]) +\
+                                                    map_gau(bin_right[i],bin_midr[j]) + map_gau(bin_right[i],bin_right[j])  )                                       )[0]    
                 elif bin_midd[j] < 3.0:
                     ev_smear[i] += 0
                 else:
-                    ev_smear[i] +=  0.1*self.ev_true[j]*\
-                                    sum(    1/6*( 3*map_gau(bin_left[i] , 3.35) + 2*map_gau(bin_left[i] , 3.425) + 1*map_gau(bin_left[i] , 3.5) ) +\
-                                            2/6*( 3*map_gau(bin_midl[i] , 3.35) + 2*map_gau(bin_midl[i] , 3.425) + 1*map_gau(bin_midl[i] , 3.5) ) +\
-                                            4/6*( 3*map_gau(bin_midd[i] , 3.35) + 2*map_gau(bin_midd[i] , 3.425) + 1*map_gau(bin_midd[i] , 3.5) ) +\
-                                            2/6*( 3*map_gau(bin_midr[i] , 3.35) + 2*map_gau(bin_midr[i] , 3.425) + 1*map_gau(bin_midr[i] , 3.5) ) +\
-                                            1/6*( 3*map_gau(bin_right[i], 3.35) + 2*map_gau(bin_right[i], 3.425) + 1*map_gau(bin_right[i], 3.5) )     )[0]
+                    ev_smear[i] +=  0.2*self.ev_true[j]*\
+                                    sum(    1/3*(   map_gau(bin_left[i] , 3.35) + map_gau(bin_left[i] , 3.425) + map_gau(bin_left[i] , 3.5)     ) +\
+                                            1/3*(   map_gau(bin_midl[i] , 3.35) + map_gau(bin_midl[i] , 3.425) + map_gau(bin_midl[i] , 3.5)     ) +\
+                                            1/3*(   map_gau(bin_midd[i] , 3.35) + map_gau(bin_midd[i] , 3.425) + map_gau(bin_midd[i] , 3.5)     ) +\
+                                            1/3*(   map_gau(bin_midr[i] , 3.35) + map_gau(bin_midr[i] , 3.425) + map_gau(bin_midr[i] , 3.5)     ) +\
+                                            1/3*(   map_gau(bin_right[i], 3.35) + map_gau(bin_right[i], 3.425) + map_gau(bin_right[i], 3.5)     )     )[0]
         alpha_norm = sum(self.ev_true)/sum(ev_smear)                                                                            # Normalization: true_per_reco
         return [ round( abs(alpha_norm * ev_i) , 4 )   for ev_i in ev_smear ]                                                   # Event_reco: final_normalized
     
@@ -132,10 +134,10 @@ if __name__ == "__main__":
     hist = Histogram.get_Uniform_WB( 0, 20, 0.5 )
     
     if show == 1:
-        #event_minus_reco = Rule_smear.input_data( hist, In_MNu_true_Nu  ).input_change(0.25, 0.43, 1).get_middle()
-        #event_plus_reco  = Rule_smear.input_data( hist, In_MNu_true_Anti).input_change(0.25, 0.43, 1).get_middle()
-        event_minus_reco = Rule_smear.input_data( hist, In_MNu_true_Nu  ).get_5to5()
-        event_plus_reco  = Rule_smear.input_data( hist, In_MNu_true_Anti).get_5to5()
+        event_minus_reco = Rule_smear.input_data( hist, In_MNu_true_Nu  ).input_change(0.25, 0.43, 1).get_middle()
+        event_plus_reco  = Rule_smear.input_data( hist, In_MNu_true_Anti).input_change(0.25, 0.43, 1).get_middle()
+        #event_minus_reco = Rule_smear.input_data( hist, In_MNu_true_Nu  ).get_5to5()
+        #event_plus_reco  = Rule_smear.input_data( hist, In_MNu_true_Anti).get_5to5()
 
         #print(len(In_MNu_true_Nu))
         print(f"\n{event_minus_reco}\n{event_plus_reco}\n")

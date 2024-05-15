@@ -1,0 +1,13 @@
+=> escrever melhor as descrições nos scripts :
+
+=> mesmo peso reconstrução bin_true <-> bin_reco :
+
+=> ver normalização (Obs: o fator de normalização é próximo, dado um fixado!) :
+
+=> calcular novamente sig e maen :
+
+=> recalcular as matriz migrate (sigma, mean) :
+
+=> Fazer/Atualizar os pré-cálculos :
+
+=> chi2 sem alpha nos dados_SM :
