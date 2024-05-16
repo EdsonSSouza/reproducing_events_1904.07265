@@ -1,0 +1,16 @@
+For 101 points
+sigma_linear: 0.254
+sigma_mean  : 0.435
+valor_errer : 4.22109
+
+
+For 201 points
+sigma_linear: 0.2545
+sigma_mean  : 0.4355
+valor_errer : 4.21679
+
+
+For 101 points, but range is shortest
+sigma_linear: 0.25453
+sigma_mean  : 0.43522
+valor_errer : 4.19789

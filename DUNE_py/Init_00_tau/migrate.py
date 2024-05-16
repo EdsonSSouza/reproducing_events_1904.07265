@@ -21,8 +21,8 @@ class Gaussian_interp2D:
         if factor_keep is None and factor_sqrt is None and factor_linear is None and factor_mean is None and normalized is None:    
             self.fac_keep   = 0.0
             self.fac_sqrt   = 0.0
-            self.fac_linear = 0.256                                 # sigma  = 0.256
-            self.fac_mean   = 0.436                                 # fac_mu = 0.436
+            self.fac_linear = 0.25453                               # sigma  = 0.25453
+            self.fac_mean   = 0.43522                               # fac_mu = 0.43522
             self.normalized = 1                                     # Normalized gaussian: On
         else:
             self.fac_keep   = factor_keep

@@ -11,6 +11,8 @@
 import numpy as np
 
 # Import our libraries
+#from histogram import *
+#from rules_reco import *
 from histogram import *
 from rules_reco import *
 
@@ -59,10 +61,10 @@ def error_different(Input_vec_true, Input_vec_reco):
     vec_BFit = Input_vec_reco
     vec_err = np.zeros( numb )
     
-    for sig_linear in np.linspace( 0.23, 0.33, 5 ):#101
-        for sig_mean in np.linspace( 0.4, 0.5, 5 ):
+    for sig_linear in np.linspace( 0.23, 0.33, 101 ):#101
+        for sig_mean in np.linspace( 0.4, 0.5, 101 ):
 
-            vec_reco = Rule_smear.input_data( hist, Input_vec_true ).input_change( sig_linear, sig_mean, 1 ).get_5to5( )
+            vec_reco = Rule_smear.input_data( hist, Input_vec_true ).input_change( sig_linear, sig_mean, 1 ).get_middle()
 
             for i in range( numb ):
                 vec_err[i] = abs( vec_BFit[i] - vec_reco[i] )

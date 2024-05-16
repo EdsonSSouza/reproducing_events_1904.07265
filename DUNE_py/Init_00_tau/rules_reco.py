@@ -17,15 +17,15 @@ from migrate import Gaussian_interp2D
 from read_vec import *
 
 
-# Rules for converting bins_true into bins_reco using migrete (mapping)
+# Rules for converting bins_true into bins_reco using migrate (mapping)
 class Rule_smear:
     _instance = None
     def __init__(self, histogram, event_true, factor_linear, factor_mean, normalized ) -> None:
         self.hist    = histogram
         self.ev_true = event_true
         if factor_linear is None and factor_mean is None and normalized is None:
-            self.fac_linear = 0.256                                                             # sigma  = 0.256
-            self.fac_mean   = 0.436                                                             # fac_mu = 0.436
+            self.fac_linear = 0.25453                                                           # sigma  = 0.25453
+            self.fac_mean   = 0.43522                                                           # fac_mu = 0.43522
             self.norm       = 1                                                                 # Normalized gaussian: On
         else:
             self.fac_linear = factor_linear
@@ -61,7 +61,9 @@ class Rule_smear:
                 else:
                     ev_smear[i] += mapping_mid( bin[i] , 3.35 ) * self.ev_true[j]
         alpha_norm = sum(self.ev_true)/sum(ev_smear)                                                                            # Normalization: true_per_reco
-        return alpha_norm#self.ev_true, alpha_norm, ev_smear#[ round( abs(alpha_norm * ev_i) , 4 )    for ev_i in ev_smear ]                                                  # Event_reco: final_normalized
+        return [ round( abs(alpha_norm * ev_i) , 4 )    for ev_i in ev_smear ]                                                  # Event_reco: final_normalized
+        #return alpha_norm
+        #return self.ev_true, alpha_norm, ev_smear                                                  
     
     # 5 points in bin_true are used to build 5 points in bin_reco
     def get_5to5(self):                                                                                                         # 5x5 points
@@ -128,7 +130,8 @@ class Rule_smear:
 
 
 if __name__ == "__main__":
-    from histogram import *
+    #from histogram import *
+    from .histogram import *
 
     show = 1
     hist = Histogram.get_Uniform_WB( 0, 20, 0.5 )
