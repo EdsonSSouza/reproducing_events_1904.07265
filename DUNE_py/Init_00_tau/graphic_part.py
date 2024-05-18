@@ -45,8 +45,7 @@ class Contour_bar:
 #
 ##     Graph_events_bar (Uniform and Joint)
 #
-# Class that graphs histograms with uniform bins and joints (bin_UJ means bin Uniform and Joint)
-    # Note: This function draws one type (single) of graph on the article frame at a time with the events number, i.e., neutrino mode for tau_minus or tau_plus and so on.
+# Note: This function draws one type (single) of graph on the article frame at a time with the events number, i.e., neutrino mode for tau_minus or tau_plus and so on.
 class Graph_each:
     def __init__( self, type_mode, signal_tau, histogram, In_true, In_reco, Calc_reco ):
         self.type_mode = type_mode
@@ -190,8 +189,7 @@ class Graph_each:
 #
 ##     Graph_HE(events)_bar (Uniform and Joint)
 #
-# Class that graphs histograms with uniform bins and joints (bin_UJ means bin Uniform and Joint)
-    # Note: This function draws one type of graph: High energy (HE) mode for tau_minus with the events number.
+# Note: This function draws one type of graph: High energy (HE) mode for tau_minus with the events number.
 class Graph_each_HE:
     def __init__( self, histogram, In_true, In_reco, Calc_reco ):
         self.hist      = histogram

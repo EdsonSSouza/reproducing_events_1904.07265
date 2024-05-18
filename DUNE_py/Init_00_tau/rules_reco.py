@@ -20,8 +20,8 @@ Description about this script:
 import numpy as np
 
 # Import our libraries
-from .migrate  import Gaussian_interp2D
 from .read_vec import *
+from .migrate  import Gaussian_interp2D
 
 
 # Rules for converting bins_true into bins_reco using migrate (mapping)

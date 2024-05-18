@@ -48,8 +48,7 @@ class Contour_bar:
 #
 ##     Graph_all_bar (Uniform and Joint)
 #
-# Class that graphs histograms with uniform bins and joints (bin_UJ means bin Uniform and Joint)
-    # Note: This function draws all (all) the graphs in the article frame, i.e., neutrino mode will have tau_minus and tau_plus and so on.
+# Note: This function draws all (all) the graphs in the article frame, i.e., neutrino mode will have tau_minus and tau_plus and so on.
 class Graph_all:
     _instance = None
     def __init__( self, type_Mode, histogram, In_true_Nu, Calc_reco_Nu, In_true_Anti, Calc_reco_Anti, In_reco_Nu, In_reco_Anti ):
@@ -276,8 +275,7 @@ class Graph_all_comp:
 #
 ##     Graph_HE_bar (Uniform and Joint)
 #
-# Class that graphs histograms with uniform bins and joints (bin_UJ means bin Uniform and Joint)
-    # Note: This function draws one type of graph: High energy (HE) mode for tau_minus.
+# Note: This function draws one type of graph: High energy (HE) mode for tau_minus.
 class Graph_HE:
     _instance = None
     def __init__( self, histogram, In_true, Calc_reco, In_reco ):
