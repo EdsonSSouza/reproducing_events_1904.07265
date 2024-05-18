@@ -48,8 +48,8 @@ class Contour_bar:
 #
 ##     Graph_all_bar (Uniform and Joint)
 #
-# Note: This function draws all (all) the graphs in the article frame, i.e., neutrino mode will have tau_minus and tau_plus and so on.
 class Graph_all:
+    """ Note: This function draws all (all) the graphs in the article frame, i.e., neutrino mode will have tau_minus and tau_plus and so on. """
     _instance = None
     def __init__( self, type_Mode, histogram, In_true_Nu, Calc_reco_Nu, In_true_Anti, Calc_reco_Anti, In_reco_Nu, In_reco_Anti ):
         self.type_mode     = type_Mode
@@ -175,6 +175,7 @@ class Graph_all:
 
 
 class Graph_all_comp:
+    """ Note: This function draws all (all) the graphs in the article frame, i.e., neutrino mode will have tau_minus and tau_plus and so on. """
     def __init__( self, type_mode, histogram, new_reco_Nu, new_reco_Anti ):
         self.type_mode = type_mode
         self.hist      = histogram
@@ -275,8 +276,8 @@ class Graph_all_comp:
 #
 ##     Graph_HE_bar (Uniform and Joint)
 #
-# Note: This function draws one type of graph: High energy (HE) mode for tau_minus.
 class Graph_HE:
+    """ Note: This function draws one type of graph: High energy (HE) mode for tau_minus. """
     _instance = None
     def __init__( self, histogram, In_true, Calc_reco, In_reco ):
         self.hist      = histogram
@@ -349,6 +350,7 @@ class Graph_HE:
 
 
 class Graph_HE_comp:
+    """ Note: This function draws one type of graph: High energy (HE) mode for tau_minus. """
     def __init__( self, histogram, new_reco_Nu ):
         self.hist   = histogram
         self.new_Nu = new_reco_Nu

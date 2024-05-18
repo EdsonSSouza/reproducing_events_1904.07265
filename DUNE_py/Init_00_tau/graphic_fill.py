@@ -62,8 +62,8 @@ class Contour_bar:
 #
 ##     Graph_all_bar(fill) (Uniform and Joint)
 #
-# Note: This function draws all (fill) the graphs in the article frame, i.e., neutrino mode will have tau_minus, tau_plus and background and so on.
 class Graph_fill:
+    """ Note: This function draws all (fill) the graphs in the article frame, i.e., neutrino mode will have tau_minus, tau_plus and background and so on. """
     _instance = None
     def __init__( self, type_mode, histogram, In_BG, Calc_reco_Nu, Calc_reco_Anti, In_comparison ):
         self.type_mode = type_mode
@@ -198,6 +198,7 @@ class Graph_fill:
 
 
 class Graph_fill_Cp:
+    """ Note: This function draws all (fill) the graphs in the article frame, i.e., neutrino mode will have tau_minus, tau_plus and background and so on. """
     def __init__( self, type_mode, histogram, In_BG, Calc_reco_Nu, Calc_reco_Anti ):
         self.type_mode = type_mode
         self.hist      = histogram
@@ -329,10 +330,9 @@ class Graph_fill_Cp:
 #
 ##     Graph_HE_bar(fill)_UJ 
 #
-# Note: This function draws one type of graph: High energy (HE) mode for tau_minus.
 class Graph_fill_HE:
+    """ Note: This function draws one type of graph: High energy (HE) mode for tau_minus. """
     _instance = None
-
     def __init__( self, histogram, In_BG, Calc_reco_Nu, In_comparison ):
         self.hist    = histogram
         self.BG      = In_BG
@@ -417,6 +417,7 @@ class Graph_fill_HE:
 
 
 class Graph_fill_Cp_HE:
+    """ Note: This function draws one type of graph: High energy (HE) mode for tau_minus. """
     def __init__( self, histogram, In_BG, Calc_reco_Nu ):
         self.hist    = histogram
         self.BG      = In_BG

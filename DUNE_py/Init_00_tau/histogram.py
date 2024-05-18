@@ -33,22 +33,22 @@ class Histogram:
             self.bins.append( bin_interval )
     @classmethod
     # Uniform histogram (LR): Left_min - Right_max (LR) / number bins
-        # I know: point_Left, point_Right and numbers_bin
     def get_Uniform_LR( cls, Left_min, Right_max, number_bin ):                            # LR : Left_Right
+        """ Note: I know point_Left, point_Right and numbers_bin """
         bins_LR = np.linspace( Left_min, Right_max, int(number_bin)+1 )
         hist_LR = cls( bins_LR )
         return hist_LR                                                                          # new values in list_in
     @classmethod
     # Uniform histogram (SP): Start Point (SP) / number bins / interval
-        # I know: point_Started (initial), numbers_bin and width_bin
     def get_Uniform_SP( cls, StarPoint_in, number_bin, width_bin ):                        # SP : Start_Point
+        """ Note: I know point_Started (initial), numbers_bin and width_bin """
         bins_sp = [ StarPoint_in + width_bin*i for i in range( number_bin+1 ) ]
         hist_sp = cls( bins_sp )
         return hist_sp                                                                          # new values in list_in
     @classmethod
     # Uniform histogram (WB): left_min / right_max / Width_Bin (WB)
-        # I know: point_left, point_right and width_bin
     def get_Uniform_WB( cls, left_min, right_max, Width_Bin ):                             # WB : Width_Bin
+        """ Note: I know point_left, point_right and width_bin """
         elem_number = (right_max - left_min)/Width_Bin + 1
         bins_wb = np.linspace( left_min, right_max, int(elem_number) )
         hist_wb = cls( bins_wb )
