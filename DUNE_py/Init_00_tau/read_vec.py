@@ -27,6 +27,7 @@ def read_arq(name_arq):
 
 # Path to the Mathematic directory: Input Files
 directory_path = "/home/edson/Projeto_doutorado/Experimentos/Beam_Tau/Mathematica"
+#directory_path = "/home/edson/Projeto_doutorado/Experimentos/Beam_Tau/Mathematica"
 
 # WoutS :  Without Smearing  (True  - plot dashed)                           # Name of the data files (Input): WS (With Smearing) | WoutS (Without Smearing)
 # WS    :  With Smearing     (Reco. - plot continued)                     
@@ -79,20 +80,20 @@ Cp_ModeHE   = os.path.join(directory_path, name_Cp_ModeHE)
 
     # Neutrino Part:                                                        (All the parties that generate Nu)
 In_MNu_true_Nu = read_arq(WoutS_ModeNu_minus)                                       # Tau_minus :  Mode Nu   : true energy      ( WoutS_ModeNu_minus )
-In_MNu_reco_Nu = read_arq(WS_ModeNu_minus)                                          # Tau_minus :  Mode Nu   : reco. energy     ( WS_ModeNu_minus )
+In_MNu_reco_Nu = read_arq(WS_ModeNu_minus)                                          # Tau_minus :  Mode Nu   : reco. energy     ( WS_ModeNu_minus    )
 
 In_MAn_true_Nu = read_arq(WoutS_ModeAnti_minus)                                     # Tau_minus :  Mode Anti : true energy      ( WoutS_ModeAnti_minus )
-In_MAn_reco_Nu = read_arq(WS_ModeAnti_minus)                                        # Tau_minus :  Mode Anti : reco. energy     ( WS_AntiNu_minus )
+In_MAn_reco_Nu = read_arq(WS_ModeAnti_minus)                                        # Tau_minus :  Mode Anti : reco. energy     ( WS_AntiNu_minus      )
 
 In_MHE_true_Nu = read_arq(WoutS_ModeHE_minus)                                       # Tau_minus :  Mode HE   : true energy      ( WoutS_ModeHE_minus )
-In_MHE_reco_Nu = read_arq(WS_ModeHE_minus)                                          # Tau_minus :  Mode HE   : reco. energy     ( WS_ModeHE_minus )
+In_MHE_reco_Nu = read_arq(WS_ModeHE_minus)                                          # Tau_minus :  Mode HE   : reco. energy     ( WS_ModeHE_minus    )
 
     # Antineutrino Part:                                                    (All the parties that generate Anti)
 In_MNu_true_Anti = read_arq(WoutS_ModeNu_plus)                                      # Tau_plus  :  Mode Nu   : true energy      ( WoutS_ModeNu_plus )
-In_MNu_reco_Anti = read_arq(WS_ModeNu_plus)                                         # Tau_plus  :  Mode Anti : reco. energy     ( WS_ModeNu_plus )
+In_MNu_reco_Anti = read_arq(WS_ModeNu_plus)                                         # Tau_plus  :  Mode Anti : reco. energy     ( WS_ModeNu_plus    )
 
 In_MAn_true_Anti = read_arq(WoutS_ModeAnti_plus)                                    # Tau_plus  :  Mode Anti : true energy      ( WoutS_ModeAnti_plus )
-In_MAn_reco_Anti = read_arq(WS_ModeAnti_plus)                                       # Tau_plus  :  Mode Anti : reco. energy     ( WS_ModeAnti_plus )
+In_MAn_reco_Anti = read_arq(WS_ModeAnti_plus)                                       # Tau_plus  :  Mode Anti : reco. energy     ( WS_ModeAnti_plus    )
 
     # BG and Comparison Part:                                               (All the Background and Comparison)
 In_MNu_BG = read_arq(BG_ModeNu)                                                     # BG_ModeNu   : Background_Nu 
@@ -107,31 +108,47 @@ In_MHE_Cp = read_arq(Cp_ModeHE)                                                 
 
 # Extra - Events and matrix built and used internally: with get5x5 ( sigma = 0.25453, fac_mu = 0.43522, normalization = On )
     # Normalization factors: The events_reco were corrected using the events_true by the normalizations
-# From 5 to 5
+    # From 5 to 5
 Norm5x5_MNu_Nu   = 1.0475126531525370                                               # For bins_get5x5: MNu_Nu 
 Norm5x5_MAn_Nu   = 1.0463621343718934                                               # For bins_get5x5: MAn_Nu
 Norm5x5_MHE_Nu   = 1.0461371326602456                                               # For bins_get5x5: MHE_Nu
 Norm5x5_MNu_Anti = 1.0463685411283083                                               # For bins_get5x5: MNu_Anti
 Norm5x5_MAn_Anti = 1.0477159098395560                                               # For bins_get5x5: MAn_Anti
-# From middle to middle: get by get_middle (in particular)
+    # From middle to middle: get by get_middle (in particular)
 NormMid_MNu_Nu   = 1.0462942927844996                                               # For bins_middle: MNu_Nu 
 NormMid_MAn_Nu   = 1.0469537708691026                                               # For bins_middle: MAn_Nu
 NormMid_MHE_Nu   = 1.0469465527994053                                               # For bins_middle: MHE_Nu
 NormMid_MNu_Anti = 1.0465659287110360                                               # For bins_middle: MNu_Anti
 NormMid_MAn_Anti = 1.0461192819006024                                               # For bins_middle: MAn_Anti
 
-    # Calc_reco: Pre-calculation                                            (sigma = 0.25453, fac_mu = 0.43522, normalization = On)
-In_pre_MNu_Nu   = np.loadtxt('/home/edson/Projeto_doutorado/Experimentos/Beam_Tau/DUNE_py/Init_00_tau/pre_MNu_reco_Nu.dat'  )        # Pre-cal: MNu_Nu
-In_pre_MNu_Anti = np.loadtxt('/home/edson/Projeto_doutorado/Experimentos/Beam_Tau/DUNE_py/Init_00_tau/pre_MNu_reco_Anti.dat')        # Pre-cal: MNu_Anti
+###
+################################# Linux #############################                       ( sigma = 0.25453, fac_mu = 0.43522, normalization = On )
+###
+path_linux = '/home/edson/Projeto_doutorado/Experimentos/Beam_Tau/DUNE_py/Init_00_tau'
+    # Calc_reco: Pre-calculation    and     Matrix mapping pre-calculation: bin_true for bin_reco
+In_pre_MNu_Nu   = np.loadtxt( os.path.join(path_linux, 'pre_MNu_reco_Nu.dat'  ) )           # Pre-cal: MNu_Nu
+In_pre_MNu_Anti = np.loadtxt( os.path.join(path_linux, 'pre_MNu_reco_Anti.dat') )           # Pre-cal: MNu_Anti
+In_pre_MAn_Nu   = np.loadtxt( os.path.join(path_linux, 'pre_MAn_reco_Nu.dat'  ) )           # Pre-cal: MAn_Nu
+In_pre_MAn_Anti = np.loadtxt( os.path.join(path_linux, 'pre_MAn_reco_Anti.dat') )           # Pre-cal: MAn_Anti
+In_pre_MHE_Nu   = np.loadtxt( os.path.join(path_linux, 'pre_MHE_reco_Nu.dat'  ) )           # Pre-cal: MHE_Nu
+    # Matrix mapping pre-calculation: bin_true for bin_reco
+In_matrix_pre_40x01 = np.loadtxt( os.path.join(path_linux, 'pre_rules_40x01.dat') )         # Pre-cal: 40 x 01
+In_matrix_pre_40x40 = np.loadtxt( os.path.join(path_linux, 'pre_rules_40x40.dat') )         # Pre-cal: 40 x 40
 
-In_pre_MAn_Nu   = np.loadtxt('/home/edson/Projeto_doutorado/Experimentos/Beam_Tau/DUNE_py/Init_00_tau/pre_MAn_reco_Nu.dat'  )        # Pre-cal: MAn_Nu
-In_pre_MAn_Anti = np.loadtxt('/home/edson/Projeto_doutorado/Experimentos/Beam_Tau/DUNE_py/Init_00_tau/pre_MAn_reco_Anti.dat')        # Pre-cal: MAn_Anti
 
-In_pre_MHE_Nu   = np.loadtxt('/home/edson/Projeto_doutorado/Experimentos/Beam_Tau/DUNE_py/Init_00_tau/pre_MHE_reco_Nu.dat'  )        # Pre-cal: MHE_Nu
-
-    # Matrix mapping pre-calculation: bin_true for bin_reco                 (sigma = 0.25453, fac_mu = 0.43522, normalization = On)
-In_matrix_pre_40x01 = np.loadtxt('/home/edson/Projeto_doutorado/Experimentos/Beam_Tau/DUNE_py/Init_00_tau/pre_rules_40x01.dat')      # Pre-cal: 40 x 01
-In_matrix_pre_40x40 = np.loadtxt('/home/edson/Projeto_doutorado/Experimentos/Beam_Tau/DUNE_py/Init_00_tau/pre_rules_40x40.dat')      # Pre-cal: 40 x 40
+###
+################################# Windows ###########################                       ( sigma = 0.25453, fac_mu = 0.43522, normalization = On )
+###
+""" path_windows = '/home/edson/Projeto_doutorado/Experimentos/Beam_Tau/DUNE_py/Init_00_tau'
+    # Calc_reco: Pre-calculation    and     Matrix mapping pre-calculation: bin_true for bin_reco
+In_pre_MNu_Nu   = np.loadtxt( os.path.join(path_windows, 'pre_MNu_reco_Nu.dat'  ) )         # Pre-cal: MNu_Nu
+In_pre_MNu_Anti = np.loadtxt( os.path.join(path_windows, 'pre_MNu_reco_Anti.dat') )         # Pre-cal: MNu_Anti
+In_pre_MAn_Nu   = np.loadtxt( os.path.join(path_windows, 'pre_MAn_reco_Nu.dat'  ) )         # Pre-cal: MAn_Nu
+In_pre_MAn_Anti = np.loadtxt( os.path.join(path_windows, 'pre_MAn_reco_Anti.dat') )         # Pre-cal: MAn_Anti
+In_pre_MHE_Nu   = np.loadtxt( os.path.join(path_windows, 'pre_MHE_reco_Nu.dat'  ) )         # Pre-cal: MHE_Nu
+    # Matrix mapping pre-calculation: bin_true for bin_reco
+In_matrix_pre_40x01 = np.loadtxt( os.path.join(path_windows, 'pre_rules_40x01.dat') )       # Pre-cal: 40 x 01
+In_matrix_pre_40x40 = np.loadtxt( os.path.join(path_windows, 'pre_rules_40x40.dat') )       # Pre-cal: 40 x 40 """
                               
 
 

@@ -11,11 +11,11 @@
 import numpy as np
 
 # Import our libraries
-from migrate import *
-from read_vec import *
-from histogram import *
-from rules_reco import *
-from graphic_bar import *
+from migrate      import *
+from read_vec     import *
+from histogram    import *
+from rules_reco   import *
+from graphic_bar  import *
 from graphic_fill import *
 from graphic_part import *
 
@@ -25,7 +25,7 @@ from graphic_part import *
     Begin "__main__" : calculate() 
 
 """
-show_vec = 2
+show_vec = 1
 
 if show_vec == 1:
     energy_bin = np.arange( 0.25, 20.25, 0.5 )                                                             # Histogram_Bins : build from the middle (From 0.0 to 20.0 in 0.5)
@@ -75,7 +75,7 @@ if show_vec == 2:
 
 
 if __name__ == "__main__":
-    show_run = 1
+    show_run = 4
 
     if show_run == 1:
         # Graph Display:
@@ -113,4 +113,7 @@ if __name__ == "__main__":
         print( 0.5*sum(In_MAn_reco_Nu)  )
         print( 0.5*sum(In_MAn_reco_Anti))
         print( 0.5*sum([In_MAn_reco_Anti[i] - In_MAn_reco_Nu[i] for i in range(len(In_MAn_reco_Anti))]) )
+
+    elif show_run == 4:
+        print( f"\n{In_pre_MNu_Nu}\n\n{In_pre_MNu_Anti}\n\n{In_pre_MAn_Nu}\n\n{In_matrix_pre_40x01}" )
 
