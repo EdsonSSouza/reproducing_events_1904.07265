@@ -1,19 +1,19 @@
-from SM_01_Prob.mass_order import Mass_order
-from SM_01_Prob.matrix_PMNS import Matrix_Osc
+import numpy as np
+from Init_00_tau.read_vec     import *
+from Init_00_tau.rules_reco   import Rule_smear
+from Init_00_tau.histogram    import Histogram
+from SM_01_Prob.mass_order    import Mass_order
+from SM_01_Prob.matrix_PMNS   import Matrix_Osc
 from SM_01_Prob.hamilton_mass import Hamilton_matrix
 from SM_01_Prob.s_matrix_mass import S_matrix
-from SM_01_Prob.prob_SM import Probability_SM
-from NSI_01_Prob.matrix_NSI import Matrix_Tmut
-from NSI_01_Prob.prob_NSI import Probability_NSI
-from Init_00_tau.read_vec import *
-from Init_00_tau.rules_reco import Rule_smear
-from Init_00_tau.histogram import Histogram
-import numpy as np
+from SM_01_Prob.prob_SM       import Probability_SM
+from NSI_01_Prob.matrix_NSI   import Matrix_Tmut
+from NSI_01_Prob.prob_NSI     import Probability_NSI
 
 #print(sum(In_MNu_true_Nu))
 #print(sum(In_MNu_reco_Nu))
 #print(sum(Pre_cal_MNu_Nu))
-print(sum(In_MNu_true_Nu)/sum(Pre_cal_MNu_Nu))
+print(sum(In_MNu_true_Nu)/sum(In_pre_MNu_Nu))
 
 print()
 hist = Histogram.get_Uniform_WB(0, 20, 0.5)

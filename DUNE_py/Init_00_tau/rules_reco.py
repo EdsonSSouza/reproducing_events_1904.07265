@@ -20,8 +20,8 @@ Description about this script:
 import numpy as np
 
 # Import our libraries
-from .read_vec import *
-from .migrate  import Gaussian_interp2D
+from Init_00_tau.read_vec import *
+from Init_00_tau.migrate  import Gaussian_interp2D
 
 
 # Rules for converting bins_true into bins_reco using migrate (mapping)
@@ -136,8 +136,7 @@ class Rule_smear:
 
 
 if __name__ == "__main__":
-    #from histogram import *
-    from .histogram import *
+    from Init_00_tau.histogram import *
 
     show = 0
     hist = Histogram.get_Uniform_WB( 0, 20, 0.5 )

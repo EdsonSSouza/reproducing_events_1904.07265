@@ -11,13 +11,13 @@
 import numpy as np
 
 # Import our libraries
-from migrate      import *
-from read_vec     import *
-from histogram    import *
-from rules_reco   import *
-from graphic_bar  import *
-from graphic_fill import *
-from graphic_part import *
+from Init_00_tau.migrate      import *
+from Init_00_tau.read_vec     import *
+from Init_00_tau.histogram    import *
+from Init_00_tau.rules_reco   import *
+from Init_00_tau.graphic_bar  import *
+from Init_00_tau.graphic_fill import *
+from Init_00_tau.graphic_part import *
 
 
 """ 

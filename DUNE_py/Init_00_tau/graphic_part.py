@@ -270,12 +270,9 @@ class Graph_each_HE:
 
 
 if __name__ == "__main__":
-    #from read_vec   import *
-    #from histogram  import *
-    #from rules_reco import *
-    from .read_vec   import *
-    from .histogram  import *
-    from .rules_reco import *
+    from Init_00_tau.read_vec   import *
+    from Init_00_tau.histogram  import *
+    from Init_00_tau.rules_reco import *
     
     show = 1
     histogram = Histogram.get_Uniform_SP(0, 40, 0.5)                                                        # Histogram_Bins : SP (Start Point = 0.0) for 40 bins of width 0.5
