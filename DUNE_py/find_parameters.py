@@ -64,7 +64,7 @@ def error_different(Input_vec_true, Input_vec_reco):
     for sig_linear in np.linspace( 0.23, 0.33, 101 ):#101
         for sig_mean in np.linspace( 0.4, 0.5, 101 ):
 
-            vec_reco = Rule_smear.input_data( hist, Input_vec_true ).input_change( sig_linear, sig_mean, 1 ).get_middle()
+            vec_reco = Rule_smear.input_data( hist, Input_vec_true ).input_change( sig_linear, sig_mean, 1 ).get_5to5()
 
             for i in range( numb ):
                 vec_err[i] = abs( vec_BFit[i] - vec_reco[i] )
@@ -117,7 +117,7 @@ def error_multiple(Input_vec_true, Input_vec_reco):
 
 if __name__ == '__main__':
 
-    show = 0
+    show = 5
     
     if show == 0:
         n = len(In_MNu_true_Nu)
@@ -163,8 +163,6 @@ if __name__ == '__main__':
         Input_vec_reco = In_MNu_reco_Nu
         numb = int(len(Input_vec_reco))
         error_rel = 0
-        sigma_mean = 0.431#0.45#0.435
-        sigma_linear = 0.255#0.25#0.25
 
         hist = Histogram.get_Uniform_WB( 0, 20, 0.5 )
 
@@ -172,7 +170,7 @@ if __name__ == '__main__':
         vec_err = np.zeros( numb )
 
 
-        vec_reco = Rule_smear.input_data( hist, Input_vec_true ).get_5for5_change( sigma_linear, sigma_mean, 1 )
+        vec_reco = Rule_smear.input_data( hist, Input_vec_true ).input_change(0.258,0.436,1).get_middle()
 
         for i in range( numb ):
             vec_err[i] = abs( vec_BFit[i] - vec_reco[i] )
@@ -180,9 +178,9 @@ if __name__ == '__main__':
         error_rel = sum( vec_err )
         vec_err = np.zeros( numb )
 
-        print(vec_err, len(vec_err), numb)
-        print( vec_BFit )
-        print( vec_reco )    
-        print(sigma_linear, sigma_mean, error_rel)
+        #print(vec_err, len(vec_err), numb)
+        #print( vec_BFit )
+        #print( vec_reco )    
+        print(error_rel)
    
 

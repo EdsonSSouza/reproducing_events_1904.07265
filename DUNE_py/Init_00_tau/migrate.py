@@ -8,12 +8,21 @@
 ##### 				18th Fev 2024	                  #####
 ###########################################################
 
+""" 
+Description about this script:
+    This script creates the 'migration matrix' to convert the true energy spectrum into a reconstructed spectrum.
+    We have two method for this:
+        Gaussian_interp2D: returns the interpolation between the 40 true and reconstructed bins
+        Mapping_matrix   : returns the matrix that migrates between the 40 bins
+"""
+
 import numpy as np
 from scipy.interpolate import RectBivariateSpline as RBS_interp2d
 
 
 #   Gaussian mapping "interpolation" for energy_reco x energy_true: We have En_reco(row) <-> En_true(column)
-#   Normalization: 0 Off / 1 On
+#   The idea is to use this method to make the migration assuming an average at 5 different points in each bins
+#   Normalization: 0 Off / 1 On 
 class Gaussian_interp2D:
     _instance = None
     def __init__(self, energy, factor_keep, factor_sqrt, factor_linear, factor_mean, normalized) -> None:
@@ -75,7 +84,7 @@ class Gaussian_interp2D:
                     #
                     expression_gau = coef_normal*np.exp( -0.5*coef_factor**2 )                                      # function_gaussian = coef_normal * exp(- 0.5*coef_factor**2 )
                     
-                    if expression_gau < 1e-6:                                                                       # Defining the Gaussian matrix
+                    if expression_gau < 1e-8:                                                                       # Defining the Gaussian matrix
                         matrix_interp[reco][true] = 0.0
                     else:
                         matrix_interp[reco][true] = expression_gau
@@ -90,7 +99,7 @@ class Mapping_matrix:
         if factor_keep is None and factor_sqrt is None and factor_linear is None and factor_mean is None:
             self.factor_keep   = 0.0
             self.factor_sqrt   = 0.0
-            self.factor_linear = 0.256                                 # sigma  = 0.256
+            self.factor_linear = 0.258                                 # sigma  = 0.258
             self.factor_mean   = 0.436                                 # fac_mu = 0.436
         else:
             self.factor_keep   = factor_keep
@@ -135,7 +144,7 @@ class Mapping_matrix:
                     vet_result_rate[i,j] = 0
                     
                 elif en_true[j] < 3.35 and en_true[j] == 3.25:                                          # Lower limit 3.35 and equal to 3.25: special rules for the first non-zero bin
-                    en_bin_1st = (3.35+3.5)*0.5
+                    en_bin_1st = 3.35
                     mu_1st  = b * en_bin_1st
                     sig_1st = r_keep + r_sqrt*np.sqrt(en_bin_1st) + r_linear*en_bin_1st
 
@@ -150,7 +159,7 @@ class Mapping_matrix:
                     coef_rate = 1/( sigma*np.sqrt( 2*np.pi ) )
                     
                     factor_rate = ( en_reco[i] - mu )/sigma
-                    potential_rate = np.exp( - 1/2*factor_rate**2 )
+                    potential_rate = np.exp( - 0.5*factor_rate**2 )
 
                     vet_result_rate[i,j] = coef_rate*potential_rate
         return vet_result_rate
@@ -166,9 +175,11 @@ if __name__ == "__main__":
     if show == 1:
         energy = np.linspace(0, 20, 401)
         Func = Gaussian_interp2D.input_data(energy).get_function2D()
-        print( Func(1.25, (3.35+3.5)*0.5) )
-        print( Func(1.25, 3.35) )
-        print( Func(1.25, 3.75) )
+        #print( Func(0.5, 5.25+0.25/2) )
+        #print( Func(1.25, 3.3) )
+        #print( Func(1.25, (3.35+3.5)*0.5) )
+        print( Func(1.75, 3.75) )
+        print( Func(1.75, 4.25) )
     
     elif show == 2:
         energy = np.linspace(0.25, 19.75, 40)
@@ -186,11 +197,11 @@ if __name__ == "__main__":
         energy = np.linspace(0, 20, 401)
         
         # Normalized
-        gau_interp = Gaussian_interp2D.input_data(energy).input_change(0, 0, 0.256, 0.436, 1).get_function2D()
+        gau_interp = Gaussian_interp2D.input_data(energy).get_function2D()
         Z_new = gau_interp(energy, energy)
         
         # Non-Normalized
-        Non_interp = Gaussian_interp2D.input_data(energy).input_change(0, 0, 0.256, 0.436, 0).get_function2D()
+        Non_interp = Gaussian_interp2D.input_data(energy).input_change(0, 0, 0.25453, 0.43522, 0).get_function2D()
         Z_non_new = Non_interp(energy, energy)
         
         
@@ -232,15 +243,15 @@ if __name__ == "__main__":
         #cbar = plt.colorbar(shrink=0.815)
 
         # Adds a label to the colorbar
-        cbar.set_label( r'$(\ \sigma \ |\ \mu_{\rm mean}\ )=(\ 0.256\ | \ 0.436 \ ) \cdot E_{\nu}^{\rm true}$', fontsize=22, labelpad=10 ) 
+        cbar.set_label( r'$(\ \sigma \ |\ \mu_{\rm mean}\ )=(\ 0.25453\ | \ 0.43522 \ ) \cdot E_{\nu}^{\rm true}$', fontsize=22, labelpad=10 ) 
         cbar.outline.set_linewidth(3)                                                                                          # Sets the width of the frame
         cbar.ax.tick_params(labelsize=18, direction='in', width=2.5, length=15)                                                # Define the size of the numbers
         cbar.ax.set_yticklabels([0.0, 0.1, 0.2, 0.3, 0.4, 0.5])                                                                # Defines the specific values to be displayed
 
         en_true = energy
         en_reco = en_true
-        plt.plot(en_true, en_reco, color="black", linewidth=2.6)
-        plt.plot([3.35,3.35],[0,20], color="white", linewidth=2.0, linestyle='dashed' )
+        plt.plot(en_true, en_reco, c="black", lw=2.6)
+        plt.plot([3.35,3.35],[0,20], c="white", lw=2.0, linestyle='dashed' )
         
         # Save with .pdf
         #plt.savefig('../Image_article/Event_Gaussian_Norm.pdf', format='pdf')
@@ -288,7 +299,7 @@ if __name__ == "__main__":
         #cbar = plt.colorbar(shrink=0.815)
 
         # Adds a label to the colorbar
-        cbar.set_label( r'$(\ \sigma \ |\ \mu_{\rm mean}\ )=(\ 0.256\ | \ 0.436 \ ) \cdot E_{\nu}^{\rm true}$', fontsize=22, labelpad=10 ) 
+        cbar.set_label( r'$(\ \sigma \ |\ \mu_{\rm mean}\ )=(\ 0.25453\ | \ 0.43522 \ ) \cdot E_{\nu}^{\rm true}$', fontsize=22, labelpad=10 ) 
         cbar.outline.set_linewidth(3)                                                                                          # Sets the width of the frame
         cbar.ax.tick_params(labelsize=18, direction='in', width=2.5, length=15)                                                # Define the size of the numbers
         cbar.ax.set_yticklabels([0.0, 0.2, 0.4, 0.6, 0.8, 1.0])                                                                # Defines the specific values to be displayed

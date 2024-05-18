@@ -11,9 +11,10 @@
 import matplotlib.pyplot as plt
 
 # Import our libraries
-#from .read_vec import *
-from read_vec import *
+from .read_vec import *
 
+
+# OBJ: Neutrino Mode (+1) and Antineutrino Mode (-1)
 
 # Plot only the outline of the bars 
 class Contour_bar:
@@ -109,7 +110,7 @@ class Graph_all:
         if self.type_mode == +1:                                                                       # Write on the frame - Neutrino Mode:
             plt.xlim(0,20)                                                                                      # Axis limit
             plt.ylim(0,40)
-            plt.xticks([0, 5, 10, 15, 20])                                                                 # Specifying the values that will appear on the x axis
+            plt.xticks([0, 5, 10, 15, 20] )                                                                # Specifying the values that will appear on the x axis
             plt.yticks([0, 10, 20, 30, 40])                                                                # Specifying the values that will appear on the y axis    
             plt.text(0.3, 37, f'Neutrino mode', fontsize=35, color='black')
         #
@@ -125,7 +126,7 @@ class Graph_all:
         ## Different Mode
         #
         else:                                                                                              # If it is not a Neutrino or Antineutrino Mode
-            raise Exception(" Choose : +1 for Antineutrino or -1 for Neutrino. ")
+            raise Exception(" Choose : +1 for Neutrino Mode or -1 for Antineutrino Mode. ")
             
         """ 
             Creating the Plot 
@@ -139,12 +140,12 @@ class Graph_all:
         if self.type_mode == +1:                                                                                                 # Neutrino Mode:
             # Tau_minus : Neutrino                                                                                               # Tau_minus : Neutrino
             Contour_bar(self.hist, self.In_true_Nu  ).get_plot(.8, 'green', 'dashed', 2, r'${{\rm Input: } \ \tau^{-} \ {\rm events}}$')            # Input : In_MNu_true_Nu
-            Contour_bar(self.hist, self.Cal_reco_Nu).get_plot(1, 'green', 'solid',   3, r'${ \tau^{-} \ {\rm events}}$'               )             # Calc. : Cal_MNu_reco_Nu
+            Contour_bar(self.hist, self.Cal_reco_Nu ).get_plot(1 , 'green', 'solid' , 3, r'${ \tau^{-} \ {\rm events}}$'               )            # Calc. : Cal_MNu_reco_Nu
             if self.In_reco_Nu is not None:
                 plt.scatter( build_bins, self.In_reco_Nu, color='black', label='Input: data reconst.' )                                             # Input : In_MNu_reco_Nu
             # Tau_plus : Antineutrino                                                                                            # Tau_plus  : Antineutrino
             Contour_bar(self.hist, self.In_true_Anti  ).get_plot(.8, (0.9, 0.5, 0), 'dashed', 2, r'${{\rm Input: } \ \tau^{+} \ {\rm events}}$')    # Input : In_MNu_true_Anti
-            Contour_bar(self.hist, self.Cal_reco_Anti).get_plot(1, (0.9, 0.5, 0), 'solid',   3, r'${ \tau^{+} \ {\rm events}}$'               )     # Calc. : Cal_MNu_reco_Anti
+            Contour_bar(self.hist, self.Cal_reco_Anti ).get_plot(1 , (0.9, 0.5, 0), 'solid' , 3, r'${ \tau^{+} \ {\rm events}}$'               )    # Calc. : Cal_MNu_reco_Anti
             if self.In_reco_Anti is not None:
                 plt.scatter( build_bins, self.In_reco_Anti, color='black' )                                                                         # Input : In_MNu_reco_Anti
         #
@@ -153,22 +154,22 @@ class Graph_all:
         else:                                                                                                                    # AntiNeutrino Mode:
             # Tau_minus : Neutrino                                                                                               # Tau_minus : Neutrino
             Contour_bar(self.hist, self.In_true_Nu  ).get_plot(.8, 'green', 'dashed', 2, r'${{\rm Input: } \ \tau^{-} \ {\rm events}}$')            # Input : In_MAn_true_Nu
-            Contour_bar(self.hist, self.Cal_reco_Nu).get_plot(1, 'green', 'solid',   3, r'${ \tau^{-} \ {\rm events}}$'               )             # Calc. : Cal_MAn_reco_Nu
+            Contour_bar(self.hist, self.Cal_reco_Nu ).get_plot(1 , 'green', 'solid' , 3, r'${ \tau^{-} \ {\rm events}}$'               )            # Calc. : Cal_MAn_reco_Nu
             if self.In_reco_Nu is not None:
                 plt.scatter( build_bins, self.In_reco_Nu, color='black', label='Input: data reconst.' )                                             # Input : In_MAn_reco_Nu
             # Tau_plus : Antineutrino                                                                                            # Tau_plus : AntiNeutrino
             Contour_bar(self.hist, self.In_true_Anti  ).get_plot(.8, (0.9, 0.5, 0), 'dashed', 2, r'${{\rm Input: } \ \tau^{+} \ {\rm events}}$')    # Input : In_MAn_true_Anti
-            Contour_bar(self.hist, self.Cal_reco_Anti).get_plot(1, (0.9, 0.5, 0), 'solid',   3, r'${ \tau^{+} \ {\rm events}}$'               )     # Calc. : Cal_MAn_reco_Anti
+            Contour_bar(self.hist, self.Cal_reco_Anti ).get_plot(1 , (0.9, 0.5, 0), 'solid' , 3, r'${ \tau^{+} \ {\rm events}}$'               )    # Calc. : Cal_MAn_reco_Anti
             if self.In_reco_Anti is not None:
                 plt.scatter( build_bins, self.In_reco_Anti, color='black' )                                                                         # Input : In_MAn_reco_Anti
             
         plt.legend( fontsize=24 )                                                                                      # Add legend
         
         plt.pause(0.01)                                                                                                # Displaying the graph and pausing execution
-        print(f"\nEvents_minus: { round(sum( [ 0.5*vec     for vec in self.Cal_reco_Nu] ), 3) }")
+        print(f"\nEvents_minus: { round(sum( [ 0.5*vec     for vec in self.Cal_reco_Nu]   ), 3) }")
         print(f"Events_plus : {   round(sum( [ 0.5*vec     for vec in self.Cal_reco_Anti] ), 3) }")
 
-        #plt.savefig('../Image_article/Fig2_Event_MAn.pdf', format='pdf')                                               # Save with .pdf
+        #plt.savefig('../Image_article/Fig2_Event_MAn.pdf', format='pdf')                                              # Save with .pdf
         input("Enter to continue: ")                                                                                   # Waiting for keyboard input to continue
         plt.close()                                                                                                    # Close image
         return
@@ -229,7 +230,7 @@ class Graph_all_comp:
         ## Different Mode
         #
         else:                                                                                              # If it is not a Neutrino or Antineutrino Mode
-            raise Exception(" Choose : +1 for Antineutrino or -1 for Neutrino. ")
+            raise Exception(" Choose : +1 for Neutrino Mode or -1 for Antineutrino Mode. ")
             
         """ 
             Creating the Plot 
@@ -238,33 +239,33 @@ class Graph_all_comp:
         ##   Neutrino Mode
         #
         if self.type_mode == +1:                                                                                                 # Neutrino Mode:
-            BF_Nu   = Pre_cal_MNu_Nu
-            BF_Anti = Pre_cal_MNu_Anti          
+            BF_Nu   = In_pre_MNu_Nu
+            BF_Anti = In_pre_MNu_Anti          
             # Tau_minus : Neutrino                                                                                               # Tau_minus : Neutrino
-            Contour_bar( self.hist, BF_Nu ).get_plot( .6, 'green', 'dashed', 2, r'${{\rm Best-Fit: } \ \tau^{-} \ {\rm events}}$'       )           # Input : B-F_MNu_true_Nu
-            Contour_bar( self.hist, self.new_Nu ).get_plot( 1, 'green', 'solid', 3, r'${{\rm New \ case: } \ \tau^{-} \ {\rm events}}$' )           # Calc. : Cal_MNu_reco_Nu
+            Contour_bar( self.hist, BF_Nu       ).get_plot( .6, 'green', 'dashed', 2, r'${{\rm Best-Fit: } \ \tau^{-} \ {\rm events}}$'   )         # Input : B-F_MNu_true_Nu
+            Contour_bar( self.hist, self.new_Nu ).get_plot( 1 , 'green', 'solid' , 3, r'${{\rm New \ case: } \ \tau^{-} \ {\rm events}}$' )         # Calc. : Cal_MNu_reco_Nu
             # Tau_plus : Antineutrino                                                                                            # Tau_plus : Antineutrino
-            Contour_bar( self.hist, BF_Anti ).get_plot( .6, (0.9, 0.5, 0), 'dashed', 2, r'${{\rm Best-Fit: } \ \tau^{+} \ {\rm events}}$'       )   # Input : B-F_MNu_true_Anti
-            Contour_bar( self.hist, self.new_Anti ).get_plot( 1, (0.9, 0.5, 0), 'solid', 3, r'${{\rm New \ case: } \ \tau^{+} \ {\rm events}}$' )   # Calc. : Cal_MNu_reco_Anti
+            Contour_bar( self.hist, BF_Anti       ).get_plot( .6, (0.9, 0.5, 0), 'dashed', 2, r'${{\rm Best-Fit: } \ \tau^{+} \ {\rm events}}$'   ) # Input : B-F_MNu_true_Anti
+            Contour_bar( self.hist, self.new_Anti ).get_plot( 1 , (0.9, 0.5, 0), 'solid' , 3, r'${{\rm New \ case: } \ \tau^{+} \ {\rm events}}$' ) # Calc. : Cal_MNu_reco_Anti
         #
         ##   Antineutrino Mode
         #
         else:                                                                                                                    # AntiNeutrino Mode:
-            BF_Nu   = Pre_cal_MAn_Nu
-            BF_Anti = Pre_cal_MAn_Anti
-            # Tau_minus : Antineutrino                                                                                           # Tau_minus : AntiNeutrino
-            Contour_bar( self.hist, BF_Nu ).get_plot( .6, 'green', 'dashed', 2, r'${{\rm Best-Fit: } \ \tau^{-} \ {\rm events}}$'     )             # Input : B-F_MAn_true_Nu
-            Contour_bar( self.hist, self.new_Nu ).get_plot( 1, 'green', 'solid', 3, r'${{\rm New case: } \ \tau^{-} \ {\rm events}}$' )             # Calc. : Cal_MAn_reco_Nu
+            BF_Nu   = In_pre_MAn_Nu
+            BF_Anti = In_pre_MAn_Anti
+            # Tau_minus : Neutrino                                                                                               # Tau_minus : Neutrino
+            Contour_bar( self.hist, BF_Nu       ).get_plot( .6, 'green', 'dashed', 2, r'${{\rm Best-Fit: } \ \tau^{-} \ {\rm events}}$' )           # Input : B-F_MAn_true_Nu
+            Contour_bar( self.hist, self.new_Nu ).get_plot( 1 , 'green', 'solid' , 3, r'${{\rm New case: } \ \tau^{-} \ {\rm events}}$' )           # Calc. : Cal_MAn_reco_Nu
             # Tau_plus : Antineutrino                                                                                            # Tau_plus : AntiNeutrino
-            Contour_bar( self.hist, BF_Anti ).get_plot( .6, (0.9, 0.5, 0), 'dashed', 2, r'${{\rm Best-Fit: } \ \tau^{+} \ {\rm events}}$'     )     # Input : B-F_MAn_true_Anti
-            Contour_bar( self.hist, self.new_Anti ).get_plot( 1, (0.9, 0.5, 0), 'solid', 3, r'${{\rm New case: } \ \tau^{+} \ {\rm events}}$' )     # Calc. : Cal_MAN_reco_Anti
+            Contour_bar( self.hist, BF_Anti       ).get_plot( .6, (0.9, 0.5, 0), 'dashed', 2, r'${{\rm Best-Fit: } \ \tau^{+} \ {\rm events}}$' )   # Input : B-F_MAn_true_Anti
+            Contour_bar( self.hist, self.new_Anti ).get_plot( 1 , (0.9, 0.5, 0), 'solid' , 3, r'${{\rm New case: } \ \tau^{+} \ {\rm events}}$' )   # Calc. : Cal_MAN_reco_Anti
             
         legend = plt.legend( fontsize=24 )                                                                             # Add legend
         frame = legend.get_frame()
         frame.set_edgecolor('black')                                                                                   # Add legend
         
         plt.pause(0.01)                                                                                                # Displaying the graph and pausing execution
-        print(f"\nEvents_minus: { round(sum( [ 0.5*vec     for vec in self.new_Nu] ), 3) }")
+        print(f"\nEvents_minus: { round(sum( [ 0.5*vec     for vec in self.new_Nu] ), 3)   }")
         print(f"Events_plus : {   round(sum( [ 0.5*vec     for vec in self.new_Anti] ), 3) }")
 
         input("Enter to continue: ")                                                                                   # Waiting for keyboard input to continue
@@ -333,8 +334,8 @@ class Graph_HE:
         build_bins = [ (bin.left + bin.right)/2   for bin in self.hist.bins ]                                               # Defined in the library histogram_unif.py
     
         # High Energy Mode: Neutrino                                                                                        # High energy Mode: Neutrino
-        Contour_bar(self.hist, self.In_true).get_plot(.8, 'green', 'dashed', 2, r'${{\rm Input: } \ \tau^{-} \ {\rm events}}$')     # Input : In_MFE_true_Nu
-        Contour_bar(self.hist, self.Calc_reco).get_plot(1, 'green', 'solid', 3, r'${ \tau^{-} \ {\rm events}}$'               )     # Calc. : Cal_MHE_reco_Nu
+        Contour_bar(self.hist, self.In_true  ).get_plot(.8, 'green', 'dashed', 2, r'${{\rm Input: } \ \tau^{-} \ {\rm events}}$')   # Input : In_MFE_true_Nu
+        Contour_bar(self.hist, self.Calc_reco).get_plot(1 , 'green', 'solid' , 3, r'${ \tau^{-} \ {\rm events}}$'               )   # Calc. : Cal_MHE_reco_Nu
         if self.In_reco is not None:
             plt.scatter( build_bins, self.In_reco, color='black', label='Input: data reconst.' )                                    # Input : In_MFE_reco_Nu
             
@@ -388,9 +389,9 @@ class Graph_HE_comp:
             Creating the Plot 
         """
         # High Energy Mode                                                                                                  # High energy mode: Neutrino
-        BF_HE = Pre_cal_MHE_Nu
-        Contour_bar( self.hist, BF_HE ).get_plot( .6, 'green', 'dashed', 2 , r'${{\rm Best-Fit: } \ \tau^{-} \ {\rm events}}$'    )       # Input : B-F_MHE_true_Nu
-        Contour_bar( self.hist, self.new_Nu ).get_plot( 1, 'green', 'solid', 3, r'${{\rm New \ case} \ \tau^{-} \ {\rm events}}$' )       # Calc. : Cal_MHE_reco_Nu
+        BF_HE = In_pre_MHE_Nu
+        Contour_bar( self.hist, BF_HE      ).get_plot( .6, 'green', 'dashed', 2, r'${{\rm Best-Fit: } \ \tau^{-} \ {\rm events}}$' )     # Input : B-F_MHE_true_Nu
+        Contour_bar( self.hist, self.new_Nu).get_plot( 1 , 'green', 'solid' , 3, r'${{\rm New \ case} \ \tau^{-} \ {\rm events}}$' )     # Calc. : Cal_MHE_reco_Nu
             
         legend = plt.legend( fontsize=24 )                                                                                  # Add legend
         frame = legend.get_frame()
@@ -407,99 +408,123 @@ class Graph_HE_comp:
 
 
 if __name__ == "__main__":
-    from histogram import *
-    from rules_reco import *
+    #from histogram  import *
+    #from rules_reco import *
+    from .histogram  import *
+    from .rules_reco import *
     
-    show = 2
+    show = 0
     histogram = Histogram.get_Uniform_SP(0, 40, 0.5)                                                        # Histogram_Bins : SP (Start Point = 0.0) for 40 bins of width 0.5
 
-    if show == 1:
+    if show == 0:
         # Neutrino Mode (Calculate):                                                                                        # Neutrino (Calc.): Reconstruction
-        cal_MNu_reco_Nu   = Rule_smear.input_data( histogram, In_MNu_true_Nu  ).get_5to5_pre()                                       # Mode_Nu : Events/bin Neutrino
-        cal_MNu_reco_Anti = Rule_smear.input_data( histogram, In_MNu_true_Anti).get_5to5_pre()                                       # Mode_Nu : Events/bin Antineutrino
+        cal_MNu_reco_Nu   = Rule_smear.input_data( histogram, In_MNu_true_Nu  ).get_middle(NormMid_MNu_Nu  )                         # Mode_Nu : Events/bin Neutrino
+        cal_MNu_reco_Anti = Rule_smear.input_data( histogram, In_MNu_true_Anti).get_middle(NormMid_MNu_Anti)                         # Mode_Nu : Events/bin Antineutrino
         #plt_Nu = Graph_all( +1, histogram, In_MNu_true_Nu, cal_MNu_reco_Nu, In_MNu_true_Anti, cal_MNu_reco_Anti, In_MNu_reco_Nu, In_MNu_reco_Anti )
         plt_Nu = Graph_all.input_data( +1, histogram, In_MNu_true_Nu, cal_MNu_reco_Nu, In_MNu_true_Anti, cal_MNu_reco_Anti )
         plt_Nu.input_change( In_MNu_reco_Nu, In_MNu_reco_Anti )
         plt_Nu.get_plot_bar()
 
         # Antineutrino Mode (Calculate):                                                                                    # Antineutrino (Calc.): Reconstruction
-        cal_MAn_reco_Nu   = Rule_smear.input_data( histogram, In_MAn_true_Nu  ).get_5to5_pre()                                       # Mode_An : Events/bin Neutrino
-        cal_MAn_reco_Anti = Rule_smear.input_data( histogram, In_MAn_true_Anti).get_5to5_pre()                                       # Mode_An : Events/bin Antineutrino
+        cal_MAn_reco_Nu   = Rule_smear.input_data( histogram, In_MAn_true_Nu  ).get_middle(NormMid_MAn_Nu  )                         # Mode_An : Events/bin Neutrino
+        cal_MAn_reco_Anti = Rule_smear.input_data( histogram, In_MAn_true_Anti).get_middle(NormMid_MAn_Anti)                         # Mode_An : Events/bin Antineutrino
         plt_Anti = Graph_all.input_data( -1, histogram, In_MAn_true_Nu, cal_MAn_reco_Nu, In_MAn_true_Anti, cal_MAn_reco_Anti )
         plt_Anti.input_change( In_MAn_reco_Nu, In_MAn_reco_Anti )
         plt_Anti.get_plot_bar()
 
         # High Energy Mode (Calculate):                                                                                     # High Energy (Calc.): Reconstruction
-        cal_MHE_reco_Nu = Rule_smear.input_data( histogram, In_MHE_true_Nu ).get_5to5_pre()                                          # Mode_HE : Events/bin Neutrino
+        cal_MHE_reco_Nu = Rule_smear.input_data( histogram, In_MHE_true_Nu ).get_middle(NormMid_MHE_Nu)                              # Mode_HE : Events/bin Neutrino
+        plt_HE = Graph_HE.input_data( histogram, In_MHE_true_Nu, cal_MHE_reco_Nu )
+        plt_HE.input_change( In_MHE_reco_Nu )
+        plt_HE.get_plot_bar()
+    
+    elif show == 1:
+        # Neutrino Mode (Calculate):                                                                                        # Neutrino (Calc.): Reconstruction
+        cal_MNu_reco_Nu   = Rule_smear.input_data( histogram, In_MNu_true_Nu  ).get_5to5(Norm5x5_MNu_Nu  )                           # Mode_Nu : Events/bin Neutrino
+        cal_MNu_reco_Anti = Rule_smear.input_data( histogram, In_MNu_true_Anti).get_5to5(Norm5x5_MNu_Anti)                           # Mode_Nu : Events/bin Antineutrino
+        #plt_Nu = Graph_all( +1, histogram, In_MNu_true_Nu, cal_MNu_reco_Nu, In_MNu_true_Anti, cal_MNu_reco_Anti, In_MNu_reco_Nu, In_MNu_reco_Anti )
+        plt_Nu = Graph_all.input_data( +1, histogram, In_MNu_true_Nu, cal_MNu_reco_Nu, In_MNu_true_Anti, cal_MNu_reco_Anti )
+        plt_Nu.input_change( In_MNu_reco_Nu, In_MNu_reco_Anti )
+        plt_Nu.get_plot_bar()
+
+        # Antineutrino Mode (Calculate):                                                                                    # Antineutrino (Calc.): Reconstruction
+        cal_MAn_reco_Nu   = Rule_smear.input_data( histogram, In_MAn_true_Nu  ).get_5to5(Norm5x5_MAn_Nu  )                           # Mode_An : Events/bin Neutrino
+        cal_MAn_reco_Anti = Rule_smear.input_data( histogram, In_MAn_true_Anti).get_5to5(Norm5x5_MAn_Anti)                           # Mode_An : Events/bin Antineutrino
+        plt_Anti = Graph_all.input_data( -1, histogram, In_MAn_true_Nu, cal_MAn_reco_Nu, In_MAn_true_Anti, cal_MAn_reco_Anti )
+        plt_Anti.input_change( In_MAn_reco_Nu, In_MAn_reco_Anti )
+        plt_Anti.get_plot_bar()
+
+        # High Energy Mode (Calculate):                                                                                     # High Energy (Calc.): Reconstruction
+        cal_MHE_reco_Nu = Rule_smear.input_data( histogram, In_MHE_true_Nu ).get_5to5(Norm5x5_MHE_Nu)                                # Mode_HE : Events/bin Neutrino
         plt_HE = Graph_HE.input_data( histogram, In_MHE_true_Nu, cal_MHE_reco_Nu )
         plt_HE.input_change( In_MHE_reco_Nu )
         plt_HE.get_plot_bar()
 
     elif show == 2:
         # Neutrino Mode (Calculate):                                                                                        # Neutrino (Calc.): Reconstruction
-        cal_MNu_reco_Nu   = Rule_smear.input_data( histogram, In_MNu_true_Nu  ).input_change(0.25453, 0.43522, 1).get_5to5()         # Mode_Nu : Events/bin Neutrino
-        cal_MNu_reco_Anti = Rule_smear.input_data( histogram, In_MNu_true_Anti).input_change(0.25453, 0.43522, 1).get_5to5()         # Mode_Nu : Events/bin Antineutrino
+        cal_MNu_reco_Nu   = Rule_smear.input_data( histogram, In_MNu_true_Nu  ).get_5to5_pre(Norm5x5_MNu_Nu  )                       # Mode_Nu : Events/bin Neutrino
+        cal_MNu_reco_Anti = Rule_smear.input_data( histogram, In_MNu_true_Anti).get_5to5_pre(Norm5x5_MNu_Anti)                       # Mode_Nu : Events/bin Antineutrino
         #plt_Nu = Graph_all( +1, histogram, In_MNu_true_Nu, cal_MNu_reco_Nu, In_MNu_true_Anti, cal_MNu_reco_Anti, In_MNu_reco_Nu, In_MNu_reco_Anti )
         plt_Nu = Graph_all.input_data( +1, histogram, In_MNu_true_Nu, cal_MNu_reco_Nu, In_MNu_true_Anti, cal_MNu_reco_Anti )
         plt_Nu.input_change( In_MNu_reco_Nu, In_MNu_reco_Anti )
         plt_Nu.get_plot_bar()
 
         # Antineutrino Mode (Calculate):                                                                                    # Antineutrino (Calc.): Reconstruction
-        cal_MAn_reco_Nu   = Rule_smear.input_data( histogram, In_MAn_true_Nu  ).input_change(0.25453, 0.43522, 1).get_5to5()         # Mode_An : Events/bin Neutrino
-        cal_MAn_reco_Anti = Rule_smear.input_data( histogram, In_MAn_true_Anti).input_change(0.25453, 0.43522, 1).get_5to5()         # Mode_An : Events/bin Antineutrino
+        cal_MAn_reco_Nu   = Rule_smear.input_data( histogram, In_MAn_true_Nu  ).get_5to5_pre(Norm5x5_MAn_Nu  )                       # Mode_An : Events/bin Neutrino
+        cal_MAn_reco_Anti = Rule_smear.input_data( histogram, In_MAn_true_Anti).get_5to5_pre(Norm5x5_MAn_Anti)                       # Mode_An : Events/bin Antineutrino
         plt_Anti = Graph_all.input_data( -1, histogram, In_MAn_true_Nu, cal_MAn_reco_Nu, In_MAn_true_Anti, cal_MAn_reco_Anti )
         plt_Anti.input_change( In_MAn_reco_Nu, In_MAn_reco_Anti )
         plt_Anti.get_plot_bar()
 
         # High Energy Mode (Calculate):                                                                                     # High Energy (Calc.): Reconstruction
-        cal_MHE_reco_Nu = Rule_smear.input_data( histogram, In_MHE_true_Nu ).input_change(0.25453, 0.43522, 1).get_5to5()            # Mode_HE : Events/bin Neutrino
+        cal_MHE_reco_Nu = Rule_smear.input_data( histogram, In_MHE_true_Nu ).get_5to5_pre(Norm5x5_MHE_Nu)                            # Mode_HE : Events/bin Neutrino
         plt_HE = Graph_HE.input_data( histogram, In_MHE_true_Nu, cal_MHE_reco_Nu )
         plt_HE.input_change( In_MHE_reco_Nu )
         plt_HE.get_plot_bar()
 
     elif show == 3:
         # Neutrino Mode (Calculate):                                                                                        # Neutrino (Calc.): Reconstruction
-        cal_MNu_reco_Nu   = Rule_smear.input_data( histogram, In_MNu_true_Nu  ).input_change(0.254, 0.435, 1).get_5to5()             # Mode_Nu : Events/bin Neutrino
-        cal_MNu_reco_Anti = Rule_smear.input_data( histogram, In_MNu_true_Anti).input_change(0.254, 0.435, 1).get_5to5()             # Mode_Nu : Events/bin Antineutrino
+        cal_MNu_reco_Nu   = Rule_smear.input_data( histogram, In_MNu_true_Nu  ).input_change(0.28, 0.46, 1).get_5to5(Norm5x5_MNu_Nu  )  # Mode_Nu : Events/bin Neutrino
+        cal_MNu_reco_Anti = Rule_smear.input_data( histogram, In_MNu_true_Anti).input_change(0.28, 0.46, 1).get_5to5(Norm5x5_MNu_Anti)  # Mode_Nu : Events/bin Antineutrino
         plt_Nu = Graph_all_comp( +1, histogram, cal_MNu_reco_Nu, cal_MNu_reco_Anti  )
         #plt_Nu = Graph_all_comp.input_data( +1, histogram, cal_MNu_reco_Nu, cal_MNu_reco_Anti )
         plt_Nu.get_plot_bar()
 
         # Antineutrino Mode (Calculate):                                                                                    # Antineutrino (Calc.): Reconstruction
-        cal_MAn_reco_Nu   = Rule_smear.input_data( histogram, In_MAn_true_Nu  ).input_change(0.254, 0.435, 1).get_5to5()             # Mode_An : Events/bin Neutrino
-        cal_MAn_reco_Anti = Rule_smear.input_data( histogram, In_MAn_true_Anti).input_change(0.254, 0.435, 1).get_5to5()             # Mode_An : Events/bin Antineutrino
+        cal_MAn_reco_Nu   = Rule_smear.input_data( histogram, In_MAn_true_Nu  ).input_change(0.28, 0.46, 1).get_5to5(Norm5x5_MAn_Nu  )  # Mode_An : Events/bin Neutrino
+        cal_MAn_reco_Anti = Rule_smear.input_data( histogram, In_MAn_true_Anti).input_change(0.28, 0.46, 1).get_5to5(Norm5x5_MAn_Anti)  # Mode_An : Events/bin Antineutrino
         plt_Anti = Graph_all_comp.input_data( -1, histogram, cal_MAn_reco_Nu, cal_MAn_reco_Anti )
         plt_Anti.get_plot_bar()
 
         # High Energy Mode (Calculate):                                                                                     # High Energy (Calc.): Reconstruction
-        cal_MHE_reco_Nu = Rule_smear.input_data( histogram, In_MHE_true_Nu ).input_change(0.254, 0.435, 1).get_5to5()                # Mode_HE : Events/bin Neutrino
+        cal_MHE_reco_Nu = Rule_smear.input_data( histogram, In_MHE_true_Nu ).input_change(0.28, 0.46, 1).get_5to5(Norm5x5_MHE_Nu)       # Mode_HE : Events/bin Neutrino
         plt_HE = Graph_HE_comp.input_data( histogram, cal_MHE_reco_Nu )
         plt_HE.get_plot_bar()
 
     elif show == 4:
-        """ # Neutrino Mode (Calculate):                                                                                        # Neutrino (Calc.): Reconstruction
-        cal_MNu_reco_Nu   = Rule_smear.input_data( histogram, In_MNu_true_Nu  ).get_5to5_pre()                                       # Mode_Nu : Events/bin Neutrino
-        cal_MNu_reco_Anti = Rule_smear.input_data( histogram, In_MNu_true_Anti).get_5to5_pre()                                       # Mode_Nu : Events/bin Antineutrino
+        # Neutrino Mode (Calculate):                                                                                        # Neutrino (Calc.): Reconstruction
+        """ cal_MNu_reco_Nu   = Rule_smear.input_data( histogram, In_MNu_true_Nu  ).get_5to5_pre(Norm5x5_MNu_Nu  )                          # Mode_Nu : Events/bin Neutrino
+        cal_MNu_reco_Anti = Rule_smear.input_data( histogram, In_MNu_true_Anti).get_5to5_pre(Norm5x5_MNu_Anti)                          # Mode_Nu : Events/bin Antineutrino
         #plt_Nu = Graph_all( +1, histogram, In_MNu_true_Nu, cal_MNu_reco_Nu, In_MNu_true_Anti, cal_MNu_reco_Anti, In_MNu_reco_Nu, In_MNu_reco_Anti )
         plt_Nu = Graph_all.input_data( +1, histogram, In_MNu_true_Nu, cal_MNu_reco_Nu, In_MNu_true_Anti, cal_MNu_reco_Anti )
         plt_Nu.input_change( In_MNu_reco_Nu, In_MNu_reco_Anti )
-        plt_Nu.get_plot_bar() 
-        #plt.savefig('../Image_article/Fig2_Event_MNu.pdf', format='pdf') """
+        plt_Nu.get_plot_bar() """ 
+        #plt.savefig('../Image_article/Fig2_Event_MNu.pdf', format='pdf')
 
 
-        """ # Antineutrino Mode (Calculate):                                                                                    # Antineutrino (Calc.): Reconstruction
-        cal_MAn_reco_Nu   = Rule_smear.input_data( histogram, In_MAn_true_Nu  ).get_5to5_pre()                                       # Mode_An : Events/bin Neutrino
-        cal_MAn_reco_Anti = Rule_smear.input_data( histogram, In_MAn_true_Anti).get_5to5_pre()                                       # Mode_An : Events/bin Antineutrino
+        # Antineutrino Mode (Calculate):                                                                                    # Antineutrino (Calc.): Reconstruction
+        """ cal_MAn_reco_Nu   = Rule_smear.input_data( histogram, In_MAn_true_Nu  ).get_5to5_pre(Norm5x5_MAn_Nu  )                          # Mode_An : Events/bin Neutrino
+        cal_MAn_reco_Anti = Rule_smear.input_data( histogram, In_MAn_true_Anti).get_5to5_pre(Norm5x5_MAn_Anti)                          # Mode_An : Events/bin Antineutrino
         plt_Anti = Graph_all.input_data( -1, histogram, In_MAn_true_Nu, cal_MAn_reco_Nu, In_MAn_true_Anti, cal_MAn_reco_Anti )
         plt_Anti.input_change( In_MAn_reco_Nu, In_MAn_reco_Anti )
-        plt_Anti.get_plot_bar() 
-        #plt.savefig('../Image_article/Fig2_Event_MAn.pdf', format='pdf') """
+        plt_Anti.get_plot_bar() """
+        #plt.savefig('../Image_article/Fig2_Event_MAn.pdf', format='pdf')
 
 
-        """ # High Energy Mode (Calculate):                                                                                     # High Energy (Calc.): Reconstruction
-        cal_MHE_reco_Nu = Rule_smear.input_data( histogram, In_MHE_true_Nu ).get_5to5_pre()                                          # Mode_HE : Events/bin Neutrino
+        # High Energy Mode (Calculate):                                                                                     # High Energy (Calc.): Reconstruction
+        """ cal_MHE_reco_Nu = Rule_smear.input_data( histogram, In_MHE_true_Nu ).get_5to5_pre(Norm5x5_MHE_Nu)                               # Mode_HE : Events/bin Neutrino
         plt_HE = Graph_HE.input_data( histogram, In_MHE_true_Nu, cal_MHE_reco_Nu )
         plt_HE.input_change( In_MHE_reco_Nu )
-        plt_HE.get_plot_bar()
-        #plt.savefig('../Image_article/Fig2_Event_HE.pdf', format='pdf') """
+        plt_HE.get_plot_bar() """
+        #plt.savefig('../Image_article/Fig2_Event_MHE.pdf', format='pdf')
 

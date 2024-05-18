@@ -11,6 +11,8 @@
 import matplotlib.pyplot as plt
 
 
+# OBJ: Neutrino Mode (+1) and Antineutrino Mode (-1)
+
 # Plot only the outline of the bars
 class Contour_bar:
     def __init__( self, histogram, signal ) -> None:
@@ -86,7 +88,7 @@ class Graph_each:
         if self.type_mode == +1:                                                                           # Write on the frame - Neutrino Mode:
             plt.xlim(0,20)                                                                                      # Axis limit 
             plt.ylim(0,40)
-            plt.xticks([0, 5, 10, 15, 20])                                                                 # Specifying the values that will appear on the x axis
+            plt.xticks([0, 5, 10, 15, 20] )                                                                # Specifying the values that will appear on the x axis
             plt.yticks([0, 10, 20, 30, 40])                                                                # Specifying the values that will appear on the y axis
             
             plt.text(11, 20,
@@ -152,7 +154,7 @@ class Graph_each:
         ## Different Mode
         #
         else:                                                                                              # If it is not a Neutrino or Antineutrino Mode
-            raise Exception(" choose : +1 for Antineutrino or -1 for Neutrino. ")
+            raise Exception(" choose : +1 for Neutrino Mode or -1 for Antineutrino Mode. ")
             
         """ 
             Creating the Plot 
@@ -270,17 +272,20 @@ class Graph_each_HE:
 
 
 if __name__ == "__main__":
-    from read_vec import *
-    from histogram import *
-    from rules_reco import *
+    #from read_vec   import *
+    #from histogram  import *
+    #from rules_reco import *
+    from .read_vec   import *
+    from .histogram  import *
+    from .rules_reco import *
     
     show = 1
     histogram = Histogram.get_Uniform_SP(0, 40, 0.5)                                                        # Histogram_Bins : SP (Start Point = 0.0) for 40 bins of width 0.5
 
     if show == 1:
         # Neutrino Mode (Calculate):                                                                                    # Neutrino (Calc.): Reconstruction
-        cal_MNu_reco_Nu   = Rule_smear.input_data( histogram, In_MNu_true_Nu   ).get_5to5_pre()                         # Mode_Nu : Events/bin Neutrino
-        cal_MNu_reco_Anti = Rule_smear.input_data( histogram, In_MNu_true_Anti ).get_5to5_pre()                         # Mode_Nu : Events/bin Antineutrino
+        cal_MNu_reco_Nu   = Rule_smear.input_data( histogram, In_MNu_true_Nu  ).get_5to5_pre(Norm5x5_MNu_Nu  )                      # Mode_Nu : Events/bin Neutrino
+        cal_MNu_reco_Anti = Rule_smear.input_data( histogram, In_MNu_true_Anti).get_5to5_pre(Norm5x5_MNu_Anti)                      # Mode_Nu : Events/bin Antineutrino
         plt_minus_Nu = Graph_each.input_data( +1, -1, histogram, In_MNu_true_Nu, In_MNu_reco_Nu, cal_MNu_reco_Nu )
         plt_minus_Nu.get_plot_bar()
         plt_plus_Nu  = Graph_each.input_data( +1, +1, histogram, In_MNu_true_Anti, In_MNu_reco_Anti, cal_MNu_reco_Anti )
@@ -288,15 +293,15 @@ if __name__ == "__main__":
 
 
         # Antineutrino Mode (Calculate):                                                                                # Antineutrino (Calc.): Reconstruction
-        cal_MAn_reco_Nu   = Rule_smear.input_data( histogram, In_MAn_true_Nu   ).get_5to5_pre()                         # Mode_An : Events/bin Neutrino
-        cal_MAn_reco_Anti = Rule_smear.input_data( histogram, In_MAn_true_Anti ).get_5to5_pre()                         # Mode_An : Events/bin Antineutrino
+        cal_MAn_reco_Nu   = Rule_smear.input_data( histogram, In_MAn_true_Nu  ).get_5to5_pre(Norm5x5_MAn_Nu  )                      # Mode_An : Events/bin Neutrino
+        cal_MAn_reco_Anti = Rule_smear.input_data( histogram, In_MAn_true_Anti).get_5to5_pre(Norm5x5_MAn_Anti)                      # Mode_An : Events/bin Antineutrino
         plt_minus_Anti = Graph_each.input_data( -1, -1,histogram, In_MAn_true_Nu, In_MAn_reco_Nu, cal_MAn_reco_Nu )
         plt_minus_Anti.get_plot_bar() 
         plt_plus_Anti  = Graph_each.input_data( -1, +1, histogram, In_MAn_true_Anti, In_MAn_reco_Anti, cal_MAn_reco_Anti )
         plt_plus_Anti.get_plot_bar()
 
         # High Energy Mode (Calculate):                                                                                 # High Energy (Calc.): Reconstruction
-        cal_MHE_reco_Nu = Rule_smear.input_data( histogram, In_MHE_true_Nu ).get_5to5_pre()                             # Mode_HE : Events/bin Neutrino
+        cal_MHE_reco_Nu = Rule_smear.input_data( histogram, In_MHE_true_Nu).get_5to5_pre( Norm5x5_MHE_Nu )                          # Mode_HE : Events/bin Neutrino
         plt_HE = Graph_each_HE.input_data( histogram, In_MHE_true_Nu, In_MHE_reco_Nu, cal_MHE_reco_Nu )
         plt_HE.get_plot_bar()
 

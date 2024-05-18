@@ -8,9 +8,17 @@
 ##### 				18th Fev 2024	                  #####
 ###########################################################
 
+""" 
+Description about this script:
+    The purpose of this script is to create histograms. In particular, we have three different ways of doing this:
+        get_Uniform_LR: we used this option when we knew the numbers of the bins and the start and end points of the energy spectrum
+        get_Uniform_SP: we used this option when we knew the starting point of the energy spectrum and the numbers and width of the bins
+        get_Uniform_WB: we used this option when we knew the width of the bins and the endges points of the energy spectrum
+"""
+
 import numpy as np
 
- 
+
 class Bin:
     def __init__(self, left, right):
         self.left  = left

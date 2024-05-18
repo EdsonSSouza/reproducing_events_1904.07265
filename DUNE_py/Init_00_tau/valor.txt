@@ -1,3 +1,4 @@
+**** get5x5 ***********
 For 101 points
 sigma_linear: 0.254
 sigma_mean  : 0.435
@@ -14,3 +15,11 @@ For 101 points, but range is shortest
 sigma_linear: 0.25453
 sigma_mean  : 0.43522
 valor_errer : 4.19789
+
+
+
+**** Middle ***********
+For 101 points
+sigma_linear: 0.258
+sigma_mean  : 0.436
+valor_errer : 4.4941

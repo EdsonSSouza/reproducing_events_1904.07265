@@ -1,13 +1,13 @@
-from Init_00_tau.histogram import Histogram
-from Init_00_tau.read_vec import *
-from Init_00_tau.migrate import Gaussian_interp2D
-from Init_00_tau.rules_reco import Rule_smear
-from Init_00_tau.graphic_bar import Graph_all
-from SM_01_Prob.mass_order import Mass_order
-from SM_01_Prob.matrix_PMNS import Matrix_Osc
-from NSI_01_Prob.matrix_NSI import Matrix_Tmut
-from NSI_01_Prob.prob_NSI import Probability_NSI
 import numpy as np
+from Init_00_tau.histogram   import Histogram
+from Init_00_tau.read_vec    import *
+from Init_00_tau.migrate     import Gaussian_interp2D
+from Init_00_tau.rules_reco  import Rule_smear
+from Init_00_tau.graphic_bar import Graph_all
+from SM_01_Prob.mass_order   import Mass_order
+from SM_01_Prob.matrix_PMNS  import Matrix_Osc
+from NSI_01_Prob.matrix_NSI  import Matrix_Tmut
+from NSI_01_Prob.prob_NSI    import Probability_NSI
 
 
 hist = Histogram.get_Uniform_WB(0, 20, 0.5)
@@ -19,8 +19,8 @@ map_gau = Gaussian_interp2D.input_data(energy).get_function2D()
 print(map_gau(5,8)[0][0])
 
 
-Calc_reco_Nu   = Rule_smear.input_data( hist, In_MNu_true_Nu   ).get_5to5_pre()
-Calc_reco_Anti = Rule_smear.input_data( hist, In_MNu_true_Anti ).get_5to5()
+Calc_reco_Nu   = Rule_smear.input_data( hist, In_MNu_true_Nu   ).get_5to5_pre(Norm5x5_MNu_Nu)
+Calc_reco_Anti = Rule_smear.input_data( hist, In_MNu_true_Anti ).get_5to5(Norm5x5_MNu_Anti)
 
 print(f"\n{Calc_reco_Nu}\n{Calc_reco_Anti}")
 
