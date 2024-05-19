@@ -12,9 +12,9 @@ import numpy as np
 import matplotlib.pyplot as plt
 
 # Import our libraries
-from SM_01_Prob.mass_order import Mass_order
+from SM_01_Prob.mass_order  import Mass_order
 from SM_01_Prob.matrix_PMNS import Matrix_Osc
-from SM_01_Prob.prob_SM import Probability_SM
+from SM_01_Prob.prob_SM     import Probability_SM
 
 
 PMNS = Matrix_Osc.input_data( 0.310, 0.02240, 0.523176, 1.204225*np.pi )
@@ -80,3 +80,4 @@ plt.pause(0.01)
 # Waiting for keyboard input to continue
 input("Enter to continue: ")
 plt.close()
+

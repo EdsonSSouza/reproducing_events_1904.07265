@@ -11,10 +11,8 @@
 import numpy as np
 
 # Import our libraries
-#from histogram import *
-#from rules_reco import *
-from histogram import *
-from rules_reco import *
+from Init_00_tau.histogram import *
+from Init_00_tau.rules_reco import *
 
 
 def error_relativo(Input_vec_true, Input_vec_reco):

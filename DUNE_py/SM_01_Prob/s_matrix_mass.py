@@ -11,11 +11,12 @@
 import numpy as np
 
 # Import our libraries
-from .hamilton_mass import Hamilton_matrix
+from SM_01_Prob.hamilton_mass import Hamilton_matrix
 
 
 # We define the S-operator on a mass basis
 class S_matrix:
+    """ Sign_cp: +1 for neutrinos and -1 for antineutrinos """
     def __init__(self, sign_cp, energy, distance_L, matter_V, instancia_U_PMNS, instancia_M_order) -> None:
         self.sign_cp = sign_cp                                                                            # sign_cp: +1 for neutrinos and -1 for antineutrinos
         self.en      = energy
@@ -64,8 +65,8 @@ class S_matrix:
 
 
 if __name__ == "__main__":
-    from mass_order import *
-    from matrix_PMNS import *
+    from SM_01_Prob.mass_order import *
+    from SM_01_Prob.matrix_PMNS import *
     
     matrix_PMNS = Matrix_Osc.input_data( 0.310, 0.02240, 0.582, 1.204225*np.pi )
     matrix_mass = Mass_order.input_data( 7.39*1e-5, 2.525*1e-3 )

@@ -14,9 +14,9 @@ import numpy as np
 # Define the Matrix_PMNS
 class Matrix_Osc:
     def __init__(self, sin2_th12, sin2_th13, sin2_th23, delta_cp) -> None:
-        self.th12 = np.arcsin( np.sqrt(sin2_th12) )
-        self.th13 = np.arcsin( np.sqrt(sin2_th13) )
-        self.th23 = np.arcsin( np.sqrt(sin2_th23) )
+        self.th12   = np.arcsin( np.sqrt(sin2_th12) )
+        self.th13   = np.arcsin( np.sqrt(sin2_th13) )
+        self.th23   = np.arcsin( np.sqrt(sin2_th23) )
         self.del_CP = delta_cp
     @classmethod
     def input_data( cls, sin2_th12, sin2_th13, sin2_th23, delta_cp ): 

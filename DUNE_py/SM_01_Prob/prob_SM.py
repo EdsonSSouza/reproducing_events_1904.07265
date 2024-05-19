@@ -8,14 +8,20 @@
 ##### 				27th Fev 2024	                  #####
 ###########################################################
 
+""" 
+Description about this script:
+    This script calculates the probability of oscillation in the SM scenario
+"""
+
 import numpy as np
 
 # Import our libraries
-from .s_matrix_mass import S_matrix
+from SM_01_Prob.s_matrix_mass import S_matrix
 
 
 # Probability_SM : Oscillation Standard
 class Probability_SM:
+    """ Sign_cp: +1 for neutrinos and -1 for antineutrinos """
     def __init__(self, sign_cp, energy, distance_L, instance_U_PMNS, instance_M_order, density) -> None:
         self.sign_cp = sign_cp                                                                            # sign_cp: +1 for neutrinos and -1 for antineutrinos
         self.en      = energy
@@ -30,9 +36,9 @@ class Probability_SM:
     def get_osc_SM(self):
         Nu_Flavor = 3
         factor_V  = 7.63247*1e-14                                                                         # np.sqrt(2).Gf.(1 mol/cm^3)   em   [eV]
+        factor_L  = 5.0677302143*1e9                                                                      # Km_to_ev
         factor_Ne_Mantle = 0.5                                                                            # factor Mantle: earth
         V_final  = self.dens * factor_V * factor_Ne_Mantle
-        factor_L = 5.0677302143*1e9                                                                       # Km_to_ev
 
         Sf_bm = S_matrix.input_data( self.sign_cp, self.en, factor_L*self.dist_L, V_final, self.inst_U, self.inst_M ).get_S_bm()
 
@@ -59,12 +65,12 @@ class Probability_SM:
 
 
 if __name__ == "__main__":
-    from matrix_PMNS import Matrix_Osc
-    from mass_order import Mass_order
+    from SM_01_Prob.matrix_PMNS import Matrix_Osc
+    from SM_01_Prob.mass_order import Mass_order
     
     matrix_PMNS = Matrix_Osc.input_data( 0.310, 0.02240, 0.582, 1.204225*np.pi )
     matrix_mass = Mass_order.input_data( 7.39*1e-5, 2.525*1e-3 )
 
-    Prob_SM = Probability_SM.input_data( +1, 0.01, 1300, matrix_PMNS, matrix_mass, 2.848 )
+    Prob_SM = Probability_SM.input_data( +1, 3.01, 1300, matrix_PMNS, matrix_mass, 2.848 )
     print(f"\n{ Prob_SM.get_osc_SM() }\n") 
     
