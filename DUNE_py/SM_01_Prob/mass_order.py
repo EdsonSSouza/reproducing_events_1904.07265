@@ -14,8 +14,9 @@ import numpy as np
 class Mass_order:
     """  
     Mass Ordering :
-        NO : m3 > m2 > m1   -   IO : m2 > m1 > m3
-        dm_l = m3^2 - m1^1  /   dm_s = m2^2 - m1^2 > 0          [ eV^2 ]               
+        NO : m3 > m2 > m1         /        IO : m2 > m1 > m3
+        
+        dm_l = m3^2 - m1^2        /        dm_s = m2^2 - m1^2 > 0              [ eV^2 ]               
     """
     def __init__(self, dm_s, dm_l):
         self.dm_s = dm_s * 1.0e-18                                           # [GeV^2]

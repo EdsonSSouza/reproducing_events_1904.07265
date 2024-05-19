@@ -1,7 +1,0 @@
-=> fazer um arquivo onde os dados data_true e data_reco já estão preparados para fazer o run !  (O.K.)
-
-
-=> fazer um caso a parte para levar em conta a variação do massa Delta_m^2_31 !  (..)
-
-
-=> Colocar valores e desenhar o gráfico das barras !

@@ -11,3 +11,13 @@
 => Fazer/Atualizar os pré-cálculos : OK
 
 => chi2 sem alpha nos dados_SM :
+
+
+
+
+
+=> fazer um arquivo onde os dados data_true e data_reco já estão preparados para fazer o run :  OK
+
+=> fazer um caso a parte para levar em conta a variação da massa Delta_m^2_31 : 
+
+=> Selecionar valores e desenhar o gráfico das barras : 
