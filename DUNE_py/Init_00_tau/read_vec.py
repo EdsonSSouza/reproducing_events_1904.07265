@@ -27,7 +27,7 @@ def read_arq(name_arq):
 
 # Path to the Mathematic directory: Input Files
 directory_path = "/home/edson/Projeto_doutorado/Experimentos/Beam_Tau/Mathematica"
-
+#directory_path = r"C:\Users\e2356\OneDrive\Documentos\Doutorado\reproducing_events_1904.07265\Mathematica"
 
 # WoutS :  Without Smearing  (True  - plot dashed)                           # Name of the data files (Input): WS (With Smearing) | WoutS (Without Smearing)
 # WS    :  With Smearing     (Reco. - plot continued)                     
@@ -135,21 +135,21 @@ In_pre_MHE_Nu   = np.loadtxt( os.path.join(path_linux, 'pre_MHE_reco_Nu.dat'  ) 
 In_matrix_pre_40x01 = np.loadtxt( os.path.join(path_linux, 'pre_rules_40x01.dat') )         # Pre-cal: 40 x 01
 In_matrix_pre_40x40 = np.loadtxt( os.path.join(path_linux, 'pre_rules_40x40.dat') )         # Pre-cal: 40 x 40
 
+
+###
+################################# Windows ###########################                       ( sigma = 0.25453, fac_mu = 0.43522, normalization = On )
+###
+#path_windows = r'C:\Users\e2356\OneDrive\Documentos\Doutorado\reproducing_events_1904.07265\DUNE_py\Init_00_tau'
+#    # Calc_reco: Pre-calculation    and     Matrix mapping pre-calculation: bin_true for bin_reco
+#In_pre_MNu_Nu   = np.loadtxt( os.path.join(path_windows, 'pre_MNu_reco_Nu.dat'  ) )         # Pre-cal: MNu_Nu
+#In_pre_MNu_Anti = np.loadtxt( os.path.join(path_windows, 'pre_MNu_reco_Anti.dat') )         # Pre-cal: MNu_Anti
+#In_pre_MAn_Nu   = np.loadtxt( os.path.join(path_windows, 'pre_MAn_reco_Nu.dat'  ) )         # Pre-cal: MAn_Nu
+#In_pre_MAn_Anti = np.loadtxt( os.path.join(path_windows, 'pre_MAn_reco_Anti.dat') )         # Pre-cal: MAn_Anti
+#In_pre_MHE_Nu   = np.loadtxt( os.path.join(path_windows, 'pre_MHE_reco_Nu.dat'  ) )         # Pre-cal: MHE_Nu
+#    # Matrix mapping pre-calculation: bin_true for bin_reco
+#In_matrix_pre_40x01 = np.loadtxt( os.path.join(path_windows, 'pre_rules_40x01.dat') )       # Pre-cal: 40 x 01
+#In_matrix_pre_40x40 = np.loadtxt( os.path.join(path_windows, 'pre_rules_40x40.dat') )       # Pre-cal: 40 x 40
                               
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
