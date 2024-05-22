@@ -13,12 +13,12 @@ import numpy as np
 
 # Matrix NSI_mut
 class Matrix_Tmut:
-    def __init__(self, eps_mut, phi_mut) -> None:
-        self.eps_mut = eps_mut
-        self.phi_mut = phi_mut
+    def __init__(self, delta_mut, phi_mut) -> None:
+        self.delta_mut = delta_mut
+        self.phi_mut   = phi_mut
     @classmethod
-    def input_data( cls, eps_mut, phi_mut ):
-        return cls( eps_mut, phi_mut )
+    def input_data( cls, delta_mut, phi_mut ):
+        return cls( delta_mut, phi_mut )
 
     def get_Tmut( self ):
         Nu_Flavor = 3
@@ -26,7 +26,8 @@ class Matrix_Tmut:
         
         Tmut = np.zeros( (Nu_Flavor, Nu_Flavor), dtype=complex )
         Tmut[np.diag_indices(Nu_Flavor)] = 1.0
-        Tmut[1][2] = - in_const * self.eps_mut * np.exp( 1j * self.phi_mut )
+        eps_mut    =  in_const * self.delta_mut
+        Tmut[1][2] = - eps_mut * np.exp( 1j * self.phi_mut )
         return Tmut
 
 

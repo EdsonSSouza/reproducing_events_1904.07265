@@ -171,19 +171,19 @@ if __name__ == "__main__":
         dir_here = os.path.dirname( os.path.abspath(__file__) )
 
         MNu_reco_Nu = Rule_smear.input_data( hist, In_MNu_true_Nu  ).get_5to5_pre( Norm5x5_MNu_Nu )
-        np.savetxt( os.path.join(dir_here, 'pre_MNu_reco_Nu.dat'), MNu_reco_Nu, fmt='%.4e', delimiter=' ' )
+        np.savetxt( os.path.join(dir_here, 'pre_MNu_reco_Nu.dat'), MNu_reco_Nu, fmt='%.5e', delimiter=' ' )
 
         MNu_reco_Anti = Rule_smear.input_data( hist, In_MNu_true_Anti).get_5to5_pre( Norm5x5_MNu_Anti)
-        np.savetxt( os.path.join(dir_here, 'pre_MNu_reco_Anti.dat'), MNu_reco_Anti, fmt='%.4e', delimiter=' ' )
+        np.savetxt( os.path.join(dir_here, 'pre_MNu_reco_Anti.dat'), MNu_reco_Anti, fmt='%.5e', delimiter=' ' )
 
         MAn_reco_Nu = Rule_smear.input_data( hist, In_MAn_true_Nu  ).get_5to5_pre( Norm5x5_MAn_Nu )
-        np.savetxt( os.path.join(dir_here, 'pre_MAn_reco_Nu.dat'), MAn_reco_Nu, fmt='%.4e', delimiter=' ' )
+        np.savetxt( os.path.join(dir_here, 'pre_MAn_reco_Nu.dat'), MAn_reco_Nu, fmt='%.5e', delimiter=' ' )
 
         MAn_reco_Anti = Rule_smear.input_data( hist, In_MAn_true_Anti).get_5to5_pre( Norm5x5_MAn_Anti )
-        np.savetxt( os.path.join(dir_here, 'pre_MAn_reco_Anti.dat'), MAn_reco_Anti, fmt='%.4e', delimiter=' ' )
+        np.savetxt( os.path.join(dir_here, 'pre_MAn_reco_Anti.dat'), MAn_reco_Anti, fmt='%.5e', delimiter=' ' )
 
         MHE_reco_Nu = Rule_smear.input_data( hist, In_MHE_true_Nu  ).get_5to5_pre( Norm5x5_MHE_Nu )
-        np.savetxt( os.path.join(dir_here, 'pre_MHE_reco_Nu.dat'), MHE_reco_Nu, fmt='%.4e', delimiter=' ' )
+        np.savetxt( os.path.join(dir_here, 'pre_MHE_reco_Nu.dat'), MHE_reco_Nu, fmt='%.5e', delimiter=' ' )
 
         #print(len(In_MNu_true_Nu))
         print(f"\n{MNu_reco_Nu}\n{MAn_reco_Nu}\n{MHE_reco_Nu}\n")

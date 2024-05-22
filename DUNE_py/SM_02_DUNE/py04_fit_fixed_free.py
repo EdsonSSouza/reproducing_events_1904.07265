@@ -11,9 +11,11 @@
 import datetime
 
 # Import our libraries
-from py00_chi2_BC import *
-from lib_vector_read import *
-from py00_SM_new_events_reco import *
+from Init_00_tau.read_vec          import *
+from Init_00_tau.histogram         import Histogram
+from SM_01_Prob.matrix_PMNS        import Matrix_Osc
+from SM_02_DUNE.py00_chi2BC_SM     import Chi2BC, Chi2BC_331
+from SM_02_DUNE.py00_new_events_SM import NewEvent_reco_SM
 
 
 class Tab_Fit_4D:
@@ -71,18 +73,18 @@ class Tab_Fit_4D:
                             
                             Upmns = Matrix_Osc.input_data( self.s2_12, s13_i, s23_i, dcp_i )
 
-                            EvNew_Nu_TauMinus_reco = NewEvent_Smearing_SM.input_data( row, col, +1, hist, L, dens, dm31_i*1e-3, Upmns, In_minus_Nu_true ).get_reco()
-                            EvNew_Nu_TauPlus_reco  = NewEvent_Smearing_SM.input_data( row, col, +1, hist, L, dens, dm31_i*1e-3, Upmns, In_plus_Nu_true  ).get_reco()
-                            chi2_BC_Nu = Chi2BC_NuAnti.input_data( In_minus_Nu_reco, EvNew_Nu_TauMinus_reco, In_plus_Nu_reco, EvNew_Nu_TauPlus_reco ).get_chi2()
+                            EvNew_Nu_TauMinus_reco = NewEvent_reco_SM.input_data( row, col, +1, hist, L, dens, dm31_i*1e-3, Upmns, In_MNu_true_Nu  ).get_event()
+                            EvNew_Nu_TauPlus_reco  = NewEvent_reco_SM.input_data( row, col, +1, hist, L, dens, dm31_i*1e-3, Upmns, In_MNu_true_Anti).get_event()
+                            chi2_BC_Nu = Chi2BC.input_data( In_MNu_reco_Nu, EvNew_Nu_TauMinus_reco, In_MNu_reco_Anti, EvNew_Nu_TauPlus_reco ).get_all( 1 )
 
-                            EvNew_Anti_TauMinus_reco = NewEvent_Smearing_SM.input_data( row, col, -1, hist, L, dens, dm31_i*1e-3, Upmns, In_minus_AntiNu_true ).get_reco()
-                            EvNew_Anti_TauPlus_reco  = NewEvent_Smearing_SM.input_data( row, col, -1, hist, L, dens, dm31_i*1e-3, Upmns, In_plus_AntiNu_true  ).get_reco()
-                            chi2_BC_Anti = Chi2BC_NuAnti.input_data( In_minus_AntiNu_reco, EvNew_Anti_TauMinus_reco, In_plus_AntiNu_reco, EvNew_Anti_TauPlus_reco ).get_chi2()
+                            EvNew_Anti_TauMinus_reco = NewEvent_reco_SM.input_data( row, col, -1, hist, L, dens, dm31_i*1e-3, Upmns, In_MAn_true_Nu  ).get_event()
+                            EvNew_Anti_TauPlus_reco  = NewEvent_reco_SM.input_data( row, col, -1, hist, L, dens, dm31_i*1e-3, Upmns, In_MAn_true_Anti).get_event()
+                            chi2_BC_Anti = Chi2BC.input_data( In_MAn_reco_Nu, EvNew_Anti_TauMinus_reco, In_MAn_reco_Anti, EvNew_Anti_TauPlus_reco ).get_all( 1 )
 
-                            #EvNew_HE_TauMinus_reco = NewEvent_Smearing_SM.input_data( row, col, +1, hist, L, dens, dm31_j*1e-3, Upmns, In_minus_HE_true ).get_reco()
-                            #chi2_BC_HE = Chi2BC_HighEn_331.input_data( In_minus_HE_reco, EvNew_HE_TauMinus_reco ).get_chi2()
+                            EvNew_HE_TauMinus_reco = NewEvent_reco_SM.input_data( row, col, +1, hist, L, dens, dm31_i*1e-3, Upmns, In_MHE_true_Nu ).get_event()
+                            chi2_BC_HE = Chi2BC_331.input_data( In_MHE_reco_Nu, EvNew_HE_TauMinus_reco, In_MHE_reco_Nu, EvNew_HE_TauMinus_reco, EvNew_HE_TauMinus_reco ).get_all( 1 )
                             
-                            chi2_BC = chi2_BC_Nu + chi2_BC_Anti #+ chi2_BC_HE
+                            chi2_BC = chi2_BC_Nu + chi2_BC_Anti + chi2_BC_HE
                             
                             save_file.write( "{:<10} {:<10} {:<10} {:<10} {:<12}\n".format( round(dcp_i, 4), round(s13_i, 4), round(s23_i, 4), round(dm31_i*1e-3, 4), round(chi2_BC, 12) ) )
                 
