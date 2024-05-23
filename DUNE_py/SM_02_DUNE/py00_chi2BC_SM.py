@@ -20,19 +20,17 @@ from Init_00_tau.read_vec import *
 
 
 class Chi2_build:                                                                                      # Chi^2_i: i_th element of the chi^2_BC ( Baker and Cousins )
-    def __init__(self, data, model, sys_error_alpha) -> None:
+    def __init__(self, data, model) -> None:
         self.dat = data                                                # Selected data_ith (best fit) from the article: In_pre_calculated
         self.mod = model                                               # Theoretical data_ith for probability rations
-        self.sys = sys_error_alpha                                     # Systematic error (25%): marginalizing parameters
 
-        # Systematic error: alpha/0.25 = 4*alpha
         if self.dat == 0:
-            self.chi = 2*( self.mod - self.dat ) + (4*self.sys)**2
+            self.chi = 2*( self.mod - self.dat )
         elif self.dat != 0 and self.mod != 0:
-            self.chi = 2*( self.mod - self.dat + self.dat * np.log( self.dat/self.mod ) ) + ( 4*self.sys )**2      
+            self.chi = 2*( self.mod - self.dat + self.dat * np.log( self.dat/self.mod ) )      
         else:
             self.mod = 5e-5
-            self.chi = 2*( self.mod - self.dat + self.dat * np.log( self.dat/self.mod ) ) + ( 4*self.sys )**2
+            self.chi = 2*( self.mod - self.dat + self.dat * np.log( self.dat/self.mod ) )
 
 
 class Chi2BC:                                                                                          # For 3.5 + 3.5 years: Mode_Nu and Mode_An 
@@ -63,39 +61,43 @@ class Chi2BC:                                                                   
 
     def get_MNu_Nu( self, alpha ):                                                                     # get_MNu_Nu
         """ Neutrino Mode: Neutrino """
+        err_sys = (4*alpha)**2                                                                         # Systematic error (25%): alpha/0.25 = 4*alpha
         numb_loop = len( In_pre_MNu_Nu )
         if len( self.cal_MNu_Nu ) != numb_loop:
             raise Exception( " Number different from the data entered ! " )        
         Ndat_Nu = In_pre_MNu_Nu    
         Nmod_Nu = self.cal_MNu_Nu
-        return sum( [ Chi2_build(Ndat_Nu[i] + self.BG*In_MNu_BG[i], Nmod_Nu[i] + (1+alpha)*self.BG*In_MNu_BG[i], alpha).chi     for i in range(numb_loop) ] )
+        return sum([ Chi2_build(Ndat_Nu[i] + self.BG*In_MNu_BG[i], Nmod_Nu[i] + (1+alpha)*self.BG*In_MNu_BG[i]).chi for i in range(numb_loop) ]) + err_sys
     
     def get_MAn_Nu( self, alpha ):                                                                     # get_MAn_Nu
         """ Antineutrino Mode: Neutrino """
+        err_sys = (4*alpha)**2                                                                         # Systematic error (25%): alpha/0.25 = 4*alpha
         numb_loop = len( In_pre_MAn_Nu )
         if len( self.cal_MAn_Nu ) != numb_loop:
             raise Exception( " Number different from the data entered ! " )
         Ndat_Nu = In_pre_MAn_Nu    
         Nmod_Nu = self.cal_MAn_Nu
-        return sum( [ Chi2_build(Ndat_Nu[i] + self.BG*In_MAn_BG[i], Nmod_Nu[i] + (1+alpha)*self.BG*In_MAn_BG[i], alpha).chi     for i in range(numb_loop) ] )  
+        return sum([ Chi2_build(Ndat_Nu[i] + self.BG*In_MAn_BG[i], Nmod_Nu[i] + (1+alpha)*self.BG*In_MAn_BG[i]).chi for i in range(numb_loop) ]) + err_sys
     
     def get_MNu_Anti( self, alpha ):                                                                   # get_MNu_Anti
         """ Neutrino Mode: Antineutrino """
+        err_sys = (4*alpha)**2                                                                         # Systematic error (25%): alpha/0.25 = 4*alpha
         numb_loop = len( In_pre_MNu_Anti )
         if len( self.cal_MNu_Anti ) != numb_loop:
             raise Exception( " Number different from the data entered ! " )
         Ndat_Anti = In_pre_MNu_Anti
         Nmod_Anti = self.cal_MNu_Anti
-        return sum( [ Chi2_build(Ndat_Anti[i] + self.BG*In_MNu_BG[i], Nmod_Anti[i] + (1+alpha)*self.BG*In_MNu_BG[i], alpha).chi     for i in range(numb_loop) ] )  
+        return sum([ Chi2_build(Ndat_Anti[i] + self.BG*In_MNu_BG[i], Nmod_Anti[i] + (1+alpha)*self.BG*In_MNu_BG[i]).chi for i in range(numb_loop) ]) + err_sys  
     
     def get_MAn_Anti( self, alpha ):                                                                   # get_MAn_Anti
         """ Antineutrino Mode: Antineutrino """
+        err_sys = (4*alpha)**2                                                                         # Systematic error (25%): alpha/0.25 = 4*alpha
         numb_loop = len( In_pre_MAn_Anti )
         if len( self.cal_MAn_Anti ) != numb_loop:
             raise Exception( " Number different from the data entered ! " )
         Ndat_Anti = In_pre_MAn_Anti
         Nmod_Anti = self.cal_MAn_Anti
-        return sum( [ Chi2_build(Ndat_Anti[i] + self.BG*In_MAn_BG[i], Nmod_Anti[i] + (1+alpha)*self.BG*In_MAn_BG[i], alpha).chi     for i in range(numb_loop) ] )
+        return sum([ Chi2_build(Ndat_Anti[i] + self.BG*In_MAn_BG[i], Nmod_Anti[i] + (1+alpha)*self.BG*In_MAn_BG[i]).chi for i in range(numb_loop) ]) + err_sys
     
     def get_all( self, alpha ):                                                                        # get_all: Modes and Particles
         """ All things together: Modes and Particles """
@@ -130,58 +132,63 @@ class Chi2BC_331:                                                               
 
     def get_MNu_Nu( self, alpha ):                                                                     # get_MNu_Nu
         """ Neutrino Mode: Neutrino """
-        fac331 = 0.857142857                                                                           # factor_year: 3(yr)/3.5(yr)
+        fac331  = 0.857142857                                                                          # factor_year: 3(yr)/3.5(yr)
+        err_sys = (4*alpha)**2                                                                         # Systematic error (25%): alpha/0.25 = 4*alpha
         numb_loop = len( In_pre_MNu_Nu )
         if len( self.cal_MNu_Nu ) != numb_loop:
             raise Exception( " Number different from the data entered ! " )        
         Ndat_Nu = In_pre_MNu_Nu    
         Nmod_Nu = self.cal_MNu_Nu
-        return sum( [ Chi2_build( fac331*( Ndat_Nu[i] + self.BG*In_MNu_BG[i] )          , \
-                                  fac331*( Nmod_Nu[i] + (1+alpha)*self.BG*In_MNu_BG[i] ), alpha ).chi       for i in range(numb_loop) ] )
+        return sum([ Chi2_build(fac331*(Ndat_Nu[i] + self.BG*In_MNu_BG[i]          ), \
+                                fac331*(Nmod_Nu[i] + (1+alpha)*self.BG*In_MNu_BG[i])).chi   for i in range(numb_loop) ]) + err_sys
 
     def get_MAn_Nu( self, alpha ):                                                                     # get_MAn_Nu
         """ Antineutrino Mode: Neutrino """
-        fac331 = 0.857142857                                                                           # factor_year: 3(yr)/3.5(yr)
+        fac331  = 0.857142857                                                                          # factor_year: 3(yr)/3.5(yr)
+        err_sys = (4*alpha)**2                                                                         # Systematic error (25%): alpha/0.25 = 4*alpha
         numb_loop = len( In_pre_MAn_Nu )
         if len( self.cal_MAn_Nu ) != numb_loop:
             raise Exception( " Number different from the data entered ! " )
         Ndat_Nu = In_pre_MAn_Nu    
         Nmod_Nu = self.cal_MAn_Nu
-        return sum( [ Chi2_build( fac331*( Ndat_Nu[i] + self.BG*In_MAn_BG[i] )          , \
-                                  fac331*( Nmod_Nu[i] + (1+alpha)*self.BG*In_MAn_BG[i] ), alpha ).chi       for i in range(numb_loop) ] )
+        return sum([ Chi2_build(fac331*(Ndat_Nu[i] + self.BG*In_MAn_BG[i]          ), \
+                                fac331*(Nmod_Nu[i] + (1+alpha)*self.BG*In_MAn_BG[i])).chi   for i in range(numb_loop) ]) + err_sys
 
     def get_MHE_Nu( self, alpha ):                                                                     # get_MHE_Nu
         """ High Energy Mode: Neutrino """
-        fac331 = 1                                                                                     # factor_year: 1(yr)
+        fac331  = 1                                                                                    # factor_year: 1(yr)
+        err_sys = (4*alpha)**2                                                                         # Systematic error (25%): alpha/0.25 = 4*alpha
         numb_loop = len( In_pre_MHE_Nu )
         if len( self.cal_MHE_Nu ) != numb_loop:
             raise Exception( " Number different from the data entered ! " )
         Ndat_Nu = In_pre_MHE_Nu    
         Nmod_Nu = self.cal_MHE_Nu
-        return sum( [ Chi2_build( fac331*( Ndat_Nu[i] + self.BG*In_MHE_BG[i]           ), \
-                                  fac331*( Nmod_Nu[i] + (1+alpha)*self.BG*In_MHE_BG[i] ), alpha ).chi       for i in range(numb_loop) ] )
+        return sum([ Chi2_build(fac331*(Ndat_Nu[i] + self.BG*In_MHE_BG[i]          ), \
+                                fac331*(Nmod_Nu[i] + (1+alpha)*self.BG*In_MHE_BG[i])).chi  for i in range(numb_loop) ]) + err_sys
 
     def get_MNu_Anti( self, alpha ):                                                                   # get_MNu_Anti
         """ Neutrino Mode: Antineutrino """
-        fac331 = 0.857142857                                                                           # factor_year: 3(yr)/3.5(yr)
+        fac331  = 0.857142857                                                                          # factor_year: 3(yr)/3.5(yr)
+        err_sys = (4*alpha)**2                                                                         # Systematic error (25%): alpha/0.25 = 4*alpha
         numb_loop = len( In_pre_MNu_Anti )
         if len( self.cal_MNu_Anti ) != numb_loop:
             raise Exception( " Number different from the data entered ! " )
         Ndat_Anti = In_pre_MNu_Anti
         Nmod_Anti = self.cal_MNu_Anti
-        return sum( [ Chi2_build( fac331*( Ndat_Anti[i] + self.BG*In_MNu_BG[i] )          , \
-                                  fac331*( Nmod_Anti[i] + (1+alpha)*self.BG*In_MNu_BG[i] ), alpha ).chi     for i in range(numb_loop) ] )  
+        return sum([ Chi2_build(fac331*(Ndat_Anti[i] + self.BG*In_MNu_BG[i]          ), \
+                                fac331*(Nmod_Anti[i] + (1+alpha)*self.BG*In_MNu_BG[i])).chi for i in range(numb_loop) ]) + err_sys  
 
     def get_MAn_Anti( self, alpha ):                                                                   # get_MAn_Anti
         """ Antineutrino Mode: Antineutrino """
-        fac331 = 0.857142857                                                                           # factor_year: 3(yr)/3.5(yr)
+        fac331  = 0.857142857                                                                          # factor_year: 3(yr)/3.5(yr)
+        err_sys = (4*alpha)**2                                                                         # Systematic error (25%): alpha/0.25 = 4*alpha
         numb_loop = len( In_pre_MAn_Anti )
         if len( self.cal_MAn_Anti ) != numb_loop:
             raise Exception( " Number different from the data entered ! " )
         Ndat_Anti = In_pre_MAn_Anti
         Nmod_Anti = self.cal_MAn_Anti
-        return sum( [ Chi2_build( fac331*( Ndat_Anti[i] + self.BG*In_MAn_BG[i] )          , \
-                                  fac331*( Nmod_Anti[i] + (1+alpha)*self.BG*In_MAn_BG[i] ), alpha ).chi     for i in range(numb_loop) ] )
+        return sum([ Chi2_build(fac331*(Ndat_Anti[i] + self.BG*In_MAn_BG[i]           ), \
+                                fac331*(Nmod_Anti[i] + (1+alpha)*self.BG*In_MAn_BG[i])).chi for i in range(numb_loop) ]) + err_sys
 
     def get_all( self, alpha ):                                                                        # get_all: Modes and Particles
         """ All things together: Modes and Particles """
@@ -194,7 +201,7 @@ if __name__=="__main__":
     show = 1
 
     if show == 1:
-        chi = Chi2_build( 1. + 100*0.1, 1, 0.2e-0 ).chi
+        chi = Chi2_build( 1. + 100*0.1, 1 ).chi
         print(chi)
     
     elif show == 2:
