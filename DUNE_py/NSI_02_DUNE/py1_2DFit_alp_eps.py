@@ -31,7 +31,7 @@ class Tab_Fit_2D:
     def input_data( cls, sin2_th12, sin2_th13, sin2_th23, delta_CP, dm31, phi_mut, interval ):
         return cls( sin2_th12, sin2_th13, sin2_th23, delta_CP, dm31, phi_mut, interval )
 
-    def get_eps_alpha( self, name ):
+    def get_eps_alpha( self, name ):                                                                # get: eps_alpha
         row  = 1
         col  = 2
         L    = 1300
@@ -47,13 +47,11 @@ class Tab_Fit_2D:
 
         # Escolha o diretório onde você quer salvar o arquivo
         dir = '/home/edson/Projeto_doutorado/Experimentos/Beam_Tau/DUNE_py/NSI_02_DUNE/my_data_2D/'
-        ## Nome do arquivo para salvar
-        #name_file = str(name)
-        path_file = os.path.join(dir, str(name))                                                           # Caminho completo do arquivo
+        #dir = r'C:\Users\e2356\OneDrive\Documentos\Doutorado\reproducing_events_1904.07265\DUNE_py\NSI_02_DUNE\my_data_2D'
+        path_file = os.path.join(dir, str(name))                                                    # Full path of the file with its name
 
         print( "\nStarting in:", datetime.datetime.now().strftime("%Y-%m-%d %H:%M ") )
-        # Abrir o arquivo para escrita
-        with open(path_file, 'w') as save_file:
+        with open(path_file, 'w') as save_file:                                                     # Open the file to writing
 
             for loop_eps in range( self.interv + 1 ):
                 eps_i = eps_init + loop_eps*( eps_final - eps_init )/self.interv
@@ -62,22 +60,21 @@ class Tab_Fit_2D:
                 for loop_alp in range( self.interv + 1 ):
                     alp_i = alp_init + loop_alp*( alp_final - alp_init )/self.interv
 
-                    new_MNu_Nu  = NewEvent_reco_NSI.input_data(row,col,+1,hist,L,dens,self.dm31,Umix, In_MNu_true_Nu )
+                    new_MNu_Nu  = NewEvent_reco_NSI.input_data( row,col,+1,hist,L,dens,self.dm31,Umix, In_MNu_true_Nu )
                     reco_MNu_Nu = new_MNu_Nu.get_event( Norm5x5_MNu_Nu, eps_i, self.phi_mut )
-                    new_MAn_Nu  = NewEvent_reco_NSI.input_data(row,col,+1,hist,L,dens,self.dm31,Umix, In_MAn_true_Nu )
+                    new_MAn_Nu  = NewEvent_reco_NSI.input_data( row,col,+1,hist,L,dens,self.dm31,Umix, In_MAn_true_Nu )
                     reco_MAn_Nu = new_MAn_Nu.get_event( Norm5x5_MAn_Nu, eps_i, self.phi_mut )
-                    new_MHE_Nu  = NewEvent_reco_NSI.input_data(row,col,+1,hist,L,dens,self.dm31,Umix, In_MHE_true_Nu )
+                    new_MHE_Nu  = NewEvent_reco_NSI.input_data( row,col,+1,hist,L,dens,self.dm31,Umix, In_MHE_true_Nu )
                     reco_MHE_Nu = new_MHE_Nu.get_event( Norm5x5_MHE_Nu, eps_i, self.phi_mut )
 
-                    new_MNu_Anti  = NewEvent_reco_NSI.input_data(row,col,-1,hist,L,dens,self.dm31,Umix, In_MNu_true_Anti )
+                    new_MNu_Anti  = NewEvent_reco_NSI.input_data( row,col,-1,hist,L,dens,self.dm31,Umix, In_MNu_true_Anti )
                     reco_MNu_Anti = new_MNu_Anti.get_event( Norm5x5_MNu_Anti, eps_i, self.phi_mut )
-                    new_MAn_Anti  = NewEvent_reco_NSI.input_data(row,col,-1,hist,L,dens,self.dm31,Umix, In_MAn_true_Anti )
+                    new_MAn_Anti  = NewEvent_reco_NSI.input_data( row,col,-1,hist,L,dens,self.dm31,Umix, In_MAn_true_Anti )
                     reco_MAn_Anti = new_MAn_Anti.get_event( Norm5x5_MAn_Anti, eps_i, self.phi_mut )
 
-                    chi2_BC = Chi2BC_331_NSI(reco_MNu_Nu, reco_MAn_Nu, reco_MHE_Nu, reco_MNu_Anti, reco_MAn_Anti).get_all( alp_i, eps_i )
+                    chi2_BC = Chi2BC_331_NSI(reco_MNu_Nu, reco_MAn_Nu, reco_MHE_Nu, reco_MNu_Anti, reco_MAn_Anti, 1).get_all( alp_i, eps_i )
 
-                    #save_file.write( "{:<10} {:<10} {:<12}\n".format( round(eps_i, 7), round(alp_i, 7), round(chi2_BC, 12) ) )
-                    save_file.write("{:.7f}\t{:.7f}\t{:.12f}\n".format(round(eps_i, 7), round(alp_i, 7), round(chi2_BC, 12)))
+                    save_file.write("{:.3f}\t{:.3f}\t{:.12f}\n".format(round(eps_i, 7), round(alp_i, 7), round(chi2_BC, 12)))
                 
                 print( f"{ round( ( (loop_eps+1)/(self.interv+1) )*100, 0 ) } % \t", datetime.datetime.now().strftime("%H:%M") )    
             
@@ -91,5 +88,5 @@ if __name__== "__main__":
     show = 1
 
     if show == 1:
-        Tab_Fit_2D.input_data( 0.310, 0.02240, 0.582, 1.204225*np.pi, 2.525*1e-3, 0, 40 ).get_eps_alpha('DUNE_NSI_fit2D_BG2_eps_alpha')
+        Tab_Fit_2D.input_data( 0.310, 0.02240, 0.582, 1.204225*np.pi, 2.525*1e-3, 0, 20 ).get_eps_alpha('DUNE_NSI_fit2D_BG_eps_alpha')
 
