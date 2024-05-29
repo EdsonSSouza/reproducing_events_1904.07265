@@ -82,7 +82,7 @@ class Graph_all:
                 raise Exception(" Both vectors of In_reco_Nu(Anti) must be non-zero! ")
             return cls._instance
     
-    def get_plot_bar(self):                                                                     # Getting the plot    
+    def get_plot_bar(self, y_lim, y_list_scale):                                                # Getting the plot    
         """ 
             Creating the frame 
         """
@@ -108,18 +108,18 @@ class Graph_all:
         #
         if self.type_mode == +1:                                                                       # Write on the frame - Neutrino Mode:
             plt.xlim(0,20)                                                                                      # Axis limit
-            plt.ylim(0,40)
+            plt.ylim(0,y_lim)
             plt.xticks([0, 5, 10, 15, 20] )                                                                # Specifying the values that will appear on the x axis
-            plt.yticks([0, 10, 20, 30, 40])                                                                # Specifying the values that will appear on the y axis    
+            plt.yticks(y_list_scale)                                                                       # Specifying the values that will appear on the y axis    
             plt.text(0.3, 37, f'Neutrino mode', fontsize=35, color='black')
         #
         ## Antineutrino Mode
         #
         elif self.type_mode == -1:                                                                     # Write on the frame - AntiNeutrino Mode:
             plt.xlim(0,20)                                                                                      # Axis limit
-            plt.ylim(0,40/2)
+            plt.ylim(0,y_lim)
             plt.xticks([0, 5, 10, 15, 20])                                                                 # Specifying the values that will appear on the x axis
-            plt.yticks([0, 5, 10, 15, 20])                                                                 # Specifying the values that will appear on the y axis
+            plt.yticks(y_list_scale)                                                                       # Specifying the values that will appear on the y axis
             plt.text(0.3, 37/2, f'Antineutrino mode', fontsize=35, color='black')
         #
         ## Different Mode
@@ -185,7 +185,7 @@ class Graph_all_comp:
     def input_data(cls, type_mode, histogram, new_reco_Nu, new_reco_Anti):
         return cls( type_mode, histogram, new_reco_Nu, new_reco_Anti )
     
-    def get_plot_bar(self):                                                                     # Getting the plot    
+    def get_plot_bar(self, y_lim, y_list_scale):                                                # Getting the plot    
         """ 
             Creating the frame 
         """
@@ -211,9 +211,9 @@ class Graph_all_comp:
         #
         if self.type_mode == +1:                                                                       # Write on the frame - Neutrino Mode:
             plt.xlim(0,20)                                                                                      # Axis limit
-            plt.ylim(0,25)
+            plt.ylim(0,y_lim)
             plt.xticks([0, 5, 10, 15, 20])                                                                 # Specifying the values that will appear on the x axis
-            plt.yticks([0, 5, 10, 15, 20, 25])                                                             # Specifying the values that will appear on the y axis
+            plt.yticks(y_list_scale)                                                                       # Specifying the values that will appear on the y axis
             
             plt.text(14.45, 16.0, f'Neutrino mode', fontsize=26, color='blue')
         #
@@ -221,9 +221,9 @@ class Graph_all_comp:
         #
         elif self.type_mode == -1:                                                                     # Write on the frame - AntiNeutrino Mode:
             plt.xlim(0,20)                                                                                      # Axis limit
-            plt.ylim(0,25)
+            plt.ylim(0,y_lim)
             plt.xticks([0, 5, 10, 15, 20])                                                                 # Specifying the values that will appear on the x axis
-            plt.yticks([0, 5, 10, 15, 20, 25])                                                             # Specifying the values that will appear on the y axis
+            plt.yticks(y_list_scale)                                                                       # Specifying the values that will appear on the y axis
             
             plt.text(13.10, 16, f'Antineutrino mode', fontsize=26, color='blue')
         #
@@ -299,16 +299,16 @@ class Graph_HE:
             cls._instance.In_reco = In_reco
             return cls._instance
     
-    def get_plot_bar(self):                                                                     # Getting the plot    
+    def get_plot_bar(self, y_lim, y_list_scale):                                                # Getting the plot    
         """ 
             Creating the frame 
         """
         plt.figure( figsize=(13, 10) )                                                          # Creates the figure with a customized proportion
 
         plt.xlim(0,20)                                                                          # Axis limit
-        plt.ylim(0,40/2)
+        plt.ylim(0,y_lim)
         plt.xticks([0, 5, 10, 15, 20])                                                          # Specifying the values that will appear on the x axis
-        plt.yticks([0, 5, 10, 15, 20])                                                          # Specifying the values that will appear on the y axis
+        plt.yticks(y_list_scale)                                                                # Specifying the values that will appear on the y axis
 
         # Adjust the edges of the frame
         plt.gca().spines['top'].set_linewidth(4)                                                # Top edge
@@ -358,16 +358,16 @@ class Graph_HE_comp:
     def input_data(cls, histogram, new_reco_Nu):
         return cls( histogram, new_reco_Nu ) 
         
-    def get_plot_bar(self):                                                                     # Getting the plot    
+    def get_plot_bar(self, y_lim, y_list_scale):                                                # Getting the plot    
         """ 
             Creating the frame 
         """
         plt.figure( figsize=(13, 10) )                                                          # Creates the figure with a customized proportion
 
         plt.xlim(0,20)                                                                          # Axis limit
-        plt.ylim(0,25)
+        plt.ylim(0,y_lim)
         plt.xticks([0, 5, 10, 15, 20])                                                          # Specifying the values that will appear on the x axis
-        plt.yticks([0, 5, 10, 15, 20, 25])                                                      # Specifying the values that will appear on the y axis
+        plt.yticks(y_list_scale)                                                                # Specifying the values that will appear on the y axis
 
         # Adjust the edges of the frame
         plt.gca().spines['top'].set_linewidth(4)                                                # Top edge
@@ -421,20 +421,20 @@ if __name__ == "__main__":
         #plt_Nu = Graph_all( +1, histogram, In_MNu_true_Nu, cal_MNu_reco_Nu, In_MNu_true_Anti, cal_MNu_reco_Anti, In_MNu_reco_Nu, In_MNu_reco_Anti )
         plt_Nu = Graph_all.input_data( +1, histogram, In_MNu_true_Nu, cal_MNu_reco_Nu, In_MNu_true_Anti, cal_MNu_reco_Anti )
         plt_Nu.input_change( In_MNu_reco_Nu, In_MNu_reco_Anti )
-        plt_Nu.get_plot_bar()
+        plt_Nu.get_plot_bar(40, [0, 10, 20, 30, 40])
 
         # Antineutrino Mode (Calculate):                                                                                    # Antineutrino (Calc.): Reconstruction
         cal_MAn_reco_Nu   = Rule_smear.input_data( histogram, In_MAn_true_Nu  ).get_middle(NormMid_MAn_Nu  )                         # Mode_An : Events/bin Neutrino
         cal_MAn_reco_Anti = Rule_smear.input_data( histogram, In_MAn_true_Anti).get_middle(NormMid_MAn_Anti)                         # Mode_An : Events/bin Antineutrino
         plt_Anti = Graph_all.input_data( -1, histogram, In_MAn_true_Nu, cal_MAn_reco_Nu, In_MAn_true_Anti, cal_MAn_reco_Anti )
         plt_Anti.input_change( In_MAn_reco_Nu, In_MAn_reco_Anti )
-        plt_Anti.get_plot_bar()
+        plt_Anti.get_plot_bar(20, [0, 5, 10, 15, 20])
 
         # High Energy Mode (Calculate):                                                                                     # High Energy (Calc.): Reconstruction
         cal_MHE_reco_Nu = Rule_smear.input_data( histogram, In_MHE_true_Nu ).get_middle(NormMid_MHE_Nu)                              # Mode_HE : Events/bin Neutrino
         plt_HE = Graph_HE.input_data( histogram, In_MHE_true_Nu, cal_MHE_reco_Nu )
         plt_HE.input_change( In_MHE_reco_Nu )
-        plt_HE.get_plot_bar()
+        plt_HE.get_plot_bar(20, [0, 5, 10, 15, 20])
     
     elif show == 1:
         # Neutrino Mode (Calculate):                                                                                        # Neutrino (Calc.): Reconstruction
@@ -443,20 +443,20 @@ if __name__ == "__main__":
         #plt_Nu = Graph_all( +1, histogram, In_MNu_true_Nu, cal_MNu_reco_Nu, In_MNu_true_Anti, cal_MNu_reco_Anti, In_MNu_reco_Nu, In_MNu_reco_Anti )
         plt_Nu = Graph_all.input_data( +1, histogram, In_MNu_true_Nu, cal_MNu_reco_Nu, In_MNu_true_Anti, cal_MNu_reco_Anti )
         plt_Nu.input_change( In_MNu_reco_Nu, In_MNu_reco_Anti )
-        plt_Nu.get_plot_bar()
+        plt_Nu.get_plot_bar(40, [0, 10, 20, 30, 40])
 
         # Antineutrino Mode (Calculate):                                                                                    # Antineutrino (Calc.): Reconstruction
         cal_MAn_reco_Nu   = Rule_smear.input_data( histogram, In_MAn_true_Nu  ).get_5to5(Norm5x5_MAn_Nu  )                           # Mode_An : Events/bin Neutrino
         cal_MAn_reco_Anti = Rule_smear.input_data( histogram, In_MAn_true_Anti).get_5to5(Norm5x5_MAn_Anti)                           # Mode_An : Events/bin Antineutrino
         plt_Anti = Graph_all.input_data( -1, histogram, In_MAn_true_Nu, cal_MAn_reco_Nu, In_MAn_true_Anti, cal_MAn_reco_Anti )
         plt_Anti.input_change( In_MAn_reco_Nu, In_MAn_reco_Anti )
-        plt_Anti.get_plot_bar()
+        plt_Anti.get_plot_bar(20, [0, 5, 10, 15, 20])
 
         # High Energy Mode (Calculate):                                                                                     # High Energy (Calc.): Reconstruction
         cal_MHE_reco_Nu = Rule_smear.input_data( histogram, In_MHE_true_Nu ).get_5to5(Norm5x5_MHE_Nu)                                # Mode_HE : Events/bin Neutrino
         plt_HE = Graph_HE.input_data( histogram, In_MHE_true_Nu, cal_MHE_reco_Nu )
         plt_HE.input_change( In_MHE_reco_Nu )
-        plt_HE.get_plot_bar()
+        plt_HE.get_plot_bar(20, [0, 5, 10, 15, 20])
 
     elif show == 2:
         # Neutrino Mode (Calculate):                                                                                        # Neutrino (Calc.): Reconstruction
@@ -465,20 +465,20 @@ if __name__ == "__main__":
         #plt_Nu = Graph_all( +1, histogram, In_MNu_true_Nu, cal_MNu_reco_Nu, In_MNu_true_Anti, cal_MNu_reco_Anti, In_MNu_reco_Nu, In_MNu_reco_Anti )
         plt_Nu = Graph_all.input_data( +1, histogram, In_MNu_true_Nu, cal_MNu_reco_Nu, In_MNu_true_Anti, cal_MNu_reco_Anti )
         plt_Nu.input_change( In_MNu_reco_Nu, In_MNu_reco_Anti )
-        plt_Nu.get_plot_bar()
+        plt_Nu.get_plot_bar(40, [0, 10, 20, 30, 40])
 
         # Antineutrino Mode (Calculate):                                                                                    # Antineutrino (Calc.): Reconstruction
         cal_MAn_reco_Nu   = Rule_smear.input_data( histogram, In_MAn_true_Nu  ).get_5to5_pre(Norm5x5_MAn_Nu  )                       # Mode_An : Events/bin Neutrino
         cal_MAn_reco_Anti = Rule_smear.input_data( histogram, In_MAn_true_Anti).get_5to5_pre(Norm5x5_MAn_Anti)                       # Mode_An : Events/bin Antineutrino
         plt_Anti = Graph_all.input_data( -1, histogram, In_MAn_true_Nu, cal_MAn_reco_Nu, In_MAn_true_Anti, cal_MAn_reco_Anti )
         plt_Anti.input_change( In_MAn_reco_Nu, In_MAn_reco_Anti )
-        plt_Anti.get_plot_bar()
+        plt_Anti.get_plot_bar(20, [0, 5, 10, 15, 20])
 
         # High Energy Mode (Calculate):                                                                                     # High Energy (Calc.): Reconstruction
         cal_MHE_reco_Nu = Rule_smear.input_data( histogram, In_MHE_true_Nu ).get_5to5_pre(Norm5x5_MHE_Nu)                            # Mode_HE : Events/bin Neutrino
         plt_HE = Graph_HE.input_data( histogram, In_MHE_true_Nu, cal_MHE_reco_Nu )
         plt_HE.input_change( In_MHE_reco_Nu )
-        plt_HE.get_plot_bar()
+        plt_HE.get_plot_bar(20, [0, 5, 10, 15, 20])
 
     elif show == 3:
         # Neutrino Mode (Calculate):                                                                                        # Neutrino (Calc.): Reconstruction
@@ -486,18 +486,18 @@ if __name__ == "__main__":
         cal_MNu_reco_Anti = Rule_smear.input_data( histogram, In_MNu_true_Anti).input_change(0.28, 0.46, 1).get_5to5(Norm5x5_MNu_Anti)  # Mode_Nu : Events/bin Antineutrino
         plt_Nu = Graph_all_comp( +1, histogram, cal_MNu_reco_Nu, cal_MNu_reco_Anti  )
         #plt_Nu = Graph_all_comp.input_data( +1, histogram, cal_MNu_reco_Nu, cal_MNu_reco_Anti )
-        plt_Nu.get_plot_bar()
+        plt_Nu.get_plot_bar(25, [0, 5, 10, 15, 20, 25])
 
         # Antineutrino Mode (Calculate):                                                                                    # Antineutrino (Calc.): Reconstruction
         cal_MAn_reco_Nu   = Rule_smear.input_data( histogram, In_MAn_true_Nu  ).input_change(0.28, 0.46, 1).get_5to5(Norm5x5_MAn_Nu  )  # Mode_An : Events/bin Neutrino
         cal_MAn_reco_Anti = Rule_smear.input_data( histogram, In_MAn_true_Anti).input_change(0.28, 0.46, 1).get_5to5(Norm5x5_MAn_Anti)  # Mode_An : Events/bin Antineutrino
         plt_Anti = Graph_all_comp.input_data( -1, histogram, cal_MAn_reco_Nu, cal_MAn_reco_Anti )
-        plt_Anti.get_plot_bar()
+        plt_Anti.get_plot_bar(25, [0, 5, 10, 15, 20, 25])
 
         # High Energy Mode (Calculate):                                                                                     # High Energy (Calc.): Reconstruction
         cal_MHE_reco_Nu = Rule_smear.input_data( histogram, In_MHE_true_Nu ).input_change(0.28, 0.46, 1).get_5to5(Norm5x5_MHE_Nu)       # Mode_HE : Events/bin Neutrino
         plt_HE = Graph_HE_comp.input_data( histogram, cal_MHE_reco_Nu )
-        plt_HE.get_plot_bar()
+        plt_HE.get_plot_bar(25, [0, 5, 10, 15, 20, 25])
 
     elif show == 4:
         # Neutrino Mode (Calculate):                                                                                        # Neutrino (Calc.): Reconstruction
@@ -506,7 +506,7 @@ if __name__ == "__main__":
         #plt_Nu = Graph_all( +1, histogram, In_MNu_true_Nu, cal_MNu_reco_Nu, In_MNu_true_Anti, cal_MNu_reco_Anti, In_MNu_reco_Nu, In_MNu_reco_Anti )
         plt_Nu = Graph_all.input_data( +1, histogram, In_MNu_true_Nu, cal_MNu_reco_Nu, In_MNu_true_Anti, cal_MNu_reco_Anti )
         plt_Nu.input_change( In_MNu_reco_Nu, In_MNu_reco_Anti )
-        plt_Nu.get_plot_bar() """ 
+        plt_Nu.get_plot_bar(40, [0, 10, 20, 30, 40]) """ 
         #plt.savefig('../Image_article/Fig2_Event_MNu.pdf', format='pdf')
 
 
@@ -515,7 +515,7 @@ if __name__ == "__main__":
         cal_MAn_reco_Anti = Rule_smear.input_data( histogram, In_MAn_true_Anti).get_5to5_pre(Norm5x5_MAn_Anti)                          # Mode_An : Events/bin Antineutrino
         plt_Anti = Graph_all.input_data( -1, histogram, In_MAn_true_Nu, cal_MAn_reco_Nu, In_MAn_true_Anti, cal_MAn_reco_Anti )
         plt_Anti.input_change( In_MAn_reco_Nu, In_MAn_reco_Anti )
-        plt_Anti.get_plot_bar() """
+        plt_Anti.get_plot_bar(20, [0, 5, 10, 15, 20]) """
         #plt.savefig('../Image_article/Fig2_Event_MAn.pdf', format='pdf')
 
 
@@ -523,6 +523,6 @@ if __name__ == "__main__":
         """ cal_MHE_reco_Nu = Rule_smear.input_data( histogram, In_MHE_true_Nu ).get_5to5_pre(Norm5x5_MHE_Nu)                               # Mode_HE : Events/bin Neutrino
         plt_HE = Graph_HE.input_data( histogram, In_MHE_true_Nu, cal_MHE_reco_Nu )
         plt_HE.input_change( In_MHE_reco_Nu )
-        plt_HE.get_plot_bar() """
+        plt_HE.get_plot_bar(20, [0, 5, 10, 15, 20]) """
         #plt.savefig('../Image_article/Fig2_Event_MHE.pdf', format='pdf')
 

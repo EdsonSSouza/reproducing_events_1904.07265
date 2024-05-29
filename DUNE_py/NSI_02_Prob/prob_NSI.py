@@ -12,7 +12,7 @@ import numpy as np
 
 # Import our libraries
 from SM_01_Prob.s_matrix_mass import S_matrix
-from NSI_01_Prob.matrix_NSI   import Matrix_Tmut
+from NSI_02_Prob.matrix_NSI   import Matrix_Tmut
 
 
 # Probability_NSI :  Beyond Oscillation Standard

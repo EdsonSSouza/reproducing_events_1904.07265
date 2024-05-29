@@ -31,7 +31,7 @@ def read_fit2D(name_tab):
 
 """
 # Path to the Mathematic directory: Input Files
-directory_path = "/home/edson/Projeto_doutorado/Experimentos/Beam_Tau/Python/02_SM_DUNE/my_data"
+directory_path = "/home/edson/Projeto_doutorado/Experimentos/Beam_Tau/DUNE_py/SM_01_DUNE/my_data"
 
 # Names of files
 Fit2D_dcp_s23 = "DUNE_fit_SM_dcp_s23.dat"                                      # delta_cp x sin2_23 x chi2

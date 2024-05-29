@@ -16,7 +16,7 @@ from Init_00_tau.rules_reco import Rule_smear
 from SM_01_Prob.mass_order  import Mass_order
 from SM_01_Prob.matrix_PMNS import Matrix_Osc
 from SM_01_Prob.prob_SM     import Probability_SM
-from NSI_01_Prob.prob_NSI   import Probability_NSI
+from NSI_02_Prob.prob_NSI   import Probability_NSI
 
 
 class Prob_ratio_NSI:

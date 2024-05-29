@@ -25,7 +25,7 @@ from Init_00_tau.migrate  import Gaussian_interp2D
 
 
 # Rules for converting bins_true into bins_reco using migrate (mapping)
-class Rule_smear:
+class Rule_smear_Near:
     _instance = None
     def __init__(self, histogram, event_true, factor_linear, factor_mean, normalized ) -> None:
         self.hist    = histogram
@@ -68,7 +68,7 @@ class Rule_smear:
                 else:
                     ev_smear[i] += mapping_mid( bin[i] , 3.35 )   * self.ev_true[j] * 0.5
         alpha_norm = Norm_type #sum(self.ev_true)/sum(ev_smear)                                                                 # Normalization: true_per_reco
-        return [ round( abs(alpha_norm * ev_i) , 5 )    for ev_i in ev_smear ]                                                  # Event_reco: final_normalized                                                 
+        return [ round( abs(alpha_norm * ev_i) , 10 )    for ev_i in ev_smear ]                                                 # Event_reco: final_normalized                                                 
     
     # 5 points in bin_true are used to build 5 points in bin_reco
     def get_5to5(self, Norm_type):                                                                                                         # 5x5 points
@@ -112,7 +112,7 @@ class Rule_smear:
                                             1/3*(   map_gau(bin_midr[i] , 3.35) + map_gau(bin_midr[i] , 3.425) + map_gau(bin_midr[i] , 3.5)     ) +\
                                             1/3*(   map_gau(bin_right[i], 3.35) + map_gau(bin_right[i], 3.425) + map_gau(bin_right[i], 3.5)     )     )[0]
         alpha_norm = Norm_type #sum(self.ev_true)/sum(ev_smear)                                                                 # Normalization: true_per_reco
-        return [ round( abs(alpha_norm * ev_i) , 5 )   for ev_i in ev_smear ]                                                   # Event_reco: final_normalized
+        return [ round( abs(alpha_norm * ev_i) , 10 )   for ev_i in ev_smear ]                                                  # Event_reco: final_normalized
     
     # Pre-calculation: 5 points in bin_true are used to build 5 points in bin_reco
     def get_5to5_pre(self, Norm_type):                                                                                                     # Pre-calculation: 5x5 points
@@ -130,133 +130,11 @@ class Rule_smear:
                 else:
                     ev_smear[i] +=  In_matrix_pre_40x01[i]    * self.ev_true[j] * 0.5
         alpha_norm = Norm_type #sum(self.ev_true)/sum(ev_smear)                                                                 # Normalization: true_per_reco
-        return [ round( abs(alpha_norm * ev_i) , 5 )   for ev_i in ev_smear ]                                                   # Event_reco: final_normalized
+        return [ round( abs(alpha_norm * ev_i) , 10 )   for ev_i in ev_smear ]                                                  # Event_reco: final_normalized
 
     
 
 
 if __name__ == "__main__":
-    from Init_00_tau.histogram import *
-
-    show = 0
-    hist = Histogram.get_Uniform_WB( 0, 20, 0.5 )
-    
-    if show == 0:
-        print(f"\n{In_MNu_reco_Nu}\n{In_MAn_reco_Nu}\n{In_MHE_reco_Nu}\n")
-        print(f"\n{In_MNu_reco_Anti}\n{In_MAn_reco_Anti}\n")
-
-    if show == 1:
-        #event_reco_Nu   = Rule_smear.input_data( hist, In_MNu_true_Nu  ).input_change(0.25, 0.43, 1).get_middle(NormMid_MNu_Nu  )
-        #event_reco_Anti = Rule_smear.input_data( hist, In_MNu_true_Anti).input_change(0.25, 0.43, 1).get_middle(NormMid_MNu_Anti)
-        MNu_reco_Nu   = Rule_smear.input_data( hist, In_MNu_true_Nu  ).get_middle(NormMid_MNu_Nu  )
-        MNu_reco_Anti = Rule_smear.input_data( hist, In_MNu_true_Anti).get_middle(NormMid_MNu_Anti)
-        MAn_reco_Nu   = Rule_smear.input_data( hist, In_MAn_true_Nu  ).get_middle(NormMid_MAn_Nu  )
-        MAn_reco_Anti = Rule_smear.input_data( hist, In_MAn_true_Anti).get_middle(NormMid_MAn_Anti)
-        MHE_reco_Nu   = Rule_smear.input_data( hist, In_MHE_true_Nu  ).get_middle(NormMid_MHE_Nu  )
-        #print(len(In_MNu_true_Nu))
-        print(f"\n{MNu_reco_Nu}\n{MAn_reco_Nu}\n{MHE_reco_Nu}\n")
-        print(f"\n{MNu_reco_Anti}\n{MAn_reco_Anti}\n")
-
-    elif show == 2:
-        MNu_reco_Nu   = Rule_smear.input_data( hist, In_MNu_true_Nu  ).get_5to5(Norm5x5_MNu_Nu  )
-        MNu_reco_Anti = Rule_smear.input_data( hist, In_MNu_true_Anti).get_5to5(Norm5x5_MNu_Anti)
-        MAn_reco_Nu   = Rule_smear.input_data( hist, In_MAn_true_Nu  ).get_5to5(Norm5x5_MAn_Nu  )
-        MAn_reco_Anti = Rule_smear.input_data( hist, In_MAn_true_Anti).get_5to5(Norm5x5_MAn_Anti)
-        MHE_reco_Nu   = Rule_smear.input_data( hist, In_MHE_true_Nu  ).get_5to5(Norm5x5_MHE_Nu  )
-        #print(len(In_MNu_true_Nu))
-        print(f"\n{MNu_reco_Nu}\n{MAn_reco_Nu}\n{MHE_reco_Nu}\n")
-        print(f"\n{MNu_reco_Anti}\n{MAn_reco_Anti}\n")
-        
-    elif show == 3:
-        dir_here = os.path.dirname( os.path.abspath(__file__) )
-
-        MNu_reco_Nu = Rule_smear.input_data( hist, In_MNu_true_Nu  ).get_5to5_pre( Norm5x5_MNu_Nu )
-        np.savetxt( os.path.join(dir_here, 'pre_MNu_reco_Nu.dat'), MNu_reco_Nu, fmt='%.5e', delimiter=' ' )
-
-        MNu_reco_Anti = Rule_smear.input_data( hist, In_MNu_true_Anti).get_5to5_pre( Norm5x5_MNu_Anti)
-        np.savetxt( os.path.join(dir_here, 'pre_MNu_reco_Anti.dat'), MNu_reco_Anti, fmt='%.5e', delimiter=' ' )
-
-        MAn_reco_Nu = Rule_smear.input_data( hist, In_MAn_true_Nu  ).get_5to5_pre( Norm5x5_MAn_Nu )
-        np.savetxt( os.path.join(dir_here, 'pre_MAn_reco_Nu.dat'), MAn_reco_Nu, fmt='%.5e', delimiter=' ' )
-
-        MAn_reco_Anti = Rule_smear.input_data( hist, In_MAn_true_Anti).get_5to5_pre( Norm5x5_MAn_Anti )
-        np.savetxt( os.path.join(dir_here, 'pre_MAn_reco_Anti.dat'), MAn_reco_Anti, fmt='%.5e', delimiter=' ' )
-
-        MHE_reco_Nu = Rule_smear.input_data( hist, In_MHE_true_Nu  ).get_5to5_pre( Norm5x5_MHE_Nu )
-        np.savetxt( os.path.join(dir_here, 'pre_MHE_reco_Nu.dat'), MHE_reco_Nu, fmt='%.5e', delimiter=' ' )
-
-        #print(len(In_MNu_true_Nu))
-        print(f"\n{MNu_reco_Nu}\n{MAn_reco_Nu}\n{MHE_reco_Nu}\n")
-        print(f"\n{MNu_reco_Anti}\n{MAn_reco_Anti}\n")
-    
-    elif show == 4:
-        In_begin = In_MHE_true_Nu
-        In_data  = In_pre_MHE_Nu
-        In_Norm  = Norm5x5_MHE_Nu
-    
-        Ev_reco = Rule_smear.input_data( hist, In_begin  ).get_5to5( In_Norm )
-        for i in range(len(In_begin)): print( f"{In_data[i]} \t {Ev_reco[i]} \t\t {round( abs(In_data[i]-Ev_reco[i]), 3 )}" )
-    
-    elif show == 5:
-        dir_here = os.path.dirname( os.path.abspath(__file__) )
-
-        energy  = np.linspace(0, 20, 401)
-        map_gau = Gaussian_interp2D.input_data(energy).get_function2D()
-        
-        n = len( [ibin.left  for ibin in hist.bins] )
-
-        bin_width = (hist.bins[0].right - hist.bins[0].left)
-        bin_left  =  [  bin.left                                for bin in hist.bins ]
-        bin_midl  =  [  bin.left + bin_width/4                  for bin in hist.bins ]
-        bin_midd  =  [ (bin.left + bin.right)/2                 for bin in hist.bins ]
-        bin_midr  =  [ (bin.left + bin.right)/2 + bin_width/4   for bin in hist.bins ]
-        bin_right =  [  bin.right                               for bin in hist.bins ]
-
-        matrix_pre_40x40 = np.zeros( (n, n) )
-        for i in range(n):
-            for j in range(n):
-                map_resolution = 0.2*sum(   0.2*(   map_gau(bin_left[i],bin_left[j])  + map_gau(bin_left[i],bin_midl[j])  + map_gau(bin_left[i],bin_midd[j])  +\
-                                                    map_gau(bin_left[i],bin_midr[j])  + map_gau(bin_left[i],bin_right[j])    ) +\
-                                                    #
-                                            0.2*(   map_gau(bin_midl[i],bin_left[j])  + map_gau(bin_midl[i],bin_midl[j])  + map_gau(bin_midl[i],bin_midd[j])  +\
-                                                    map_gau(bin_midl[i],bin_midr[j])  + map_gau(bin_midl[i],bin_right[j])    ) +\
-                                                    #
-                                            0.2*(   map_gau(bin_midd[i],bin_left[j])  + map_gau(bin_midd[i],bin_midl[j])  + map_gau(bin_midd[i],bin_midd[j])  +\
-                                                    map_gau(bin_midd[i],bin_midr[j])  + map_gau(bin_midd[i],bin_right[j])    ) +\
-                                                    #
-                                            0.2*(   map_gau(bin_midr[i],bin_left[j])  + map_gau(bin_midr[i],bin_midl[j])  + map_gau(bin_midr[i],bin_midd[j])  +\
-                                                    map_gau(bin_midr[i],bin_midr[j])  + map_gau(bin_midr[i],bin_right[j])    ) +\
-                                                    #
-                                            0.2*(   map_gau(bin_right[i],bin_left[j]) + map_gau(bin_right[i],bin_midl[j]) + map_gau(bin_right[i],bin_midd[j]) +\
-                                                    map_gau(bin_right[i],bin_midr[j]) + map_gau(bin_right[i],bin_right[j])  )                                       )[0]
-                if map_resolution < 1e-13:
-                    matrix_pre_40x40[i][j] = 0.0
-                else:
-                    matrix_pre_40x40[i][j] = round(map_resolution, 12)
-        path_file_dat = os.path.join(dir_here, 'pre_rules_40x40.dat')
-        np.savetxt(path_file_dat, matrix_pre_40x40, fmt='%.12e', delimiter=' ')
-        i, j = 9, 9
-        matriz = np.loadtxt('pre_rules_40x40.dat')
-        print(matriz[i][j])
-        print(matrix_pre_40x40[i][j])
-        print(In_matrix_pre_40x40[i][j])
-
-        matrix_pre_40x01 = np.zeros( n )
-        for i in range(n):
-            map_resolution = 0.2*sum(   1/3*(   map_gau(bin_left[i] , 3.35) + map_gau(bin_left[i] , 3.425) + map_gau(bin_left[i] , 3.5)     ) +\
-                                        1/3*(   map_gau(bin_midl[i] , 3.35) + map_gau(bin_midl[i] , 3.425) + map_gau(bin_midl[i] , 3.5)     ) +\
-                                        1/3*(   map_gau(bin_midd[i] , 3.35) + map_gau(bin_midd[i] , 3.425) + map_gau(bin_midd[i] , 3.5)     ) +\
-                                        1/3*(   map_gau(bin_midr[i] , 3.35) + map_gau(bin_midr[i] , 3.425) + map_gau(bin_midr[i] , 3.5)     ) +\
-                                        1/3*(   map_gau(bin_right[i], 3.35) + map_gau(bin_right[i], 3.425) + map_gau(bin_right[i], 3.5)     )     )[0]
-            if map_resolution < 1e-13:
-                matrix_pre_40x01[i] = 0.0
-            else:
-                matrix_pre_40x01[i] = round(map_resolution, 12)
-        path_file_dat = os.path.join(dir_here, 'pre_rules_40x01.dat')
-        np.savetxt(path_file_dat, matrix_pre_40x01, fmt='%.12e', delimiter=' ')
-        i = 7
-        matriz = np.loadtxt('pre_rules_40x01.dat')
-        print(matriz[i])
-        print(matrix_pre_40x01[i])
-        print(In_matrix_pre_40x01[i])
+    a=1
         

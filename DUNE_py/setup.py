@@ -8,7 +8,7 @@ setup(
     url              = 'https://github.com/EdsonSSouza',
     author           = 'Edson Souza',
     author_email     = 'e235632@dac.unicamp.br',
-    packages         = ['Init_00_tau', 'SM_01_Prob', 'SM_02_DUNE', 'NSI_01_Prob', 'NSI_02_DUNE'],
+    packages         = ['Init_00_tau', 'SM_01_Prob', 'SM_01_DUNE', 'NSI_02_Prob', 'NSI_02_DUNE', 'NSI_03_Near_DUNE'],
     install_requires = [
                        'numpy',
                        'scipy',

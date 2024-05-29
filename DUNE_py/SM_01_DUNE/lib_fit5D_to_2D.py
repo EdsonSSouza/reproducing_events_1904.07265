@@ -35,8 +35,8 @@ def read_fit4D(name_tab):
 
 """
 # Path to the Mathematic directory: Input Files
-#directory_path = "/home/edson/Projeto_doutorado/Experimentos/Beam_Tau/Python/02_SM_DUNE/my_data"
-directory_path = "/home/edson/Projeto_doutorado/Experimentos/Beam_Tau/Python/02_SM_DUNE"
+#directory_path = "/home/edson/Projeto_doutorado/Experimentos/Beam_Tau/DUNE_py/SM_01_DUNE/my_data"
+directory_path = "/home/edson/Projeto_doutorado/Experimentos/Beam_Tau/DUNE_py/SM_01_DUNE"
 
 # Names of files
 Fit4D_free = "DUNE_fit_SM_4Dfree.dat"                                      # Names of files: Free_4D
@@ -94,7 +94,7 @@ class Fit4D_to_Fit2D:
 
 
         # Escolha o diretório onde você quer salvar o arquivo
-        dir = '/home/edson/Projeto_doutorado/Experimentos/Beam_Tau/Python/02_SM_DUNE/my_data/fit_2D/'               # Directory in which it will be saved
+        dir = '/home/edson/Projeto_doutorado/Experimentos/Beam_Tau/DUNE_py/SM_01_DUNE/my_data/fit_2D/'              # Directory in which it will be saved
         name_file = str(name)                                                                                       # Name of the file to save
         path_file = os.path.join(dir, name_file)                                                                    # Complete file path
 

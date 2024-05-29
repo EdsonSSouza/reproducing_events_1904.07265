@@ -11,11 +11,11 @@
 import datetime
 
 # Import our libraries
-from Init_00_tau.read_vec            import *
-from Init_00_tau.histogram           import Histogram
-from SM_01_Prob.matrix_PMNS          import Matrix_Osc
-from NSI_02_DUNE.py00_chi2BC_NSI     import Chi2BC_NSI, Chi2BC_331_NSI
-from NSI_02_DUNE.py00_new_events_NSI import NewEvent_reco_NSI
+from Init_00_tau.read_vec           import *
+from Init_00_tau.histogram          import Histogram
+from SM_01_Prob.matrix_PMNS         import Matrix_Osc
+from NSI_02_DUNE.py0_chi2BC_NSI     import Chi2BC_NSI, Chi2BC_331_NSI
+from NSI_02_DUNE.py0_new_events_NSI import NewEvent_reco_NSI
 
 
 class Tab_Fit_2D:

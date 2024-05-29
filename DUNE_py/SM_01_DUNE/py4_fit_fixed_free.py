@@ -11,11 +11,11 @@
 import datetime
 
 # Import our libraries
-from Init_00_tau.read_vec          import *
-from Init_00_tau.histogram         import Histogram
-from SM_01_Prob.matrix_PMNS        import Matrix_Osc
-from SM_02_DUNE.py00_chi2BC_SM     import Chi2BC, Chi2BC_331
-from SM_02_DUNE.py00_new_events_SM import NewEvent_reco_SM
+from Init_00_tau.read_vec         import *
+from Init_00_tau.histogram        import Histogram
+from SM_01_Prob.matrix_PMNS       import Matrix_Osc
+from SM_01_DUNE.py0_chi2BC_SM     import Chi2BC, Chi2BC_331
+from SM_01_DUNE.py0_new_events_SM import NewEvent_reco_SM
 
 
 class Tab_Fit_4D:
@@ -46,7 +46,7 @@ class Tab_Fit_4D:
         dm31_final  = 6
 
         # Escolha o diretório onde você quer salvar o arquivo
-        dir = '/home/edson/Projeto_doutorado/Experimentos/Beam_Tau/Python/02_SM_DUNE/my_data/'
+        dir = '/home/edson/Projeto_doutorado/Experimentos/Beam_Tau/DUNE_py/SM_01_DUNE/my_data/'
         
         # Nome do arquivo para salvar
         name_file = str(name)
