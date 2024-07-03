@@ -40,8 +40,8 @@ class Tab_Fit_2D:
         alp_init  = - 0.5
         alp_final = + 0.5
 
-        eps_init  = - 1e-4
-        eps_final = + 1e-4
+        eps_init  = - 2e-4
+        eps_final = + 2e-4
 
         # Escolha o diretório onde você quer salvar o arquivo
         dir = '/home/edson/Projeto_doutorado/Experimentos/Beam_Tau/DUNE_py/NSI_03_Near_DUNE/my_data_2D/'
@@ -71,7 +71,7 @@ class Tab_Fit_2D:
                     new_Near_MAn_Anti  = NewEvent_Near_reco_NSI.input_data( 1,2,-1,hist,L,dens,self.dm31,Umix, In_MAn_true_Anti )
                     Near_reco_MAn_Anti = new_Near_MAn_Anti.get_event( Norm5x5_MAn_Anti, eps_i, self.phi_mut )
 
-                    chi2_BC = Chi2BC_331_Near_NSI(Near_reco_MNu_Nu, Near_reco_MAn_Nu, Near_reco_MHE_Nu, Near_reco_MNu_Anti, Near_reco_MAn_Anti, 1).get_all( alp_i, eps_i )
+                    chi2_BC = Chi2BC_331_Near_NSI(Near_reco_MNu_Nu, Near_reco_MAn_Nu, Near_reco_MHE_Nu, Near_reco_MNu_Anti, Near_reco_MAn_Anti).get_all( alp_i, eps_i )
 
                     save_file.write("{:.12f}\t{:.12f}\t{:.12f}\n".format(round(eps_i, 12), round(alp_i, 12), round(chi2_BC, 12)))
                 
@@ -87,5 +87,8 @@ if __name__== "__main__":
     show = 1
 
     if show == 1:
-        Tab_Fit_2D.input_data( 0.310, 0.02240, 0.582, 1.204225*np.pi, 2.525*1e-3, 0, 20 ).get_eps_alpha('DUNE_Near_NSI_fit2D_BG_eps_alpha')
+        Tab_Fit_2D.input_data( 0.310, 0.02240, 0.582, 1.204225*np.pi, 2.525*1e-3, 0, 20 ).get_eps_alpha('DUNE_Near_NSI_fit2D_NearBG_epsO3_alpha_OnlyNu')
+    
+    elif show == 2:
+        Tab_Fit_2D.input_data( 0.310, 0.02240, 0.582, 1.204225*np.pi, 2.525*1e-3, 0, 20 ).get_eps_alpha('DUNE_Near_NSI_fit2D_Near_eps_alpha')
 

@@ -33,7 +33,7 @@ class Chi2_build:                                                               
             self.chi = 2*( self.mod - self.dat + self.dat * np.log( self.dat/self.mod ) )
 
 
-class Chi2BC_Near_NSI:                                                                                      # For 3.5 + 3.5 years: Mode_Nu and Mode_An 
+class Chi2BC_Near_NSI:                                                                                 # For 3.5 + 3.5 years: Mode_Nu and Mode_An 
     """ For 3.5 + 3.5 years: Mode_Neutrino and Mode_Antineutrino
 
         class Chi2BC_Near_NSI has 5 different chi2_BC:
@@ -51,7 +51,7 @@ class Chi2BC_Near_NSI:                                                          
         self.cal_MAn_Anti = Calc_MAn_reco_Anti                         # MAn_Anti
         # If there is BG select 1 (On) or 0 (Off) if there is not
         if BG_On_or_Off == 1 or BG_On_or_Off == 0:                   
-            self.BG = BG_On_or_Off
+            self.BG = 2957.5*BG_On_or_Off                              # Factor Near detector: 70/40000 * (1300/1)^2 = 2957.5
         else:
             Exception( " If there is BG select 1 (On) or 0 (Off) if there is not ! " )
     @classmethod
@@ -111,7 +111,7 @@ class Chi2BC_Near_NSI:                                                          
         return self.get_MNu_Nu(alpha, delta_mut) + self.get_MAn_Nu(alpha, delta_mut) + self.get_MNu_Anti(alpha, delta_mut) + self.get_MAn_Anti(alpha, delta_mut)
 
 
-class Chi2BC_331_Near_NSI:                                                                                  # For 3 + 3 + 1 years: Mode_Nu and Mode_An
+class Chi2BC_331_Near_NSI:                                                                             # For 3 + 3 + 1 years: Mode_Nu and Mode_An
     """ For 3 + 3 + 1 years: Mode_Neutrino and Mode_Antineutrino
 
         class Chi2BC_331_Near_NSI has 6 different chi2_BC:
@@ -123,14 +123,14 @@ class Chi2BC_331_Near_NSI:                                                      
             get_all = sum( get_MNu_Nu, get_MAn_Nu, get_MHE_Nu, get_MNu_Anti, get_MAn_Anti )
     """
     def __init__( self, Calc_MNu_reco_Nu, Calc_MAn_reco_Nu, Calc_MHE_reco_Nu, Calc_MNu_reco_Anti, Calc_MAn_reco_Anti, BG_On_or_Off=1 ) -> None:
-        self.cal_MNu_Nu   = Calc_MNu_reco_Nu
-        self.cal_MAn_Nu   = Calc_MAn_reco_Nu
-        self.cal_MHE_Nu   = Calc_MHE_reco_Nu
-        self.cal_MNu_Anti = Calc_MNu_reco_Anti
-        self.cal_MAn_Anti = Calc_MAn_reco_Anti
+        self.cal_MNu_Nu   = Calc_MNu_reco_Nu                           # MNu_Nu
+        self.cal_MAn_Nu   = Calc_MAn_reco_Nu                           # MAn_Nu
+        self.cal_MHE_Nu   = Calc_MHE_reco_Nu                           # MHE_Nu
+        self.cal_MNu_Anti = Calc_MNu_reco_Anti                         # MNu_Anti
+        self.cal_MAn_Anti = Calc_MAn_reco_Anti                         # MAn_Anti
         # If there is BG select 1 (On) or 0 (Off) if there is not
-        if BG_On_or_Off == 1 or BG_On_or_Off == 0:                   
-            self.BG = BG_On_or_Off
+        if BG_On_or_Off == 1 or BG_On_or_Off == 0:
+            self.BG = 2957.5*BG_On_or_Off                              # Factor Near detector: 70/40000 * (1300/1)^2 = 2957.5
         else:
             Exception( " If there is BG select 1 (On) or 0 (Off) if there is not ! " )
     @classmethod
@@ -210,7 +210,7 @@ class Chi2BC_331_Near_NSI:                                                      
     def get_all( self, alpha, delta_mut ):                                                             # get_all: Modes and Particles
         """ All things together: Modes and Particles """
         return self.get_MNu_Nu( alpha, delta_mut ) + self.get_MAn_Nu( alpha, delta_mut ) + self.get_MHE_Nu(alpha, delta_mut) +\
-               self.get_MNu_Anti(alpha, delta_mut) + self.get_MAn_Anti(alpha, delta_mut)
+               0*self.get_MNu_Anti(alpha, delta_mut) + 0*self.get_MAn_Anti(alpha, delta_mut)
 
 
 

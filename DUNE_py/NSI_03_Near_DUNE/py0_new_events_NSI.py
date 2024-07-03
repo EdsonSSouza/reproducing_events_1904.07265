@@ -115,14 +115,14 @@ if __name__ == "__main__":
     show = 0
 
     if show == 0:
-        #PMNS_BF = Matrix_Osc.input_data( 0.31, 0.0224, 0.582, 1.204225*np.pi )
-        PMNS = Matrix_Osc.input_data( 0.3, 0.02, 0.49, 1.0*np.pi )
+        PMNS = Matrix_Osc.input_data( 0.31, 0.0224, 0.582, 1.204225*np.pi )
+        #PMNS = Matrix_Osc.input_data( 0.3, 0.02, 0.49, 1.0*np.pi )
         mass = 2.525*1e-3
         Near_ratio_NSI = np.zeros( (3,3) )
         for i in range(3):
             for j in range(3):
-                Near_ratio_NSI[i][j] = Prob_Near_ratio_NSI( i, j, +1, np.sqrt(5.73), 1, 0, mass, PMNS ).get_osc(np.sqrt(3.1)*1e-3, 0*np.pi)
-        print( f"{Near_ratio_NSI}\n" )    
+                Near_ratio_NSI[i][j] = Prob_Near_ratio_NSI( i, j, +1, 2, 1, 0, mass, PMNS ).get_osc(1*1e-3, 0*np.pi)
+        print( f"{Near_ratio_NSI[1][2]}\n" )    
     
     elif show == 1:
         PMNS_BF = Matrix_Osc.input_data( 0.310, 0.02240, 0.582, 1.204225*np.pi )

@@ -21,3 +21,5 @@
 => fazer um caso a parte para levar em conta a variação da massa Delta_m^2_31 : 
 
 => Selecionar valores e desenhar o gráfico das barras : 
+
+=> fator k no BG:
