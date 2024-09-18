@@ -27,15 +27,15 @@ class Prob_ratio_NSI:
         self.en      = energy
         self.dist_L  = distance_L
         self.dens    = density                          # número de eletrons por cm^3
-        self.m31     = dm2_31                           # Best-Fit: 2.525*1e-3
+        self.m31     = dm2_31                           # Best-Fit (nu-fit 2024): 2.511*1e-3
         self.inst_U  = instance_U_PMNS
     
     def get_osc( self, delta_mut, phi_mut ):
-        mass_bf    = Mass_order.input_data( 7.39*1e-5, 2.525*1e-3 )
-        U_bf       = Matrix_Osc.input_data( 0.310, 0.02240, 0.582, 1.204225*np.pi )
+        mass_bf    = Mass_order.input_data( 7.41*1e-5, 2.511*1e-3 )
+        U_bf       = Matrix_Osc.input_data( 0.307, 0.02203, 0.572, (197/180)*np.pi )
         prob_SM_bf = Probability_SM.input_data( self.sign_cp, self.en, self.dist_L, U_bf, mass_bf, self.dens ).get_osc_SM()
 
-        mass_out     = Mass_order.input_data( 7.39*1e-5, self.m31 )
+        mass_out     = Mass_order.input_data( 7.41*1e-5, self.m31 )
         prob_NSI_out = Probability_NSI.input_data( self.sign_cp, self.en, self.dist_L, self.inst_U, mass_out, self.dens ).get_osc_NSI(delta_mut, phi_mut)
         ratio_NSI    = prob_NSI_out[self.row][self.col]/prob_SM_bf[self.row][self.col]
         return ratio_NSI
@@ -88,7 +88,7 @@ class NewEvent_reco_NSI:
         self.hist = histogram
         self.dist_L = L
         self.dens = density
-        self.m31 = dm2_31                            # 2.525*1e-3
+        self.m31 = dm2_31                            # 2.511*1e-3
         self.inst_U = instance_U_PMNS
         self.old_ev = events_true
     @classmethod

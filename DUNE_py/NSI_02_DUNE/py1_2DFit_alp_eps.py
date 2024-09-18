@@ -34,16 +34,16 @@ class Tab_Fit_2D:
     def get_eps_alpha( self, name ):                                                                # get: eps_alpha
         row  = 1
         col  = 2
-        L    = 1300
-        dens = 2.84
+        L    = 1297
+        dens = 2.848
         hist = Histogram.get_Uniform_WB( 0, 20, 0.5 )
         Umix = Matrix_Osc.input_data(self.s2_12,self.s2_13,self.s2_23,self.del_CP)
 
         alp_init  = - 0.5
         alp_final = + 0.5
 
-        eps_init  = - 2e-2
-        eps_final = + 2e-2
+        eps_init  = 0
+        eps_final = 1e-2
 
         # Escolha o diretório onde você quer salvar o arquivo
         dir = '/home/edson/Projeto_doutorado/Experimentos/Beam_Tau/DUNE_py/NSI_02_DUNE/my_data_2D/'
@@ -74,7 +74,7 @@ class Tab_Fit_2D:
 
                     chi2_BC = Chi2BC_331_NSI(reco_MNu_Nu, reco_MAn_Nu, reco_MHE_Nu, reco_MNu_Anti, reco_MAn_Anti, 1).get_all( alp_i, eps_i )
 
-                    save_file.write("{:.3f}\t{:.3f}\t{:.12f}\n".format(round(eps_i, 7), round(alp_i, 7), round(chi2_BC, 12)))
+                    save_file.write("{:.8f}\t{:.8f}\t{:.12f}\n".format(round(eps_i, 7), round(alp_i, 7), round(chi2_BC, 12)))
                 
                 print( f"{ round( ( (loop_eps+1)/(self.interv+1) )*100, 0 ) } % \t", datetime.datetime.now().strftime("%H:%M") )    
             
@@ -85,8 +85,13 @@ class Tab_Fit_2D:
 
 if __name__== "__main__":
 
-    show = 1
+    show = 0
 
     if show == 1:
-        Tab_Fit_2D.input_data( 0.310, 0.02240, 0.582, 1.204225*np.pi, 2.525*1e-3, 0, 20 ).get_eps_alpha('DUNE_NSI_fit2D_BG_eps_alpha')
+        Tab_Fit_2D.input_data( 0.307, 0.02203, 0.572, (197/180)*np.pi, 2.511*1e-3, 0*np.pi, 20 ).get_eps_alpha('DUNE_NSI_fit2D_WithoutBG_Eps_alpha')
+        Tab_Fit_2D.input_data( 0.307, 0.02203, 0.572, (197/180)*np.pi, 2.511*1e-3, 1*np.pi, 20 ).get_eps_alpha('DUNE_NSI_fit2D_WithoutBG_PiEps_alpha')
+    
+    if show == 2:
+        Tab_Fit_2D.input_data( 0.307, 0.02203, 0.572, (197/180)*np.pi, 2.511*1e-3, 0*np.pi, 20 ).get_eps_alpha('DUNE_NSI_fit2D_WithBG_Eps_alpha')
+        Tab_Fit_2D.input_data( 0.307, 0.02203, 0.572, (197/180)*np.pi, 2.511*1e-3, 1*np.pi, 20 ).get_eps_alpha('DUNE_NSI_fit2D_WithBG_PiEps_alpha')
 

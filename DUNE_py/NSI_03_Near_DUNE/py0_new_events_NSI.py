@@ -27,15 +27,15 @@ class Prob_Near_ratio_NSI:
         self.en      = energy
         self.dist_L  = distance_L
         self.dens    = density                          # número de eletrons por cm^3
-        self.m31     = dm2_31                           # Best-Fit: 2.525*1e-3
+        self.m31     = dm2_31                           # Best-Fit: 2.511*1e-3
         self.inst_U  = instance_U_PMNS
     
     def get_osc( self, delta_mut, phi_mut ):
-        mass_bf    = Mass_order.input_data( 7.39*1e-5, 2.525*1e-3 )
-        U_bf       = Matrix_Osc.input_data( 0.310, 0.02240, 0.582, 1.204225*np.pi )
-        prob_SM_bf = Probability_SM.input_data( self.sign_cp, self.en, 1300, U_bf, mass_bf, 2.848 ).get_osc_SM()
+        mass_bf    = Mass_order.input_data( 7.41*1e-5, 2.511*1e-3 )
+        U_bf       = Matrix_Osc.input_data( 0.307, 0.02203, 0.572, (197/180)*np.pi )
+        prob_SM_bf = Probability_SM.input_data( self.sign_cp, self.en, 1297, U_bf, mass_bf, 2.848 ).get_osc_SM()
 
-        mass_out       = Mass_order.input_data( 7.39*1e-5, self.m31 )
+        mass_out       = Mass_order.input_data( 7.41*1e-5, self.m31 )
         prob_NSI_out   = Probability_NSI.input_data( self.sign_cp, self.en, self.dist_L, self.inst_U, mass_out, self.dens ).get_osc_NSI(delta_mut, phi_mut)
         Near_ratio_NSI = prob_NSI_out[self.row][self.col]/prob_SM_bf[self.row][self.col]
         return Near_ratio_NSI
@@ -49,7 +49,7 @@ class NewEvent_Near_true_NSI:
         self.hist   = histogram
         self.dist_L = L
         self.dens   = density
-        self.m31    = dm2_31                            # Best-Fit: 2.525*1e-3
+        self.m31    = dm2_31                            # Best-Fit: 2.511*1e-3
         self.inst_U = instance_U_PMNS
         self.old_ev = events_true
     
@@ -61,7 +61,7 @@ class NewEvent_Near_true_NSI:
         bin_midright = [ (bin.left + bin.right)/2 + bin_width/4      for bin in self.hist.bins ]
         bin_right =    [ bin.right                                   for bin in self.hist.bins ]
         
-        k = 2957.5                                                                                          # Factor Near detector: 70/40000 * (1300/1)^2
+        k = 8934.99                                                                                         # Factor Near detector: 70/40000 * (1297/0.574)^2 = 8934.99   (antigo):2957.5
         new_ev_true = np.zeros( len(self.old_ev) )
         for i in range( len(self.old_ev) ):
             if bin_middle[i] < 3.25:
@@ -89,7 +89,7 @@ class NewEvent_Near_reco_NSI:
         self.hist = histogram
         self.dist_L = L
         self.dens = density
-        self.m31 = dm2_31                            # 2.525*1e-3
+        self.m31 = dm2_31                            # 2.511*1e-3
         self.inst_U = instance_U_PMNS
         self.old_ev = events_true
     @classmethod
@@ -112,7 +112,13 @@ if __name__ == "__main__":
     L      = 1
     dens   = 0
      
-    show = 0
+    show = -1
+
+    if show == -1:
+        PMNS = Matrix_Osc.input_data( 0.307, 0.02203, 0.572, (197/180)*np.pi )
+        mass = 2.511*1e-3
+        Near_ratio_NSI = Prob_Near_ratio_NSI( 1, 2, +1, 2.1, 0.574, 0, mass, PMNS ).get_osc(1*1e-3, 0*np.pi)
+        print( f"{Near_ratio_NSI}\n" )    
 
     if show == 0:
         PMNS = Matrix_Osc.input_data( 0.31, 0.0224, 0.582, 1.204225*np.pi )

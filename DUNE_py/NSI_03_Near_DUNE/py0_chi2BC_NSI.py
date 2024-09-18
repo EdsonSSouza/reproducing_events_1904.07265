@@ -51,7 +51,7 @@ class Chi2BC_Near_NSI:                                                          
         self.cal_MAn_Anti = Calc_MAn_reco_Anti                         # MAn_Anti
         # If there is BG select 1 (On) or 0 (Off) if there is not
         if BG_On_or_Off == 1 or BG_On_or_Off == 0:                   
-            self.BG = 2957.5*BG_On_or_Off                              # Factor Near detector: 70/40000 * (1300/1)^2 = 2957.5
+            self.BG = 8934.99*BG_On_or_Off                             # Factor Near detector: 70/40000 * (1297/0.574)^2 = 8934.99   (antigo):2957.5
         else:
             Exception( " If there is BG select 1 (On) or 0 (Off) if there is not ! " )
     @classmethod
@@ -130,7 +130,7 @@ class Chi2BC_331_Near_NSI:                                                      
         self.cal_MAn_Anti = Calc_MAn_reco_Anti                         # MAn_Anti
         # If there is BG select 1 (On) or 0 (Off) if there is not
         if BG_On_or_Off == 1 or BG_On_or_Off == 0:
-            self.BG = 2957.5*BG_On_or_Off                              # Factor Near detector: 70/40000 * (1300/1)^2 = 2957.5
+            self.BG = 8934.99*BG_On_or_Off                             # Factor Near detector: 70/40000 * (1297/0.574)^2 = 8934.99   (antigo):2957.5
         else:
             Exception( " If there is BG select 1 (On) or 0 (Off) if there is not ! " )
     @classmethod
