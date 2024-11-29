@@ -1,0 +1,13 @@
+Metadata-Version: 1.1
+Name: DUNE-py
+Version: 1.0.0
+Summary: Work describing the tau neutrino in DUNE and the inclusion of NSI
+Home-page: https://github.com/EdsonSSouza
+Author: Edson Souza
+Author-email: e235632@dac.unicamp.br
+License: UNKNOWN
+Description: UNKNOWN
+Platform: UNKNOWN
+Classifier: Intended Audience :: Science/Research
+Classifier: Operating System :: POSIX :: Linux
+Classifier: Programming Language :: Python :: 3.8

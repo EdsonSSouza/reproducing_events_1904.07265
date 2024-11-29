@@ -1,0 +1,514 @@
+\begingroup\raggedright\begin{thebibliography}{70}
+\expandafter\ifx\csname natexlab\endcsname\relax\def\natexlab#1{#1}\fi
+
+\bibitem[Abe et~al.(2013)]{Abe:2012jj}
+{\bfseries Super-Kamiokande} Collaboration, K.~Abe {\em et~al.}, ``{Evidence
+  for the Appearance of Atmospheric Tau Neutrinos in Super-Kamiokande}'', {\em
+  Phys. Rev. Lett.} {\bfseries 110} (2013), no.~18, 181802,
+ \href{http://xxx.lanl.gov/abs/1206.0328}{{\ttfamily arXiv:1206.0328}}.
+%%CITATION = ARXIV:1206.0328;%%.
+
+\bibitem[Li et~al.(2018)]{Li:2017dbe}
+{\bfseries Super-Kamiokande} Collaboration, Z.~Li {\em et~al.}, ``{Measurement
+  of the tau neutrino cross section in atmospheric neutrino oscillations with
+  Super-Kamiokande}'', {\em Phys. Rev.} {\bfseries D98} (2018), no.~5, 052006,
+ \href{http://xxx.lanl.gov/abs/1711.09436}{{\ttfamily arXiv:1711.09436}}.
+%%CITATION = ARXIV:1711.09436;%%.
+
+\bibitem[Aartsen et~al.(2019)]{Aartsen:2019tjl}
+{\bfseries IceCube} Collaboration, M.~G. Aartsen {\em et~al.}, ``{Measurement
+  of Atmospheric Tau Neutrino Appearance with IceCube DeepCore}'',
+ \href{http://xxx.lanl.gov/abs/1901.05366}{{\ttfamily arXiv:1901.05366}}.
+%%CITATION = ARXIV:1901.05366;%%.
+
+\bibitem[Agafonova et~al.(2015)]{Agafonova:2015jxn}
+{\bfseries OPERA} Collaboration, N.~Agafonova {\em et~al.}, ``{Discovery of
+  $\tau$ Neutrino Appearance in the CNGS Neutrino Beam with the OPERA
+  Experiment}'', {\em Phys. Rev. Lett.} {\bfseries 115} (2015), no.~12, 121802,
+ \href{http://xxx.lanl.gov/abs/1507.01417}{{\ttfamily arXiv:1507.01417}}.
+%%CITATION = ARXIV:1507.01417;%%.
+
+\bibitem[Meloni(2019)]{Meloni:2019pse}
+D.~Meloni, ``{Exploring new physics from $\nu_\tau$ events in OPERA}'', {\em
+  Phys. Lett.} {\bfseries B792} (2019) 199--204,
+ \href{http://xxx.lanl.gov/abs/1903.08933}{{\ttfamily arXiv:1903.08933}}.
+%%CITATION = ARXIV:1903.08933;%%.
+
+\bibitem[Agafonova et~al.(2019)]{Agafonova:2019npf}
+{\bfseries OPERA} Collaboration, N.~Agafonova {\em et~al.}, ``{Final results on
+  neutrino oscillation parameters from the OPERA experiment in the CNGS
+  beam}'',
+ \href{http://xxx.lanl.gov/abs/1904.05686}{{\ttfamily arXiv:1904.05686}}.
+%%CITATION = ARXIV:1904.05686;%%.
+
+\bibitem[Lau(????)]{LauraFlux}
+``{DUNE Fluxes}''. \url{http://home.fnal.gov/~ljf26/DUNEFluxes/}.
+\newblock Accessed: 2019-02-01.
+
+\bibitem[Acciarri et~al.(2015)]{Acciarri:2015uup}
+{\bfseries DUNE} Collaboration, R.~Acciarri {\em et~al.}, ``{Long-Baseline
+  Neutrino Facility (LBNF) and Deep Underground Neutrino Experiment (DUNE)}'',
+ \href{http://xxx.lanl.gov/abs/1512.06148}{{\ttfamily arXiv:1512.06148}}.
+%%CITATION = ARXIV:1512.06148;%%.
+
+\bibitem[Conrad et~al.(2010)Conrad, de~Gouv\^{e}a, Shalgar, and
+  Spitz]{Conrad:2010mh}
+J.~Conrad, A.~de~Gouv\^{e}a, S.~Shalgar, and J.~Spitz, ``{Atmospheric Tau
+  Neutrinos in a Multi-kiloton Liquid Argon Detector}'', {\em Phys. Rev.}
+  {\bfseries D82} (2010) 093012,
+ \href{http://xxx.lanl.gov/abs/1008.2984}{{\ttfamily arXiv:1008.2984}}.
+%%CITATION = ARXIV:1008.2984;%%.
+
+\bibitem[Tanabashi et~al.(2018)]{Tanabashi:2018oca}
+{\bfseries Particle Data Group} Collaboration, M.~Tanabashi {\em et~al.},
+  ``{Review of Particle Physics}'', {\em Phys. Rev.} {\bfseries D98} (2018),
+  no.~3,
+030001.
+%%CITATION = PHRVA,D98,030001;%%.
+
+\bibitem[Ada(????)]{AdamSlides}
+``{Searches for New Physics with $\nu_\tau$}''.
+  \url{https://indico.fnal.gov/event/16526/session/35/contribution/100/material/slides/0.pdf}.
+\newblock Accessed: 2019-02-01.
+
+\bibitem[De~Romeri et~al.(2016)De~Romeri, Fernandez-Martinez, and
+  Sorel]{DeRomeri:2016qwo}
+V.~De~Romeri, E.~Fernandez-Martinez, and M.~Sorel, ``{Neutrino oscillations at
+  DUNE with improved energy reconstruction}'', {\em JHEP} {\bfseries 09} (2016)
+  030,
+ \href{http://xxx.lanl.gov/abs/1607.00293}{{\ttfamily arXiv:1607.00293}}.
+%%CITATION = ARXIV:1607.00293;%%.
+
+\bibitem[Friedland and Li(2019)]{Friedland:2018vry}
+A.~Friedland and S.~W. Li, ``{Understanding the energy resolution of liquid
+  argon neutrino detectors}'', {\em Phys. Rev.} {\bfseries D99} (2019), no.~3,
+  036009,
+ \href{http://xxx.lanl.gov/abs/1811.06159}{{\ttfamily arXiv:1811.06159}}.
+%%CITATION = ARXIV:1811.06159;%%.
+
+\bibitem[Alwall et~al.(2014)Alwall, Frederix, Frixione, Hirschi, Maltoni,
+  Mattelaer, Shao, Stelzer, Torrielli, and Zaro]{Alwall:2014hca}
+J.~Alwall, R.~Frederix, S.~Frixione, V.~Hirschi, F.~Maltoni, O.~Mattelaer,
+  H.~S. Shao, T.~Stelzer, P.~Torrielli, and M.~Zaro, ``{The automated
+  computation of tree-level and next-to-leading order differential cross
+  sections, and their matching to parton shower simulations}'', {\em JHEP}
+  {\bfseries 07} (2014) 079,
+ \href{http://xxx.lanl.gov/abs/1405.0301}{{\ttfamily arXiv:1405.0301}}.
+%%CITATION = ARXIV:1405.0301;%%.
+
+\bibitem[{A. Aurisano, Private Communication}(????)]{AdamComm}
+{A. Aurisano, Private Communication}.
+
+\bibitem[Andreopoulos et~al.(2015)Andreopoulos, Barry, Dytman, Gallagher,
+  Golan, Hatcher, Perdue, and Yarba]{Andreopoulos:2015wxa}
+C.~Andreopoulos, C.~Barry, S.~Dytman, H.~Gallagher, T.~Golan, R.~Hatcher,
+  G.~Perdue, and J.~Yarba, ``{The GENIE Neutrino Monte Carlo Generator: Physics
+  and User Manual}'',
+ \href{http://xxx.lanl.gov/abs/1510.05494}{{\ttfamily arXiv:1510.05494}}.
+%%CITATION = ARXIV:1510.05494;%%.
+
+\bibitem[Esteban et~al.(2018)Esteban, Gonzalez-Garcia, Hernandez-Cabezudo,
+  Maltoni, and Schwetz]{Esteban:2018azc}
+I.~Esteban, M.~C. Gonzalez-Garcia, A.~Hernandez-Cabezudo, M.~Maltoni, and
+  T.~Schwetz, ``{Global analysis of three-flavour neutrino oscillations:
+  synergies and tensions in the determination of $\theta_{23}, \delta_{CP}$,
+  and the mass ordering}'',
+ \href{http://xxx.lanl.gov/abs/1811.05487}{{\ttfamily arXiv:1811.05487}}.
+%%CITATION = ARXIV:1811.05487;%%.
+
+\bibitem[Berryman et~al.(2015)Berryman, de~Gouv\^ea, Kelly, and
+  Kobach]{Berryman:2015nua}
+J.~M. Berryman, A.~de~Gouv\^ea, K.~J. Kelly, and A.~Kobach, ``{Sterile neutrino
+  at the Deep Underground Neutrino Experiment}'', {\em Phys. Rev.} {\bfseries
+  D92} (2015), no.~7, 073012,
+ \href{http://xxx.lanl.gov/abs/1507.03986}{{\ttfamily arXiv:1507.03986}}.
+%%CITATION = ARXIV:1507.03986;%%.
+
+\bibitem[de~Gouv\^ea and Kelly(2016)]{deGouvea:2015ndi}
+A.~de~Gouv\^ea and K.~J. Kelly, ``{Non-standard Neutrino Interactions at
+  DUNE}'', {\em Nucl. Phys.} {\bfseries B908} (2016) 318--335,
+ \href{http://xxx.lanl.gov/abs/1511.05562}{{\ttfamily arXiv:1511.05562}}.
+%%CITATION = ARXIV:1511.05562;%%.
+
+\bibitem[Berryman et~al.(2016)Berryman, de~Gouv{\^e}a, Kelly, Peres, and
+  Tabrizi]{Berryman:2016szd}
+J.~M. Berryman, A.~de~Gouv{\^e}a, K.~J. Kelly, O.~L.~G. Peres, and Z.~Tabrizi,
+  ``{Large, Extra Dimensions at the Deep Underground Neutrino Experiment}'',
+  {\em Phys. Rev.} {\bfseries D94} (2016), no.~3, 033006,
+ \href{http://xxx.lanl.gov/abs/1603.00018}{{\ttfamily arXiv:1603.00018}}.
+%%CITATION = ARXIV:1603.00018;%%.
+
+\bibitem[de~Gouv{\^e}a and Kelly(2016)]{deGouvea:2016pom}
+A.~de~Gouv{\^e}a and K.~J. Kelly, ``{False Signals of CP-Invariance Violation
+  at DUNE}'',
+ \href{http://xxx.lanl.gov/abs/1605.09376}{{\ttfamily arXiv:1605.09376}}.
+%%CITATION = ARXIV:1605.09376;%%.
+
+\bibitem[de~Gouv{\^e}a and Kelly(2017)]{deGouvea:2017yvn}
+A.~de~Gouv{\^e}a and K.~J. Kelly, ``{Neutrino vs. Antineutrino Oscillation
+  Parameters at DUNE and Hyper-Kamiokande}'', {\em Phys. Rev.} {\bfseries D96}
+  (2017), no.~9, 095018,
+ \href{http://xxx.lanl.gov/abs/1709.06090}{{\ttfamily arXiv:1709.06090}}.
+%%CITATION = ARXIV:1709.06090;%%.
+
+\bibitem[Agafonova et~al.(2018)]{Agafonova:2018auq}
+{\bfseries OPERA} Collaboration, N.~Agafonova {\em et~al.}, ``{Final Results of
+  the OPERA Experiment on $\nu_\tau$ Appearance in the CNGS Neutrino Beam}'',
+  {\em Phys. Rev. Lett.} {\bfseries 120} (2018), no.~21, 211801,
+ \href{http://xxx.lanl.gov/abs/1804.04912}{{\ttfamily arXiv:1804.04912}}.
+%%CITATION = ARXIV:1804.04912;%%.
+
+\bibitem[Qian et~al.(2013)Qian, Zhang, Diwan, and Vogel]{Qian:2013ora}
+X.~Qian, C.~Zhang, M.~Diwan, and P.~Vogel, ``{Unitarity Tests of the Neutrino
+  Mixing Matrix}'',
+ \href{http://xxx.lanl.gov/abs/1308.5700}{{\ttfamily arXiv:1308.5700}}.
+%%CITATION = ARXIV:1308.5700;%%.
+
+\bibitem[Parke and Ross-Lonergan(2016)]{Parke:2015goa}
+S.~Parke and M.~Ross-Lonergan, ``{Unitarity and the three flavor neutrino
+  mixing matrix}'', {\em Phys. Rev.} {\bfseries D93} (2016), no.~11, 113009,
+ \href{http://xxx.lanl.gov/abs/1508.05095}{{\ttfamily arXiv:1508.05095}}.
+%%CITATION = ARXIV:1508.05095;%%.
+
+\bibitem[Escrihuela et~al.(2015)Escrihuela, Forero, Miranda, T\'ortola, and
+  Valle]{Escrihuela:2015wra}
+F.~J. Escrihuela, D.~V. Forero, O.~G. Miranda, M.~T\'ortola, and J.~W.~F.
+  Valle, ``{On the description of nonunitary neutrino mixing}'', {\em Phys.
+  Rev.} {\bfseries D92} (2015), no.~5, 053009,
+  \href{http://xxx.lanl.gov/abs/1503.08879}{{\ttfamily arXiv:1503.08879}},
+[Erratum: Phys. Rev.D93,no.11,119905(2016)].
+%%CITATION = ARXIV:1503.08879;%%.
+
+\bibitem[Fernandez-Martinez et~al.(2016)Fernandez-Martinez, Hernandez-Garcia,
+  and Lopez-Pavon]{Fernandez-Martinez:2016lgt}
+E.~Fernandez-Martinez, J.~Hernandez-Garcia, and J.~Lopez-Pavon, ``{Global
+  constraints on heavy neutrino mixing}'', {\em JHEP} {\bfseries 08} (2016)
+  033,
+ \href{http://xxx.lanl.gov/abs/1605.08774}{{\ttfamily arXiv:1605.08774}}.
+%%CITATION = ARXIV:1605.08774;%%.
+
+\bibitem[Escrihuela et~al.(2017)Escrihuela, Forero, Miranda, T\'ortola, and
+  Valle]{Escrihuela:2016ube}
+F.~J. Escrihuela, D.~V. Forero, O.~G. Miranda, M.~T\'ortola, and J.~W.~F.
+  Valle, ``{Probing CP violation with non-unitary mixing in long-baseline
+  neutrino oscillation experiments: DUNE as a case study}'', {\em New J. Phys.}
+  {\bfseries 19} (2017), no.~9, 093005,
+ \href{http://xxx.lanl.gov/abs/1612.07377}{{\ttfamily arXiv:1612.07377}}.
+%%CITATION = ARXIV:1612.07377;%%.
+
+\bibitem[Declais et~al.(1995)]{Declais:1994su}
+Y.~Declais {\em et~al.}, ``{Search for neutrino oscillations at 15-meters,
+  40-meters, and 95-meters from a nuclear power reactor at Bugey}'', {\em Nucl.
+  Phys.} {\bfseries B434} (1995)
+503--534.
+%%CITATION = NUPHA,B434,503;%%.
+
+\bibitem[Abe et~al.(2015)]{Abe:2014gda}
+{\bfseries Super-Kamiokande} Collaboration, K.~Abe {\em et~al.}, ``{Limits on
+  sterile neutrino mixing using atmospheric neutrinos in Super-Kamiokande}'',
+  {\em Phys. Rev.} {\bfseries D91} (2015) 052019,
+ \href{http://xxx.lanl.gov/abs/1410.2008}{{\ttfamily arXiv:1410.2008}}.
+%%CITATION = ARXIV:1410.2008;%%.
+
+\bibitem[Astier et~al.(2003)]{Astier:2003gs}
+{\bfseries NOMAD} Collaboration, P.~Astier {\em et~al.}, ``{Search for
+  $\nu_{\mu}\to\nu_e$ oscillations in the NOMAD experiment}'', {\em Phys.
+  Lett.} {\bfseries B570} (2003) 19--31,
+ \href{http://xxx.lanl.gov/abs/hep-ex/0306037}{{\ttfamily
+  arXiv:hep-ex/0306037}}.
+%%CITATION = HEP-EX/0306037;%%.
+
+\bibitem[Astier et~al.(2001)]{Astier:2001yj}
+{\bfseries NOMAD} Collaboration, P.~Astier {\em et~al.}, ``{Final NOMAD results
+  on muon-neutrino to tau-neutrino and electron-neutrino to tau-neutrino
+  oscillations including a new search for tau-neutrino appearance using
+  hadronic tau decays}'', {\em Nucl. Phys.} {\bfseries B611} (2001) 3--39,
+ \href{http://xxx.lanl.gov/abs/hep-ex/0106102}{{\ttfamily
+  arXiv:hep-ex/0106102}}.
+%%CITATION = HEP-EX/0106102;%%.
+
+\bibitem[Blennow et~al.(2017)Blennow, Coloma, Fernandez-Martinez,
+  Hernandez-Garcia, and Lopez-Pavon]{Blennow:2016jkn}
+M.~Blennow, P.~Coloma, E.~Fernandez-Martinez, J.~Hernandez-Garcia, and
+  J.~Lopez-Pavon, ``{Non-Unitarity, sterile neutrinos, and Non-Standard
+  neutrino Interactions}'', {\em JHEP} {\bfseries 04} (2017) 153,
+ \href{http://xxx.lanl.gov/abs/1609.08637}{{\ttfamily arXiv:1609.08637}}.
+%%CITATION = ARXIV:1609.08637;%%.
+
+\bibitem[Hernandez-Garcia and Lopez-Pavon(2017)]{Hernandez-Garcia:2017pwx}
+J.~Hernandez-Garcia and J.~Lopez-Pavon, ``{Non-Unitarity vs sterile neutrinos
+  at DUNE}'', in ``{Proceedings, Prospects in Neutrino Physics (NuPhys2016):
+  London, UK, December 12-14, 2016}''.
+\newblock 2017.
+\newblock
+ \href{http://xxx.lanl.gov/abs/1705.01840}{{\ttfamily arXiv:1705.01840}}.
+\newblock
+%%CITATION = ARXIV:1705.01840;%%.
+
+\bibitem[Miranda et~al.(2018)Miranda, Pasquini, T\'ortola, and
+  Valle]{Miranda:2018yym}
+O.~G. Miranda, P.~Pasquini, M.~T\'ortola, and J.~W.~F. Valle, ``{Exploring the
+  Potential of Short-Baseline Physics at Fermilab}'', {\em Phys. Rev.}
+  {\bfseries D97} (2018), no.~9, 095026,
+ \href{http://xxx.lanl.gov/abs/1802.02133}{{\ttfamily arXiv:1802.02133}}.
+%%CITATION = ARXIV:1802.02133;%%.
+
+\bibitem[Dutta and Roy(2019)]{Dutta:2019hmb}
+D.~Dutta and S.~Roy, ``{Non Unitarity at DUNE and T2HK with Charged and Neutral
+  Current Measurements}'',
+ \href{http://xxx.lanl.gov/abs/1901.11298}{{\ttfamily arXiv:1901.11298}}.
+%%CITATION = ARXIV:1901.11298;%%.
+
+\bibitem[Abe et~al.(2018)]{Abe:2018wpn}
+{\bfseries T2K} Collaboration, K.~Abe {\em et~al.}, ``{Search for CP Violation
+  in Neutrino and Antineutrino Oscillations by the T2K Experiment with
+  $2.2\times10^{21}$ Protons on Target}'', {\em Phys. Rev. Lett.} {\bfseries
+  121} (2018), no.~17, 171802,
+ \href{http://xxx.lanl.gov/abs/1807.07891}{{\ttfamily arXiv:1807.07891}}.
+%%CITATION = ARXIV:1807.07891;%%.
+
+\bibitem[Adey et~al.(2018)]{Adey:2018zwh}
+{\bfseries Daya Bay} Collaboration, D.~Adey {\em et~al.}, ``{Measurement of the
+  Electron Antineutrino Oscillation with 1958 Days of Operation at Daya Bay}'',
+  {\em Phys. Rev. Lett.} {\bfseries 121} (2018), no.~24, 241805,
+ \href{http://xxx.lanl.gov/abs/1809.02261}{{\ttfamily arXiv:1809.02261}}.
+%%CITATION = ARXIV:1809.02261;%%.
+
+\bibitem[Adamson et~al.(2019)]{Adamson:2017uda}
+{\bfseries MINOS+} Collaboration, P.~Adamson {\em et~al.}, ``{Search for
+  sterile neutrinos in MINOS and MINOS+ using a two-detector fit}'', {\em Phys.
+  Rev. Lett.} {\bfseries 122} (2019), no.~9, 091803,
+ \href{http://xxx.lanl.gov/abs/1710.06488}{{\ttfamily arXiv:1710.06488}}.
+%%CITATION = ARXIV:1710.06488;%%.
+
+\bibitem[Gandhi et~al.(2015)Gandhi, Kayser, Masud, and Prakash]{Gandhi:2015xza}
+R.~Gandhi, B.~Kayser, M.~Masud, and S.~Prakash, ``{The impact of sterile
+  neutrinos on CP measurements at long baselines}'', {\em JHEP} {\bfseries 11}
+  (2015) 039,
+ \href{http://xxx.lanl.gov/abs/1508.06275}{{\ttfamily arXiv:1508.06275}}.
+%%CITATION = ARXIV:1508.06275;%%.
+
+\bibitem[Dutta et~al.(2016)Dutta, Gandhi, Kayser, Masud, and
+  Prakash]{Dutta:2016glq}
+D.~Dutta, R.~Gandhi, B.~Kayser, M.~Masud, and S.~Prakash, ``{Capabilities of
+  long-baseline experiments in the presence of a sterile neutrino}'', {\em
+  JHEP} {\bfseries 11} (2016) 122,
+ \href{http://xxx.lanl.gov/abs/1607.02152}{{\ttfamily arXiv:1607.02152}}.
+%%CITATION = ARXIV:1607.02152;%%.
+
+\bibitem[Gupta et~al.(2018)Gupta, Matthews, Sharma, and
+  Williams]{Gupta:2018qsv}
+S.~Gupta, Z.~M. Matthews, P.~Sharma, and A.~G. Williams, ``{The Effect of a
+  Light Sterile Neutrino at NO$\nu$A and DUNE}'', {\em Phys. Rev.} {\bfseries
+  D98} (2018), no.~3, 035042,
+ \href{http://xxx.lanl.gov/abs/1804.03361}{{\ttfamily arXiv:1804.03361}}.
+%%CITATION = ARXIV:1804.03361;%%.
+
+\bibitem[Aartsen et~al.(2017)]{Aartsen:2017bap}
+{\bfseries IceCube} Collaboration, M.~G. Aartsen {\em et~al.}, ``{Search for
+  sterile neutrino mixing using three years of IceCube DeepCore data}'', {\em
+  Phys. Rev.} {\bfseries D95} (2017), no.~11, 112002,
+ \href{http://xxx.lanl.gov/abs/1702.05160}{{\ttfamily arXiv:1702.05160}}.
+%%CITATION = ARXIV:1702.05160;%%.
+
+\bibitem[Blennow et~al.(2018)Blennow, Fernandez-Martinez, Gehrlein,
+  Hernandez-Garcia, and Salvado]{Blennow:2018hto}
+M.~Blennow, E.~Fernandez-Martinez, J.~Gehrlein, J.~Hernandez-Garcia, and
+  J.~Salvado, ``{IceCube bounds on sterile neutrinos above 10 eV}'', {\em Eur.
+  Phys. J.} {\bfseries C78} (2018), no.~10, 807,
+ \href{http://xxx.lanl.gov/abs/1803.02362}{{\ttfamily arXiv:1803.02362}}.
+%%CITATION = ARXIV:1803.02362;%%.
+
+\bibitem[Friedland et~al.(2004{\natexlab{a}})Friedland, Lunardini, and Pe\~na
+  Garay]{Friedland:2004pp}
+A.~Friedland, C.~Lunardini, and C.~Pe\~na Garay, ``{Solar neutrinos as probes
+  of neutrino matter interactions}'', {\em Phys. Lett.} {\bfseries B594}
+  (2004){\natexlab{a}} 347,
+ \href{http://xxx.lanl.gov/abs/hep-ph/0402266}{{\ttfamily
+  arXiv:hep-ph/0402266}}.
+%%CITATION = HEP-PH/0402266;%%.
+
+\bibitem[Friedland et~al.(2004{\natexlab{b}})Friedland, Lunardini, and
+  Maltoni]{Friedland:2004ah}
+A.~Friedland, C.~Lunardini, and M.~Maltoni, ``{Atmospheric neutrinos as probes
+  of neutrino-matter interactions}'', {\em Phys. Rev.} {\bfseries D70}
+  (2004){\natexlab{b}} 111301,
+ \href{http://xxx.lanl.gov/abs/hep-ph/0408264}{{\ttfamily
+  arXiv:hep-ph/0408264}}.
+%%CITATION = HEP-PH/0408264;%%.
+
+\bibitem[Friedland and Lunardini(2005)]{Friedland:2005vy}
+A.~Friedland and C.~Lunardini, ``{A Test of tau neutrino interactions with
+  atmospheric neutrinos and K2K}'', {\em Phys. Rev.} {\bfseries D72} (2005)
+  053009,
+ \href{http://xxx.lanl.gov/abs/hep-ph/0506143}{{\ttfamily
+  arXiv:hep-ph/0506143}}.
+%%CITATION = HEP-PH/0506143;%%.
+
+\bibitem[Yasuda(2011)]{Yasuda:2010hw}
+O.~Yasuda, ``{Sensitivity of T2KK to non-standard interactions}'', {\em Nucl.
+  Phys. Proc. Suppl.} {\bfseries 217} (2011) 220--222,
+ \href{http://xxx.lanl.gov/abs/1011.6440}{{\ttfamily arXiv:1011.6440}}.
+%%CITATION = ARXIV:1011.6440;%%.
+
+\bibitem[Gonzalez-Garcia et~al.(2011)Gonzalez-Garcia, Maltoni, and
+  Salvado]{GonzalezGarcia:2011my}
+M.~C. Gonzalez-Garcia, M.~Maltoni, and J.~Salvado, ``{Testing matter effects in
+  propagation of atmospheric and long-baseline neutrinos}'', {\em JHEP}
+  {\bfseries 05} (2011) 075,
+ \href{http://xxx.lanl.gov/abs/1103.4365}{{\ttfamily arXiv:1103.4365}}.
+%%CITATION = ARXIV:1103.4365;%%.
+
+\bibitem[Choubey and Ohlsson(2014)]{Choubey:2014iia}
+S.~Choubey and T.~Ohlsson, ``{Bounds on Non-Standard Neutrino Interactions
+  Using PINGU}'', {\em Phys. Lett.} {\bfseries B739} (2014) 357--364,
+ \href{http://xxx.lanl.gov/abs/1410.0410}{{\ttfamily arXiv:1410.0410}}.
+%%CITATION = ARXIV:1410.0410;%%.
+
+\bibitem[Friedland and Lunardini(2006)]{Friedland:2006pi}
+A.~Friedland and C.~Lunardini, ``{Two modes of searching for new neutrino
+  interactions at MINOS}'', {\em Phys. Rev.} {\bfseries D74} (2006) 033012,
+ \href{http://xxx.lanl.gov/abs/hep-ph/0606101}{{\ttfamily
+  arXiv:hep-ph/0606101}}.
+%%CITATION = HEP-PH/0606101;%%.
+
+\bibitem[Ohlsson(2013)]{Ohlsson:2012kf}
+T.~Ohlsson, ``{Status of non-standard neutrino interactions}'', {\em Rept.
+  Prog. Phys.} {\bfseries 76} (2013) 044201,
+ \href{http://xxx.lanl.gov/abs/1209.2710}{{\ttfamily arXiv:1209.2710}}.
+%%CITATION = ARXIV:1209.2710;%%.
+
+\bibitem[Kikuchi et~al.(2009)Kikuchi, Minakata, and Uchinami]{Kikuchi:2008vq}
+T.~Kikuchi, H.~Minakata, and S.~Uchinami, ``{Perturbation Theory of Neutrino
+  Oscillation with Nonstandard Neutrino Interactions}'', {\em JHEP} {\bfseries
+  03} (2009) 114,
+ \href{http://xxx.lanl.gov/abs/0809.3312}{{\ttfamily arXiv:0809.3312}}.
+%%CITATION = ARXIV:0809.3312;%%.
+
+\bibitem[Farzan and T\'ortola(2018)]{Farzan:2017xzy}
+Y.~Farzan and M.~T\'ortola, ``{Neutrino oscillations and Non-Standard
+  Interactions}'', {\em Front.in Phys.} {\bfseries 6} (2018) 10,
+ \href{http://xxx.lanl.gov/abs/1710.09360}{{\ttfamily arXiv:1710.09360}}.
+%%CITATION = ARXIV:1710.09360;%%.
+
+\bibitem[Davidson et~al.(2003)Davidson, Pe\~na Garay, Rius, and
+  Santamaria]{Davidson:2003ha}
+S.~Davidson, C.~Pe\~na Garay, N.~Rius, and A.~Santamaria, ``{Present and future
+  bounds on nonstandard neutrino interactions}'', {\em JHEP} {\bfseries 03}
+  (2003) 011,
+ \href{http://xxx.lanl.gov/abs/hep-ph/0302093}{{\ttfamily
+  arXiv:hep-ph/0302093}}.
+%%CITATION = HEP-PH/0302093;%%.
+
+\bibitem[Abdallah et~al.(2005)]{Abdallah:2003np}
+{\bfseries DELPHI} Collaboration, J.~Abdallah {\em et~al.}, ``{Photon events
+  with missing energy in e+ e- collisions at s**(1/2) = 130-GeV to 209-GeV}'',
+  {\em Eur. Phys. J.} {\bfseries C38} (2005) 395--411,
+ \href{http://xxx.lanl.gov/abs/hep-ex/0406019}{{\ttfamily
+  arXiv:hep-ex/0406019}}.
+%%CITATION = HEP-EX/0406019;%%.
+
+\bibitem[Ribeiro et~al.(2007)Ribeiro, Minakata, Nunokawa, Uchinami, and
+  Zukanovich-Funchal]{Ribeiro:2007ud}
+N.~C. Ribeiro, H.~Minakata, H.~Nunokawa, S.~Uchinami, and
+  R.~Zukanovich-Funchal, ``{Probing Non-Standard Neutrino Interactions with
+  Neutrino Factories}'', {\em JHEP} {\bfseries 12} (2007) 002,
+ \href{http://xxx.lanl.gov/abs/0709.1980}{{\ttfamily arXiv:0709.1980}}.
+%%CITATION = ARXIV:0709.1980;%%.
+
+\bibitem[Coloma(2016)]{Coloma:2015kiu}
+P.~Coloma, ``{Non-Standard Interactions in propagation at the Deep Underground
+  Neutrino Experiment}'', {\em JHEP} {\bfseries 03} (2016) 016,
+ \href{http://xxx.lanl.gov/abs/1511.06357}{{\ttfamily arXiv:1511.06357}}.
+%%CITATION = ARXIV:1511.06357;%%.
+
+\bibitem[Martinez-Soler and Minakata(2018)]{Martinez-Soler:2018lcy}
+I.~Martinez-Soler and H.~Minakata, ``{Standard versus Non-Standard CP Phases in
+  Neutrino Oscillation in Matter with Non-Unitarity}'',
+ \href{http://xxx.lanl.gov/abs/1806.10152}{{\ttfamily arXiv:1806.10152}}.
+%%CITATION = ARXIV:1806.10152;%%.
+
+\bibitem[Esteves~Chaves et~al.(2018)Esteves~Chaves, Gratieri, and
+  Peres]{Chaves:2018sih}
+M.~Esteves~Chaves, D.~R. Gratieri, and O.~L.~G. Peres, ``{Improvements on
+  perturbative oscillation formulas including non-standard neutrino
+  Interactions}'',
+ \href{http://xxx.lanl.gov/abs/1810.04979}{{\ttfamily arXiv:1810.04979}}.
+%%CITATION = ARXIV:1810.04979;%%.
+
+\bibitem[Kopp et~al.(2010)Kopp, Machado, and Parke]{Kopp:2010qt}
+J.~Kopp, P.~A.~N. Machado, and S.~J. Parke, ``{Interpretation of MINOS Data in
+  Terms of Non-Standard Neutrino Interactions}'', {\em Phys. Rev.} {\bfseries
+  D82} (2010) 113002,
+ \href{http://xxx.lanl.gov/abs/1009.0014}{{\ttfamily arXiv:1009.0014}}.
+%%CITATION = ARXIV:1009.0014;%%.
+
+\bibitem[Coloma et~al.(2011)Coloma, Donini, Lopez-Pavon, and
+  Minakata]{Coloma:2011rq}
+P.~Coloma, A.~Donini, J.~Lopez-Pavon, and H.~Minakata, ``{Non-Standard
+  Interactions at a Neutrino Factory: Correlations and CP violation}'', {\em
+  JHEP} {\bfseries 08} (2011) 036,
+ \href{http://xxx.lanl.gov/abs/1105.5936}{{\ttfamily arXiv:1105.5936}}.
+%%CITATION = ARXIV:1105.5936;%%.
+
+\bibitem[Liao et~al.(2016)Liao, Marfatia, and Whisnant]{Liao:2016hsa}
+J.~Liao, D.~Marfatia, and K.~Whisnant, ``{Degeneracies in long-baseline
+  neutrino experiments from nonstandard interactions}'', {\em Phys. Rev.}
+  {\bfseries D93} (2016), no.~9, 093016,
+ \href{http://xxx.lanl.gov/abs/1601.00927}{{\ttfamily arXiv:1601.00927}}.
+%%CITATION = ARXIV:1601.00927;%%.
+
+\bibitem[Bakhti and Farzan(2016)]{Bakhti:2016prn}
+P.~Bakhti and Y.~Farzan, ``{CP-Violation and Non-Standard Interactions at the
+  MOMENT}'', {\em JHEP} {\bfseries 07} (2016) 109,
+ \href{http://xxx.lanl.gov/abs/1602.07099}{{\ttfamily arXiv:1602.07099}}.
+%%CITATION = ARXIV:1602.07099;%%.
+
+\bibitem[Coloma and Schwetz(2016)]{Coloma:2016gei}
+P.~Coloma and T.~Schwetz, ``{Generalized mass ordering degeneracy in neutrino
+  oscillation experiments}'', {\em Phys. Rev.} {\bfseries D94} (2016), no.~5,
+  055005,  \href{http://xxx.lanl.gov/abs/1604.05772}{{\ttfamily
+  arXiv:1604.05772}},
+[Erratum: Phys. Rev.D95,no.7,079903(2017)].
+%%CITATION = ARXIV:1604.05772;%%.
+
+\bibitem[Blennow et~al.(2016)Blennow, Choubey, Ohlsson, Pramanik, and
+  Raut]{Blennow:2016etl}
+M.~Blennow, S.~Choubey, T.~Ohlsson, D.~Pramanik, and S.~K. Raut, ``{A combined
+  study of source, detector and matter non-standard neutrino interactions at
+  DUNE}'', {\em JHEP} {\bfseries 08} (2016) 090,
+ \href{http://xxx.lanl.gov/abs/1606.08851}{{\ttfamily arXiv:1606.08851}}.
+%%CITATION = ARXIV:1606.08851;%%.
+
+\bibitem[Fukasawa et~al.(2017)Fukasawa, Ghosh, and Yasuda]{Fukasawa:2016lew}
+S.~Fukasawa, M.~Ghosh, and O.~Yasuda, ``{Sensitivity of the T2HKK experiment to
+  nonstandard interactions}'', {\em Phys. Rev.} {\bfseries D95} (2017), no.~5,
+  055005,
+ \href{http://xxx.lanl.gov/abs/1611.06141}{{\ttfamily arXiv:1611.06141}}.
+%%CITATION = ARXIV:1611.06141;%%.
+
+\bibitem[Ghosh and Yasuda(2017)]{Ghosh:2017ged}
+M.~Ghosh and O.~Yasuda, ``{Effect of systematics in the T2HK, T2HKK, and DUNE
+  experiments}'', {\em Phys. Rev.} {\bfseries D96} (2017), no.~1, 013001,
+ \href{http://xxx.lanl.gov/abs/1702.06482}{{\ttfamily arXiv:1702.06482}}.
+%%CITATION = ARXIV:1702.06482;%%.
+
+\bibitem[Keloth et~al.(2017)Keloth, Aurisano, Sousa, Davies, Suter, and
+  Plunkett]{Keloth:2017vdp}
+R.~Keloth, A.~Aurisano, A.~Sousa, G.~S. Davies, L.~Suter, and R.~K. Plunkett,
+  ``{NOvA Short-Baseline Tau Neutrino Appearance Search}'', in ``{Proceedings,
+  Meeting of the APS Division of Particles and Fields (DPF 2017): Fermilab,
+  Batavia, Illinois, USA, July 31 - August 4, 2017}''.
+\newblock 2017.
+\newblock
+ \href{http://xxx.lanl.gov/abs/1710.00295}{{\ttfamily arXiv:1710.00295}}.
+\newblock
+%%CITATION = ARXIV:1710.00295;%%.
+
+\bibitem[Denton et~al.(2016)Denton, Minakata, and Parke]{Denton:2016wmg}
+P.~B. Denton, H.~Minakata, and S.~J. Parke, ``{Compact Perturbative Expressions
+  For Neutrino Oscillations in Matter}'', {\em JHEP} {\bfseries 06} (2016) 051,
+ \href{http://xxx.lanl.gov/abs/1604.08167}{{\ttfamily arXiv:1604.08167}}.
+%%CITATION = ARXIV:1604.08167;%%.
+
+\end{thebibliography}\endgroup
